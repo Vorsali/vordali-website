@@ -62,7 +62,7 @@ button, input, textarea { font: inherit; }
   background:
     linear-gradient(90deg, rgba(4,7,17,.36), rgba(4,7,17,.77) 50%, rgba(4,7,17,.36)),
     linear-gradient(0deg, var(--bg) 0%, transparent 22%, transparent 78%, rgba(4,7,17,.5) 100%),
-    url("assets/vordali-hero.webp") center/cover no-repeat;
+    url("/assets/vordali-hero.webp") center/cover no-repeat;
   opacity: .68;
   transform: scale(1.02);
 }
