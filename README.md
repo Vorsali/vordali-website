@@ -34,3 +34,15 @@ The previously completed database migration remains valid.
 ## Important
 
 Do not select a static output directory in Vercel. Framework Preset should be Next.js and the Build Command should use the project default (`next build`).
+
+
+## npm/Vercel installation stabilization
+
+This release also includes:
+
+- Node.js pinned to `20.x`
+- npm pinned to `10.8.2`
+- `.npmrc` with conservative CI installation settings
+- `vercel.json` with an explicit install command
+
+This addresses repeated npm `Exit handler never called!` failures before the Next.js build begins.

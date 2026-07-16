@@ -18,5 +18,10 @@
     "@types/react": "19.0.3",
     "@types/react-dom": "19.0.2",
     "typescript": "5.7.2"
-  }
+  },
+  "engines": {
+    "node": "20.x",
+    "npm": "10.8.x"
+  },
+  "packageManager": "npm@10.8.2"
 }
