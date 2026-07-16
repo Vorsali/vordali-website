@@ -46,3 +46,13 @@ This release also includes:
 - `vercel.json` with an explicit install command
 
 This addresses repeated npm `Exit handler never called!` failures before the Next.js build begins.
+
+
+## pnpm deployment fix
+
+This release bypasses npm entirely because Vercel repeatedly failed inside npm with `Exit handler never called!`.
+
+- Package manager: pnpm 9.15.9
+- Runtime: Node.js 22.x
+- Vercel install command: `corepack enable && pnpm install --no-frozen-lockfile`
+- Vercel build command: `pnpm run build`
