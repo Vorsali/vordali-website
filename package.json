@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "15.5.2",
+    "next": "15.5.9",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
@@ -20,8 +20,7 @@
     "typescript": "5.7.2"
   },
   "engines": {
-    "node": "20.x",
-    "npm": "10.8.x"
+    "node": "22.x"
   },
-  "packageManager": "npm@10.8.2"
+  "packageManager": "npm@10.9.2"
 }
