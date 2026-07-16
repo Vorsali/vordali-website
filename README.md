@@ -1,96 +1,36 @@
-# Vordali Website
+# Vordali Website — Next.js Conversion
 
-A production-ready static marketing website for Vordali.
+This package replaces the static HTML marketing site with a Next.js App Router application.
 
-## Deploy on Vercel
+## Included
 
-1. Upload the contents of this folder to the root of the `vordali-website` GitHub repository.
-2. In Vercel, import or redeploy that repository.
-3. Set **Framework Preset** to `Other`.
-4. Leave **Build Command** blank.
-5. Leave **Output Directory** blank.
-6. Click **Deploy**.
-
-Vercel will serve `index.html` automatically.
-
-## Connect vordali.com
-
-After the temporary `.vercel.app` site looks correct:
-
-1. Open the project in Vercel.
-2. Go to **Settings → Domains**.
-3. Add `vordali.com` and `www.vordali.com`.
-4. Enter Vercel's requested DNS records in Network Solutions.
-
-## Before public launch
-
-The form currently opens an email addressed to `hello@vordali.com`. Create that mailbox or replace the address in `index.html`.
-
-## Files
-
-- `index.html` — page structure and copy
-- `styles.css` — complete design system and responsive layout
-- `script.js` — mobile menu, header behavior, and entrance animations
-- `assets/` — Vordali brand imagery
-
-
-## Commit connection patch
-
-This version adds:
-
-- `Commit`, `Sign In`, and `Launch Commit` links in the main navigation
-- A dedicated Vordali Commit product section
-- Hero and footer links to the live Commit application
-- Mobile-responsive Commit navigation and product preview
-
-Current app destination:
-
-```text
-https://vordali-commit.vercel.app/login
-```
-
-When a custom application subdomain is connected later, replace that URL with
-`https://app.vordali.com/login` or `https://commit.vordali.com/login`.
-
-
-## Included assets
-
-This package now includes a complete `assets/` folder:
-
-- `assets/vordali-mark.webp`
-- `assets/vordali-hero.webp`
-- `assets/favicon.png`
-
-You can upload the entire package to the website repository without separately
-adding the image files.
-
-
-## Platform Foundation Release
-
-This release adds:
-
-- Products page for Commit, Approve, Follow, and Verify
+- Shared navigation, footer, branding, and metadata
+- Homepage
+- Products
+- Pricing and interactive ROI calculator
 - Vordali Labs waitlists and problem submissions
 - Why Vordali manifesto
-- Starter ($39.99), Pro ($69.99), and Enterprise pricing
-- Interactive ROI calculator
-- Server-side Vercel functions for research submissions
-- Supabase schema foundation for plans, subscriptions, feature flags, waitlists, and problem research
-- Branded Commit links using `https://commit.vordali.com`
+- Trust Center and legal policies
+- Server-side API routes for Supabase submissions
+- Redirects from old `.html` URLs
 
-### Required Supabase migration
+## Deployment
 
-Run:
+Upload the contents of this ZIP to the root of the `vordali-website` repository.
 
-`supabase/migrations/006_platform_pricing_labs_foundation.sql`
+Vercel should automatically detect Next.js.
 
-### Required Vercel environment variables for Labs forms
+Keep these Vercel environment variables:
 
-- `SUPABASE_URL` (the existing Supabase project URL)
+- `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY`
 
-The service-role key must remain server-side and must never use a `NEXT_PUBLIC_` prefix.
+The previously completed database migration remains valid.
 
-### Suggested commit message
+## Suggested commit
 
-`Vordali Platform - Products Labs Pricing and ROI`
+`Convert Vordali website to Next.js`
+
+## Important
+
+Do not select a static output directory in Vercel. Framework Preset should be Next.js and the Build Command should use the project default (`next build`).
