@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#050816">
+  <title>Pricing — Vordali</title>
+  <meta name="description" content="Starter, Pro, and Enterprise pricing for Vordali Commit.">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="platform.css">
+</head>
+<body>
+<div class="page-noise" aria-hidden="true"></div>
+<header class="site-header scrolled">
+  <a class="brand" href="index.html"><img src="assets/vordali-mark.webp" alt=""><span>VORDALI</span></a>
+  <button class="menu-button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation"><span></span><span></span></button>
+  <nav id="site-nav" class="site-nav">
+    <a href="products.html">Products</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="labs.html">Labs</a>
+    <a href="manifesto.html">Why Vordali</a>
+    <a href="trust.html">Trust</a>
+    <a class="nav-signin" href="https://commit.vordali.com/login">Sign In</a>
+    <a class="nav-cta" href="https://commit.vordali.com/login">Launch Commit</a>
+  </nav>
+</header>
+
+<main class="platform-page">
+  <section class="platform-hero">
+    <p class="kicker">Commit Pricing</p>
+    <h1>Protect more revenue<br><em>than the plan costs.</em></h1>
+    <p>Simple business-level pricing. No per-employee tax. Start focused and move up when the additional insight creates value.</p>
+  </section>
+
+  <section class="pricing-page-grid">
+    <article class="pricing-card">
+      <span>Starter</span>
+      <h2>$39.99<small>/month</small></h2>
+      <p>For independent businesses that need fast, secure text-to-pay.</p>
+      <ul>
+        <li>Secure payment requests</li>
+        <li>Transactional SMS delivery</li>
+        <li>Stripe Connect payments</li>
+        <li>Live payment status</li>
+        <li>Search and basic dashboard</li>
+        <li>Payment receipts and history</li>
+      </ul>
+      <a class="button button-secondary" href="https://commit.vordali.com/login?plan=starter">Choose Starter</a>
+    </article>
+
+    <article class="pricing-card featured">
+      <div class="pricing-ribbon">Recommended</div>
+      <span>Pro</span>
+      <h2>$69.99<small>/month</small></h2>
+      <p>For businesses that want Commit to prove and improve its own value.</p>
+      <ul>
+        <li>Everything in Starter</li>
+        <li>Revenue Protected™ analytics</li>
+        <li>Beacon™ operational visibility</li>
+        <li>Pulse™ performance insights</li>
+        <li>Advanced reports and trends</li>
+        <li>Custom business branding</li>
+        <li>Priority support and releases</li>
+      </ul>
+      <a class="button button-primary" href="https://commit.vordali.com/login?plan=pro">Choose Pro <span>→</span></a>
+    </article>
+
+    <article class="pricing-card">
+      <span>Enterprise</span>
+      <h2>Contact<small> for pricing</small></h2>
+      <p>For groups, chains, franchises, and businesses requiring custom deployment.</p>
+      <ul>
+        <li>Everything in Pro</li>
+        <li>Multiple locations</li>
+        <li>Consolidated reporting</li>
+        <li>API and custom integrations</li>
+        <li>Dedicated onboarding</li>
+        <li>Custom controls and support</li>
+      </ul>
+      <a class="button button-secondary" href="mailto:hello@vordali.com?subject=Vordali%20Enterprise">Contact Sales</a>
+    </article>
+  </section>
+
+  <section class="roi-calculator-section" id="roi-calculator">
+    <div class="roi-calculator-copy">
+      <p class="kicker">ROI calculator</p>
+      <h2>How much revenue is currently exposed?</h2>
+      <p>This estimate turns order volume, average value, and no-show risk into a simple annual opportunity. It is a planning estimate, not a guarantee.</p>
+    </div>
+    <div class="roi-calculator">
+      <label>Phone or commitment-dependent orders per day<input id="roi-orders" type="number" min="0" value="18"></label>
+      <label>Average order or job value<input id="roi-ticket" type="number" min="0" step=".01" value="42"></label>
+      <label>Estimated no-show or abandonment rate<input id="roi-rate" type="number" min="0" max="100" step=".1" value="6"><small>%</small></label>
+      <label>Operating days per year<input id="roi-days" type="number" min="0" max="366" value="365"></label>
+      <div class="roi-results">
+        <div><span>Annual revenue at risk</span><strong id="roi-annual">$16,552.80</strong></div>
+        <div><span>Starter plan annual cost</span><strong>$479.88</strong></div>
+        <div><span>Potential value-to-cost ratio</span><strong id="roi-ratio">34.5×</strong></div>
+        <p>Actual revenue protected depends on customer behavior, operational policy, and how consistently the business uses Commit.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing-foundation">
+    <p class="kicker">Subscription foundation</p>
+    <h2>Built for a clean path from trial to paid access.</h2>
+    <div>
+      <article><strong>Plan-aware access</strong><p>Starter, Pro, and Enterprise feature flags are represented in the included database foundation.</p></article>
+      <article><strong>Stripe Billing ready</strong><p>Subscription records, billing status, trial dates, and provider IDs have a place before checkout is wired.</p></article>
+      <article><strong>Easy evolution</strong><p>Features can move between plans as real customers teach us what creates the most value.</p></article>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer platform-footer">
+  <a class="footer-brand" href="index.html">VORDALI</a>
+  <p>Focused software for measurable business problems.</p>
+  <div>
+    <a href="products.html">Products</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="labs.html">Labs</a>
+    <a href="manifesto.html">Manifesto</a>
+    <a href="trust.html">Trust</a>
+  </div>
+  <small>© <span id="year"></span> Vordali. All rights reserved.</small>
+</footer>
+<script src="script.js"></script>
+<script src="platform.js"></script>
+</body></html>

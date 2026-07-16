@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="platform.css" />
 </head>
 <body>
   <div class="page-noise" aria-hidden="true"></div>
@@ -27,12 +28,13 @@
 
     <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
       <a href="#platform">Platform</a>
-      <a href="#solutions">Solutions</a>
-      <a href="#vision">Vision</a>
-      <a href="#contact">Contact</a>
-      <a class="nav-product" href="https://vordali-commit.vercel.app/" target="_blank" rel="noopener">Commit</a>
-      <a class="nav-signin" href="https://vordali-commit.vercel.app/login" target="_blank" rel="noopener">Sign In</a>
-      <a class="nav-cta" href="https://vordali-commit.vercel.app/login" target="_blank" rel="noopener">Launch Commit</a>
+      <a href="products.html">Products</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="labs.html">Labs</a>
+      <a href="manifesto.html">Why Vordali</a>
+      <a class="nav-product" href="https://commit.vordali.com/" target="_blank" rel="noopener">Commit</a>
+      <a class="nav-signin" href="https://commit.vordali.com/login" target="_blank" rel="noopener">Sign In</a>
+      <a class="nav-cta" href="https://commit.vordali.com/login" target="_blank" rel="noopener">Launch Commit</a>
     </nav>
   </header>
 
@@ -43,26 +45,38 @@
       <div class="hero-glow hero-glow-two" aria-hidden="true"></div>
 
       <div class="hero-content reveal">
-        <div class="eyebrow"><span></span> Intelligent operations for modern business</div>
+        <div class="eyebrow"><span></span> Focused software for measurable business problems</div>
         <h1>Business systems should work <em>for you.</em></h1>
         <p>
-          Vordali brings workflows, teams, customer communication, automation,
-          and operational insight into one clear, connected experience.
+          Vordali builds focused software around measurable business problems—protecting revenue, saving time, and removing operational friction.
         </p>
         <div class="hero-actions">
-          <a class="button button-primary" href="https://vordali-commit.vercel.app/login" target="_blank" rel="noopener">Launch Vordali Commit <span>→</span></a>
+          <a class="button button-primary" href="https://commit.vordali.com/login" target="_blank" rel="noopener">Launch Vordali Commit <span>→</span></a>
           <a class="button button-secondary" href="#commit">See Commit</a>
         </div>
         <div class="hero-proof">
-          <div><strong>One platform</strong><span>Less operational friction</span></div>
-          <div><strong>Practical AI</strong><span>Built around real workflows</span></div>
-          <div><strong>Made to scale</strong><span>From local teams to growing companies</span></div>
+          <div><strong>One problem at a time</strong><span>Focused products, not feature bloat</span></div>
+          <div><strong>Measurable value</strong><span>Save time, reduce mistakes, protect revenue</span></div>
+          <div><strong>Built to fit</strong><span>Works beside the systems businesses already use</span></div>
         </div>
       </div>
 
       <a class="scroll-cue" href="#platform" aria-label="Scroll to platform">
         <span>Discover Vordali</span><i></i>
       </a>
+    </section>
+
+
+    <section class="problem-strip">
+      <div class="problem-strip-inner reveal">
+        <p class="kicker">The Vordali question</p>
+        <h2>What problem is costing your business money today?</h2>
+        <p>We do not start with features. We start with measurable pain—and build the simplest system that removes it.</p>
+        <div>
+          <a class="button button-primary" href="labs.html#submit-problem">Submit a Problem <span>→</span></a>
+          <a class="button button-secondary" href="products.html">Explore Products</a>
+        </div>
+      </div>
     </section>
 
     <section class="section intro" id="platform">
@@ -195,10 +209,10 @@
           </div>
 
           <div class="commit-actions">
-            <a class="button button-primary" href="https://vordali-commit.vercel.app/login" target="_blank" rel="noopener">
+            <a class="button button-primary" href="https://commit.vordali.com/login" target="_blank" rel="noopener">
               Sign in to Commit <span>→</span>
             </a>
-            <a class="button button-secondary" href="https://vordali-commit.vercel.app/" target="_blank" rel="noopener">
+            <a class="button button-secondary" href="https://commit.vordali.com/" target="_blank" rel="noopener">
               Open product site
             </a>
           </div>
@@ -235,6 +249,42 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+
+    <section class="section roi-home-section" id="roi">
+      <div class="section-heading centered reveal">
+        <p class="kicker">Make the value visible</p>
+        <h2>Commit should pay for itself—and prove it.</h2>
+        <p>Estimate the revenue a business may protect by securing payment before costly preparation or work begins.</p>
+      </div>
+      <div class="roi-mini reveal">
+        <div>
+          <label>Phone orders per day<input id="home-orders" type="number" min="0" value="18"></label>
+          <label>Average order<input id="home-ticket" type="number" min="0" step="0.01" value="42"></label>
+          <label>Estimated no-show rate<input id="home-rate" type="number" min="0" max="100" step="0.1" value="6"></label>
+        </div>
+        <article>
+          <span>Estimated annual revenue at risk</span>
+          <strong id="home-roi-value">$16,552.80</strong>
+          <p>Based on the inputs above. Actual results vary by business and customer behavior.</p>
+          <a href="pricing.html#roi-calculator">Open full ROI calculator →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section product-future-section">
+      <div class="section-heading reveal">
+        <p class="kicker">A focused product company</p>
+        <h2>Commit is live. The market helps decide what comes next.</h2>
+        <p>Future products remain in research until enough businesses confirm the problem is painful, measurable, and worth solving.</p>
+      </div>
+      <div class="future-product-grid">
+        <article class="future-product-card live reveal"><span>Live</span><h3>Commit™</h3><p>Secure payment commitment before work begins.</p><a href="https://commit.vordali.com/login">Launch Commit →</a></article>
+        <article class="future-product-card reveal"><span>Research</span><h3>Approve™</h3><p>Track customer approval for estimates and scope changes.</p><a href="labs.html?product=approve">Join waitlist →</a></article>
+        <article class="future-product-card reveal"><span>Research</span><h3>Follow™</h3><p>Make sure valuable follow-ups do not get lost.</p><a href="labs.html?product=follow">Join waitlist →</a></article>
+        <article class="future-product-card reveal"><span>Research</span><h3>Verify™</h3><p>Reduce identity and transaction risk before work begins.</p><a href="labs.html?product=verify">Join waitlist →</a></article>
       </div>
     </section>
 
@@ -302,12 +352,13 @@
       <a href="#solutions">Solutions</a>
       <a href="#vision">Vision</a>
       <a href="#commit">Commit</a>
-      <a href="https://vordali-commit.vercel.app/login" target="_blank" rel="noopener">Sign In</a>
+      <a href="https://commit.vordali.com/login" target="_blank" rel="noopener">Sign In</a>
       <a href="mailto:hello@vordali.com">Contact</a>
     </div>
     <small>© <span id="year"></span> Vordali. All rights reserved.</small>
   </footer>
 
   <script src="script.js"></script>
+  <script src="platform.js"></script>
 </body>
 </html>

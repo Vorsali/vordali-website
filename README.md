@@ -63,3 +63,34 @@ This package now includes a complete `assets/` folder:
 
 You can upload the entire package to the website repository without separately
 adding the image files.
+
+
+## Platform Foundation Release
+
+This release adds:
+
+- Products page for Commit, Approve, Follow, and Verify
+- Vordali Labs waitlists and problem submissions
+- Why Vordali manifesto
+- Starter ($39.99), Pro ($69.99), and Enterprise pricing
+- Interactive ROI calculator
+- Server-side Vercel functions for research submissions
+- Supabase schema foundation for plans, subscriptions, feature flags, waitlists, and problem research
+- Branded Commit links using `https://commit.vordali.com`
+
+### Required Supabase migration
+
+Run:
+
+`supabase/migrations/006_platform_pricing_labs_foundation.sql`
+
+### Required Vercel environment variables for Labs forms
+
+- `SUPABASE_URL` (the existing Supabase project URL)
+- `SUPABASE_SERVICE_ROLE_KEY`
+
+The service-role key must remain server-side and must never use a `NEXT_PUBLIC_` prefix.
+
+### Suggested commit message
+
+`Vordali Platform - Products Labs Pricing and ROI`
