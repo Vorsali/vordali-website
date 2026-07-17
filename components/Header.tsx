@@ -31,8 +31,8 @@ export function Header() {
         <Link href="/labs" onClick={() => setOpen(false)}>Labs</Link>
         <Link href="/why-vordali" onClick={() => setOpen(false)}>Why Vordali</Link>
         <Link href="/trust" onClick={() => setOpen(false)}>Trust</Link>
-        <a className="nav-signin" href="https://commit.vordali.com/login">Sign In</a>
-        <a className="nav-cta" href="https://commit.vordali.com/login">Launch Commit</a>
+        <Link className="nav-signin" href="/login" onClick={() => setOpen(false)}>Sign In</Link>
+        <Link className="nav-cta" href="/choose-plan" onClick={() => setOpen(false)}>Launch Commit</Link>
       </nav>
     </header>
   );

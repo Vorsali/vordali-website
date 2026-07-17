@@ -17,14 +17,14 @@ export default function PricingPage() {
             <span>Starter</span><h2>$39.99<small>/month</small></h2>
             <p>For independent businesses that need fast, secure text-to-pay.</p>
             <ul><li>Secure payment requests</li><li>Transactional SMS delivery</li><li>Stripe Connect payments</li><li>Live payment status</li><li>Search and basic dashboard</li><li>Payment receipts and history</li></ul>
-            <a className="button button-secondary" href="https://commit.vordali.com/login?plan=starter">Choose Starter</a>
+            <a className="button button-secondary" href="/register?plan=starter">Choose Starter</a>
           </article>
           <article className="pricing-card featured">
             <div className="pricing-ribbon">Recommended</div>
             <span>Pro</span><h2>$69.99<small>/month</small></h2>
             <p>For businesses that want Commit to prove and improve its own value.</p>
             <ul><li>Everything in Starter</li><li>Revenue Protected™ analytics</li><li>Beacon™ operational visibility</li><li>Pulse™ performance insights</li><li>Advanced reports and trends</li><li>Custom business branding</li><li>Priority support and releases</li></ul>
-            <a className="button button-primary" href="https://commit.vordali.com/login?plan=pro">Choose Pro <span>→</span></a>
+            <a className="button button-primary" href="/register?plan=pro">Choose Pro <span>→</span></a>
           </article>
           <article className="pricing-card">
             <span>Enterprise</span><h2>Contact<small> for pricing</small></h2>
