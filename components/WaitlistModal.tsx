@@ -53,6 +53,7 @@ export function WaitlistModal({ initialProduct }: { initialProduct?: string }) {
     <div className="modal-shell">
       <div className="modal-backdrop" onClick={() => setOpen(false)}></div>
       <form className="waitlist-modal-card" onSubmit={submit}>
+      <label className="honeypot" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
         <button className="modal-close" type="button" onClick={() => setOpen(false)}>×</button>
         <p className="kicker">Product research</p>
         <h2>Join the <span>{labels[product] || "Vordali"}</span> waitlist.</h2>

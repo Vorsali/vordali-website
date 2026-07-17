@@ -1,25 +1,41 @@
 import { NextResponse } from "next/server";
 import { insertRow } from "@/lib/supabaseServer";
+import { email, ensureHuman, optionalNonNegativeNumber, optionalText, text } from "@/lib/validation/forms";
+
+const allowedProducts = new Set(["approve", "follow", "verify"]);
 
 export async function POST(request: Request) {
   try {
-    const b = await request.json();
-    if (!b.product_slug || !b.name || !b.email || !b.problem) {
+    const body = await request.json() as Record<string, unknown>;
+    ensureHuman(body);
+
+    const productSlug = text(body.product_slug, 50).toLowerCase();
+    const name = text(body.name, 150);
+    const problem = text(body.problem, 5000);
+    if (!allowedProducts.has(productSlug) || !name || !problem) {
       return NextResponse.json({ error: "Product, name, email, and problem are required." }, { status: 400 });
     }
+
+    const hoursLost = optionalNonNegativeNumber(body.hours_lost_weekly, 168);
+    const monthlyCost = optionalNonNegativeNumber(body.monthly_cost, 10000000);
+
     await insertRow("product_waitlists", {
-      product_slug: String(b.product_slug).slice(0, 50),
-      name: String(b.name).slice(0, 150),
-      email: String(b.email).slice(0, 320).toLowerCase(),
-      business_name: b.business_name ? String(b.business_name).slice(0, 200) : null,
-      business_type: b.business_type ? String(b.business_type).slice(0, 150) : null,
-      problem: String(b.problem).slice(0, 5000),
-      hours_lost_weekly: b.hours_lost_weekly ? Number(b.hours_lost_weekly) : null,
-      monthly_cost_cents: b.monthly_cost ? Math.round(Number(b.monthly_cost) * 100) : null,
+      product_slug: productSlug,
+      name,
+      email: email(body.email),
+      business_name: optionalText(body.business_name, 200),
+      business_type: optionalText(body.business_type, 150),
+      problem,
+      hours_lost_weekly: hoursLost,
+      monthly_cost_cents: monthlyCost === null ? null : Math.round(monthlyCost * 100),
       source: "vordali.com"
     });
+
     return NextResponse.json({ message: "You are on the research waitlist. Thank you for helping shape Vordali." });
   } catch (error) {
-    return NextResponse.json({ error: error instanceof Error ? error.message : "Submission failed." }, { status: 500 });
+    const message = error instanceof Error ? error.message : "Submission failed.";
+    const isInputError = message.startsWith("Please") || message === "Submission rejected.";
+    console.error("Waitlist submission failed", error);
+    return NextResponse.json({ error: isInputError ? message : "We could not save your submission. Please try again." }, { status: isInputError ? 400 : 500 });
   }
 }

@@ -34,6 +34,7 @@ export function ProblemForm() {
 
   return (
     <form className="research-form" onSubmit={submit}>
+      <label className="honeypot" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
       <label>Name<input name="name" required /></label>
       <label>Work email<input type="email" name="email" required /></label>
       <label>Business name<input name="business_name" /></label>
