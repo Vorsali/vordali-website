@@ -94,3 +94,4 @@ The service-role key must remain server-side and must never use a `NEXT_PUBLIC_`
 ### Suggested commit message
 
 `Vordali Platform - Products Labs Pricing and ROI`
+
