@@ -29,7 +29,7 @@ export function getSiteUrl() {
 }
 
 export function getPriceId(plan: string) {
-  const priceId = plan === "pro" ? process.env.STRIPE_PRICE_PRO : process.env.STRIPE_PRICE_STARTER;
+  const priceId = plan === "pro" ? (process.env.STRIPE_PRICE_PROFESSIONAL || process.env.STRIPE_PRICE_PRO) : process.env.STRIPE_PRICE_STARTER;
   if (!priceId) throw new Error(`Stripe price is not configured for the ${plan} plan.`);
   return priceId;
 }
