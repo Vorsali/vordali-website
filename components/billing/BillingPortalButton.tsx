@@ -1,0 +1,3 @@
+"use client";
+import { useState } from "react";
+export function BillingPortalButton(){const[loading,setLoading]=useState(false);const[error,setError]=useState("");async function open(){setLoading(true);setError("");const r=await fetch("/api/billing/portal",{method:"POST"});const d=await r.json();if(r.ok&&d.url){window.location.href=d.url;return}setError(d.error||"Unable to open billing settings.");setLoading(false)}return <><button className="button button-primary" onClick={open} disabled={loading}>{loading?"Opening…":"Manage billing in Stripe"}</button>{error&&<p className="form-error">{error}</p>}</>}
