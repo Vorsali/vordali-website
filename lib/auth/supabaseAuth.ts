@@ -85,7 +85,7 @@ export async function ensureMerchantAccount(user: AuthUser) {
   await supabaseAdminRequest("/rest/v1/organization_members", {
     method: "POST",
     headers: { Prefer: "return=minimal" },
-    body: JSON.stringify({ organization_id: organizationId, user_id: user.id, role: "owner", display_name: ownerName, email: user.email })
+    body: JSON.stringify({ organization_id: organizationId, user_id: user.id, role: "owner", display_name: ownerName })
   });
   await supabaseAdminRequest("/rest/v1/organization_subscriptions", {
     method: "POST",
