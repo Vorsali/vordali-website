@@ -196,10 +196,27 @@ export function SignatureRecoveryTank({
               <path d="M309 105 C320 180 320 294 307 359" fill="none" stroke="#d4f8ff" strokeOpacity=".13" strokeWidth="10" strokeLinecap="round" />
               <path className="svg-glass-sweep" d="M154 104 C135 190 142 285 160 356" fill="none" stroke="#ffffff" strokeOpacity=".42" strokeWidth="13" strokeLinecap="round" />
 
-              <line x1="96" x2="344" y1={breakEvenY} y2={breakEvenY} stroke="#ffffff" strokeOpacity=".7" strokeDasharray="4 4" />
-              <g transform={`translate(262 ${breakEvenY - 18})`}>
-                <rect width="82" height="20" rx="8" fill="#04101d" fillOpacity=".92" stroke="var(--tank-mid)" strokeOpacity=".25" />
-                <text x="41" y="13" textAnchor="middle" fill="#e7f8ff" fontSize="8">Commit breaks even</text>
+              {/* Break-even marker: a stronger dotted guide with all wording outside the glass. */}
+              <line
+                x1="96"
+                x2="365"
+                y1={breakEvenY}
+                y2={breakEvenY}
+                stroke="var(--tank-light)"
+                strokeOpacity=".98"
+                strokeWidth="2.2"
+                strokeDasharray="7 5"
+                strokeLinecap="round"
+                filter="url(#tankGlow)"
+              />
+              <path
+                d={`M365 ${breakEvenY} L357 ${breakEvenY - 4.5} L357 ${breakEvenY + 4.5} Z`}
+                fill="var(--tank-light)"
+                fillOpacity=".98"
+              />
+              <g transform={`translate(372 ${breakEvenY - 9})`} className="break-even-label-svg">
+                <text fill="var(--tank-light)" fontSize="10.5" fontWeight="800">Break-even</text>
+                <text y="13" fill="#d9e9f5" fontSize="7.5">{currency.format(annualCost)}/year</text>
               </g>
 
               {/* This visible glass foot continues into the collar opening. */}
