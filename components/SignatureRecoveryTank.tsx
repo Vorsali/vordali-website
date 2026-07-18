@@ -171,23 +171,28 @@ export function SignatureRecoveryTank({
             </g>
 
             <g className="unified-pedestal">
-              <ellipse cx="220" cy="390" rx="139" ry="18" fill="url(#collarMetal)" stroke="var(--tank-light)" strokeOpacity=".82" strokeWidth="2.4" />
-              <ellipse cx="220" cy="388" rx="122" ry="10" fill="#08111b" stroke="#d8f7ff" strokeOpacity=".55" strokeWidth="1.5" />
-              <path d="M81 390 L81 445 C81 461 359 461 359 445 L359 390 C359 405 81 405 81 390 Z" fill="url(#metalBody)" stroke="#688096" strokeOpacity=".55" strokeWidth="1.5" />
-              <ellipse cx="220" cy="445" rx="139" ry="17" fill="#0b121b" stroke="#495d70" strokeWidth="1.5" />
-              <path d="M93 444 Q220 458 347 444" fill="none" stroke="var(--tank-light)" strokeWidth="3" strokeOpacity=".92" filter="url(#tankGlow)" />
+              {/* The pedestal starts below the glass. The collar no longer draws across the tank wall. */}
+              <ellipse cx="220" cy="402" rx="139" ry="18" fill="url(#collarMetal)" stroke="var(--tank-light)" strokeOpacity=".82" strokeWidth="2.4" />
+              <ellipse cx="220" cy="400" rx="122" ry="9" fill="#0c1a26" fillOpacity=".78" stroke="#d8f7ff" strokeOpacity=".5" strokeWidth="1.3" />
+              <path d="M81 402 L81 451 C81 467 359 467 359 451 L359 402 C359 417 81 417 81 402 Z" fill="url(#metalBody)" stroke="#688096" strokeOpacity=".55" strokeWidth="1.5" />
+              <ellipse cx="220" cy="451" rx="139" ry="16" fill="url(#metalBody)" stroke="#60768a" strokeOpacity=".72" strokeWidth="1.4" />
+              <path d="M94 450 Q220 462 346 450" fill="none" stroke="var(--tank-light)" strokeWidth="3" strokeOpacity=".9" filter="url(#tankGlow)" />
 
               <g className="unified-plaque">
-                <rect x="121" y="404" width="198" height="38" rx="5" fill="#101820" fillOpacity=".65" />
-                <rect x="124" y="401" width="192" height="38" rx="5" fill="url(#plaqueMetal)" stroke="#273644" strokeWidth="1.4" />
-                <text x="220" y="418" textAnchor="middle" fill="#101923" fontSize="17" fontFamily="Georgia, serif" fontWeight="700">Recovery Tank™</text>
-                <text x="220" y="432" textAnchor="middle" fill="#263544" fontSize="7.5">◉ Powered by Commit</text>
+                <rect x="121" y="414" width="198" height="34" rx="5" fill="#101820" fillOpacity=".62" />
+                <rect x="124" y="411" width="192" height="34" rx="5" fill="url(#plaqueMetal)" stroke="#273644" strokeWidth="1.4" />
+                <text x="220" y="427" textAnchor="middle" fill="#101923" fontSize="16" fontFamily="Georgia, serif" fontWeight="700">Recovery Tank™</text>
+                <text x="220" y="439" textAnchor="middle" fill="#263544" fontSize="7.2">◉ Powered by Commit</text>
                 <g fill="#26323d" stroke="#dce5eb" strokeWidth=".7">
-                  <circle cx="134" cy="410" r="3"/><circle cx="306" cy="410" r="3"/>
-                  <circle cx="134" cy="430" r="3"/><circle cx="306" cy="430" r="3"/>
+                  <circle cx="134" cy="419" r="2.7"/><circle cx="306" cy="419" r="2.7"/>
+                  <circle cx="134" cy="438" r="2.7"/><circle cx="306" cy="438" r="2.7"/>
                 </g>
               </g>
             </g>
+
+            {/* Draw the glass foot last so it is visibly in front of, and seated above, the collar. */}
+            <ellipse cx="220" cy="379" rx="126" ry="13" fill="#8eeeff" fillOpacity=".05" stroke="url(#glassStroke)" strokeWidth="3.2" filter="url(#tankGlow)" />
+            <path d="M101 381 Q220 394 339 381" fill="none" stroke="#e3fbff" strokeOpacity=".46" strokeWidth="1.4" />
           </g>
         </svg>
       </div>
