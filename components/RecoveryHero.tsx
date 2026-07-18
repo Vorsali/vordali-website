@@ -148,10 +148,21 @@ export function RecoveryHero() {
               <div className="break-even-line"><span>Commit breaks even</span></div>
             </div>
             <div className="tank-bottom-rim"></div>
-            <div className="tank-pedestal">
-              <div className="tank-plaque-large"><strong>Recovery Tank™</strong><small>◉ Powered by Commit</small></div>
+            <div className="tank-pedestal" aria-hidden="true">
+              <div className="pedestal-top-collar"></div>
+              <div className="pedestal-body">
+                <div className="pedestal-metal-sheen"></div>
+                <div className="tank-plaque-large">
+                  <i className="plaque-screw screw-tl"></i>
+                  <i className="plaque-screw screw-tr"></i>
+                  <i className="plaque-screw screw-bl"></i>
+                  <i className="plaque-screw screw-br"></i>
+                  <strong>Recovery Tank™</strong><small>◉ Powered by Commit</small>
+                </div>
+              </div>
+              <div className="pedestal-lower-bevel"></div>
+              <div className="pedestal-light-strip"></div>
             </div>
-            <div className="stage-ring"></div>
           </div>
           <p className="tank-proof-line">{defaults.proof} · {recoveryRate}% estimated recovery</p>
         </div>

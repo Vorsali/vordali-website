@@ -776,3 +776,143 @@ button{font:inherit}.site-header{z-index:60}.mobile-nav-open{overflow:hidden}
   .hero-result-grid div{min-height:58px;padding:7px 4px}
   .recovery-trust-strip{display:none}
 }
+
+/* Phase 8.5 — Recovery Tank industrial-design pass */
+/* Prevent the eyebrow from slipping beneath the fixed navigation on short laptop screens. */
+.recovery-kicker{padding-top:8px}
+
+/* Stronger depth behind the tank, without another expensive blur layer. */
+.signature-tank-stage:before{
+  content:"";
+  position:absolute;
+  width:78%;height:72%;
+  left:11%;top:16%;
+  border-radius:50%;
+  background:radial-gradient(ellipse,color-mix(in srgb,var(--tank-mid) 22%,transparent),transparent 68%);
+  opacity:.78;
+  pointer-events:none;
+  z-index:-1;
+}
+
+/* Slightly heavier glass walls and a quieter, more realistic open lip. */
+.cylinder-glass{
+  border-width:4px;
+  border-color:color-mix(in srgb,var(--tank-light) 72%,white);
+  box-shadow:
+    inset 8px 0 18px rgba(255,255,255,.08),
+    inset -11px 0 24px rgba(0,9,31,.28),
+    inset 0 0 54px color-mix(in srgb,var(--tank-deep) 25%,transparent),
+    0 0 34px color-mix(in srgb,var(--tank-mid) 34%,transparent),
+    0 30px 58px rgba(0,0,0,.34);
+}
+.tank-top-rim{
+  border-width:3px;
+  background:linear-gradient(180deg,rgba(255,255,255,.32),rgba(90,205,255,.07) 45%,transparent 66%);
+  box-shadow:0 0 16px color-mix(in srgb,var(--tank-mid) 58%,transparent),inset 0 1px rgba(255,255,255,.78);
+}
+
+/* More dimensional liquid: two independent curved surfaces and darker glass edges. */
+.cylinder-liquid:after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(0,7,30,.32),transparent 17% 80%,rgba(0,7,30,.38));
+  pointer-events:none;
+}
+.surface-back{height:42px;top:-21px;opacity:.42;animation-duration:5.7s}
+.surface-front{height:34px;top:-17px;opacity:.88;animation-duration:4.1s}
+.liquid-foam{top:-7px;left:7%;right:7%;box-shadow:0 0 9px rgba(255,255,255,.72)}
+
+/* Replace the previous flat rounded block with a true three-dimensional cylindrical pedestal. */
+.tank-pedestal{
+  left:4.5%;right:4.5%;top:387px;height:101px;
+  border:0;border-radius:0;background:none;box-shadow:none;
+  display:block;overflow:visible;
+}
+.tank-pedestal:after{display:none!important}
+.pedestal-top-collar{
+  position:absolute;z-index:5;left:2%;right:2%;top:-7px;height:28px;border-radius:50%;
+  border:2px solid rgba(201,229,255,.62);
+  background:linear-gradient(180deg,#dce8f2 0%,#6f849a 17%,#172b43 53%,#061326 78%,#60758a 100%);
+  box-shadow:inset 0 4px 6px rgba(255,255,255,.46),inset 0 -7px 10px rgba(0,0,0,.48),0 0 15px color-mix(in srgb,var(--tank-mid) 35%,transparent);
+}
+.pedestal-body{
+  position:absolute;z-index:3;left:3%;right:3%;top:7px;height:74px;overflow:hidden;
+  border:1px solid rgba(190,213,235,.47);border-radius:8px 8px 30px 30px / 8px 8px 20px 20px;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.026) 0 1px,rgba(0,0,0,.018) 1px 3px),
+    linear-gradient(90deg,#071326 0%,#24364b 8%,#66798d 21%,#aab7c4 37%,#dbe2e9 50%,#9caab8 63%,#5e7185 79%,#1d3147 92%,#061326 100%);
+  box-shadow:inset 0 4px 5px rgba(255,255,255,.38),inset 0 -12px 18px rgba(0,0,0,.5),0 13px 25px rgba(0,0,0,.38);
+}
+.pedestal-body:before,.pedestal-body:after{
+  content:"";position:absolute;top:0;bottom:0;width:18%;pointer-events:none;
+}
+.pedestal-body:before{left:0;background:linear-gradient(90deg,rgba(0,0,0,.58),transparent)}
+.pedestal-body:after{right:0;background:linear-gradient(270deg,rgba(0,0,0,.58),transparent)}
+.pedestal-metal-sheen{
+  position:absolute;z-index:2;top:-20%;bottom:-20%;left:-28%;width:18%;
+  transform:skewX(-18deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
+  animation:pedestal-sheen 9s ease-in-out infinite;
+}
+.pedestal-lower-bevel{
+  position:absolute;z-index:4;left:5%;right:5%;top:69px;height:28px;border-radius:50%;
+  border:1px solid rgba(139,164,188,.6);
+  background:linear-gradient(180deg,#4f6478 0%,#172a40 34%,#071427 69%,#020914 100%);
+  box-shadow:inset 0 4px 5px rgba(255,255,255,.18),inset 0 -7px 10px rgba(0,0,0,.55);
+}
+.pedestal-light-strip{
+  position:absolute;z-index:6;left:8%;right:8%;top:87px;height:6px;border-radius:50%;
+  background:linear-gradient(90deg,transparent,var(--tank-mid) 15%,var(--tank-light) 50%,var(--tank-mid) 85%,transparent);
+  box-shadow:0 0 7px var(--tank-light),0 0 18px var(--tank-mid);
+  opacity:.92;
+}
+.tank-plaque-large{
+  position:absolute;z-index:7;left:50%;top:17px;transform:translateX(-50%);
+  min-width:246px;padding:8px 25px 7px;border-radius:5px;
+  border:1px solid #556579;
+  background:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.08) 0 1px,transparent 1px 3px),
+    linear-gradient(180deg,#f1f4f7 0%,#c3ccd5 38%,#8d99a7 61%,#d9e0e6 100%);
+  color:#091426;text-align:center;
+  box-shadow:inset 0 1px #fff,inset 0 -2px rgba(42,51,64,.32),0 2px 3px rgba(0,0,0,.54),0 0 0 3px rgba(23,38,54,.34);
+}
+.tank-plaque-large:before,.tank-plaque-large:after{display:none}
+.tank-plaque-large strong{font-size:18px;line-height:1.05;text-shadow:0 1px rgba(255,255,255,.7)}
+.tank-plaque-large small{font-size:8px;color:#1a2636;margin-top:2px}
+.plaque-screw{
+  position:absolute;width:7px;height:7px;border-radius:50%;
+  background:radial-gradient(circle at 34% 28%,#eef3f7 0 12%,#778594 30%,#263444 62%,#0d1722 100%);
+  box-shadow:inset 0 1px rgba(255,255,255,.6),0 1px 2px rgba(0,0,0,.65);
+}
+.plaque-screw:after{content:"";position:absolute;left:1px;right:1px;top:3px;height:1px;background:#13202d;transform:rotate(-38deg)}
+.screw-tl{left:8px;top:7px}.screw-tr{right:8px;top:7px}.screw-bl{left:8px;bottom:7px}.screw-br{right:8px;bottom:7px}
+.stage-ring{display:none!important}
+
+@keyframes pedestal-sheen{
+  0%,58%{transform:translateX(0) skewX(-18deg);opacity:0}
+  68%{opacity:.72}
+  82%,100%{transform:translateX(780%) skewX(-18deg);opacity:0}
+}
+
+/* Maintain the compact laptop layout with the new pedestal dimensions. */
+@media (min-width:1100px) and (max-height:850px){
+  .recovery-hero{padding-top:80px}
+  .recovery-kicker{padding-top:6px}
+  .tank-pedestal{top:350px;height:91px}
+  .pedestal-body{height:66px}
+  .pedestal-lower-bevel{top:61px;height:25px}
+  .pedestal-light-strip{top:79px}
+  .tank-plaque-large{top:15px;min-width:225px;padding:7px 22px 6px}
+  .tank-plaque-large strong{font-size:16px}
+}
+
+@media(max-width:540px){
+  .tank-pedestal{left:3%;right:3%;top:346px;height:88px}
+  .pedestal-body{height:63px}
+  .pedestal-lower-bevel{top:58px;height:24px}
+  .pedestal-light-strip{top:76px}
+  .tank-plaque-large{top:14px;min-width:205px;padding:6px 19px}
+  .tank-plaque-large strong{font-size:14px}
+}
+
+@media(prefers-reduced-motion:reduce){.pedestal-metal-sheen{animation:none!important}}
