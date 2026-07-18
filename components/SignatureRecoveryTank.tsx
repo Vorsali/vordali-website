@@ -141,6 +141,8 @@ export function SignatureRecoveryTank({
           <ellipse cx="220" cy="474" rx="145" ry="18" fill="url(#floorGlow)" className="tank-floor-glow-svg" />
 
           <g className="tank-unified-assembly">
+            {/* Seat the complete glass assembly into the collar as one unit. */}
+            <g className="unified-glass-assembly" transform="translate(0 12)">
             <g clipPath="url(#tankInterior)">
               <rect x="88" y={liquidTop} width="264" height={390 - liquidTop} fill="url(#liquidFill)" />
               <path className="svg-wave svg-wave-back" d={`M70 ${liquidTop + 4} Q120 ${liquidTop - 10} 170 ${liquidTop + 4} T270 ${liquidTop + 4} T370 ${liquidTop + 4} L370 ${liquidTop + 38} L70 ${liquidTop + 38} Z`} fill="var(--tank-light)" fillOpacity=".48" />
@@ -170,8 +172,10 @@ export function SignatureRecoveryTank({
               <text x="41" y="13" textAnchor="middle" fill="#e7f8ff" fontSize="8">Commit breaks even</text>
             </g>
 
+            </g>
+
             <g className="unified-pedestal">
-              {/* The pedestal starts below the glass. The collar no longer draws across the tank wall. */}
+              {/* The glass now overlaps this collar by a few pixels, so it reads as seated rather than hovering. */}
               <ellipse cx="220" cy="402" rx="139" ry="18" fill="url(#collarMetal)" stroke="var(--tank-light)" strokeOpacity=".82" strokeWidth="2.4" />
               <ellipse cx="220" cy="400" rx="122" ry="9" fill="#0c1a26" fillOpacity=".78" stroke="#d8f7ff" strokeOpacity=".5" strokeWidth="1.3" />
               <path d="M81 402 L81 451 C81 467 359 467 359 451 L359 402 C359 417 81 417 81 402 Z" fill="url(#metalBody)" stroke="#688096" strokeOpacity=".55" strokeWidth="1.5" />
@@ -190,9 +194,11 @@ export function SignatureRecoveryTank({
               </g>
             </g>
 
-            {/* Draw the glass foot last so it is visibly in front of, and seated above, the collar. */}
-            <ellipse cx="220" cy="379" rx="126" ry="13" fill="#8eeeff" fillOpacity=".05" stroke="url(#glassStroke)" strokeWidth="3.2" filter="url(#tankGlow)" />
-            <path d="M101 381 Q220 394 339 381" fill="none" stroke="#e3fbff" strokeOpacity=".46" strokeWidth="1.4" />
+            {/* Draw the translated glass foot last so its lower edge sits inside the collar. */}
+            <g transform="translate(0 12)">
+              <ellipse cx="220" cy="379" rx="126" ry="13" fill="#8eeeff" fillOpacity=".035" stroke="url(#glassStroke)" strokeWidth="2.7" filter="url(#tankGlow)" />
+              <path d="M101 381 Q220 394 339 381" fill="none" stroke="#e3fbff" strokeOpacity=".38" strokeWidth="1.2" />
+            </g>
           </g>
         </svg>
       </div>
