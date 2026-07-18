@@ -11,11 +11,12 @@ export default function HomePage() {
           <div className="hero-glow hero-glow-one" aria-hidden="true"></div>
           <div className="hero-glow hero-glow-two" aria-hidden="true"></div>
           <div className="hero-content reveal visible">
+            <div className="brand-orb hero-brand-orb" aria-label="Vordali animated logo"><img src="/assets/vordali-logo-orb.webp" alt="Vordali" /></div>
             <div className="eyebrow"><span></span> Focused software for measurable business problems</div>
             <h1>Business systems should work <em>for you.</em></h1>
             <p>Vordali builds focused software around measurable business problems—protecting revenue, saving time, and removing operational friction.</p>
             <div className="hero-actions">
-              <a className="button button-primary" href="https://commit.vordali.com/login">Launch Vordali Commit <span>→</span></a>
+              <a className="button button-primary" href="/login">Launch Vordali Commit <span>→</span></a>
               <a className="button button-secondary" href="#commit">See Commit</a>
             </div>
             <div className="hero-proof">
@@ -78,7 +79,7 @@ export default function HomePage() {
                 <div><span>03</span><p><strong>Begin after confirmation</strong> when Stripe verifies payment.</p></div>
               </div>
               <div className="commit-actions">
-                <a className="button button-primary" href="https://commit.vordali.com/login">Launch Commit <span>→</span></a>
+                <a className="button button-primary" href="/login">Launch Commit <span>→</span></a>
                 <Link className="button button-secondary" href="/pricing">View pricing</Link>
               </div>
             </div>
@@ -101,7 +102,7 @@ export default function HomePage() {
             <p>Future products remain in research until enough businesses confirm the problem is painful, measurable, and worth solving.</p>
           </div>
           <div className="future-product-grid">
-            <article className="future-product-card live"><span>Live</span><h3>Commit™</h3><p>Secure payment commitment before work begins.</p><a href="https://commit.vordali.com/login">Launch Commit →</a></article>
+            <article className="future-product-card live"><span>Live</span><h3>Commit™</h3><p>Secure payment commitment before work begins.</p><a href="/login">Launch Commit →</a></article>
             <article className="future-product-card"><span>Research</span><h3>Approve™</h3><p>Track customer approval for estimates and scope changes.</p><Link href="/labs?product=approve">Join waitlist →</Link></article>
             <article className="future-product-card"><span>Research</span><h3>Follow™</h3><p>Make sure valuable follow-ups do not get lost.</p><Link href="/labs?product=follow">Join waitlist →</Link></article>
             <article className="future-product-card"><span>Research</span><h3>Verify™</h3><p>Reduce identity and transaction risk before work begins.</p><Link href="/labs?product=verify">Join waitlist →</Link></article>

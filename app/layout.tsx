@@ -27,13 +27,13 @@ export const metadata: Metadata = {
     siteName: "Vordali",
     title: "Vordali — Business. Simplified.",
     description: "Focused software around measurable business problems—protecting revenue, saving time, and removing operational friction.",
-    images: [{ url: "/assets/vordali-hero.webp", width: 1200, height: 630, alt: "Vordali" }]
+    images: [{ url: "/assets/vordali-hero-original.webp", width: 1200, height: 630, alt: "Vordali" }]
   },
   twitter: {
     card: "summary_large_image",
     title: "Vordali — Business. Simplified.",
     description: "Focused software for measurable business problems.",
-    images: ["/assets/vordali-hero.webp"]
+    images: ["/assets/vordali-hero-original.webp"]
   }
 };
 

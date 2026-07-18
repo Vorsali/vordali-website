@@ -1,4 +1,43 @@
 import { supabaseAdminRequest } from "@/lib/database/supabaseAdmin";
-export type OrganizationProfile={id:string;name:string;phone:string|null;website:string|null;timezone:string;support_email:string|null;default_request_expiration_minutes:number;onboarding_complete:boolean};
-export type PrimaryLocation={id:string;name:string;address_line1:string|null;address_line2:string|null;city:string|null;state:string|null;postal_code:string|null;country:string;phone:string|null;timezone:string}|null;
-export async function getOrganizationProfile(organizationId:string){const [organizations,locations]=await Promise.all([supabaseAdminRequest<OrganizationProfile[]>(`/rest/v1/organizations?id=eq.${encodeURIComponent(organizationId)}&select=id,name,phone,website,timezone,support_email,default_request_expiration_minutes,onboarding_complete&limit=1`),supabaseAdminRequest<Exclude<PrimaryLocation,null>[]>(`/rest/v1/organization_locations?organization_id=eq.${encodeURIComponent(organizationId)}&is_primary=eq.true&select=id,name,address_line1,address_line2,city,state,postal_code,country,phone,timezone&limit=1`)]);if(!organizations.length)throw new Error("Business profile was not found.");return{organization:organizations[0],location:locations[0]||null};}
+
+export type OrganizationProfile = {
+  id: string;
+  name: string;
+  phone: string | null;
+  website: string | null;
+  timezone: string;
+  support_email: string | null;
+  default_request_expiration_minutes: number;
+  onboarding_complete: boolean;
+  business_type: string | null;
+  revenue_risk_model: string | null;
+  baseline_unpaid_events_per_week: number;
+  average_at_risk_value_cents: number;
+  estimated_recovery_rate: number;
+};
+
+export type PrimaryLocation = {
+  id: string;
+  name: string;
+  address_line1: string | null;
+  address_line2: string | null;
+  city: string | null;
+  state: string | null;
+  postal_code: string | null;
+  country: string;
+  phone: string | null;
+  timezone: string;
+} | null;
+
+export async function getOrganizationProfile(organizationId: string) {
+  const [organizations, locations] = await Promise.all([
+    supabaseAdminRequest<OrganizationProfile[]>(
+      `/rest/v1/organizations?id=eq.${encodeURIComponent(organizationId)}&select=id,name,phone,website,timezone,support_email,default_request_expiration_minutes,onboarding_complete,business_type,revenue_risk_model,baseline_unpaid_events_per_week,average_at_risk_value_cents,estimated_recovery_rate&limit=1`
+    ),
+    supabaseAdminRequest<Exclude<PrimaryLocation, null>[]>(
+      `/rest/v1/organization_locations?organization_id=eq.${encodeURIComponent(organizationId)}&is_primary=eq.true&select=id,name,address_line1,address_line2,city,state,postal_code,country,phone,timezone&limit=1`
+    )
+  ]);
+  if (!organizations.length) throw new Error("Business profile was not found.");
+  return { organization: organizations[0], location: locations[0] || null };
+}
