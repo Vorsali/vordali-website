@@ -39,7 +39,7 @@ export function Header() {
   return (
     <header className="site-header scrolled">
       <Link className="brand" href="/" aria-label="Vordali home">
-        <img src="/assets/vordali-mark.webp" alt="" />
+        <img src="/assets/vordali-logo-orb.webp" alt="" />
         <span>VORDALI</span>
       </Link>
       <button
