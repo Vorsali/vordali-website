@@ -1,32 +1,12 @@
 import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
-import { RoiCalculator } from "@/components/RoiCalculator";
+import { RecoveryHero } from "@/components/RecoveryHero";
 
 export default function HomePage() {
   return (
     <PageShell>
       <main className="home-main">
-        <section className="hero">
-          <div className="hero-bg" aria-hidden="true"></div>
-          <div className="hero-glow hero-glow-one" aria-hidden="true"></div>
-          <div className="hero-glow hero-glow-two" aria-hidden="true"></div>
-          <div className="hero-content reveal visible">
-            <div className="brand-orb hero-brand-orb" aria-label="Vordali animated logo"><img src="/assets/vordali-logo-orb.webp" alt="Vordali" /></div>
-            <div className="eyebrow"><span></span> Focused software for measurable business problems</div>
-            <h1>Business systems should work <em>for you.</em></h1>
-            <p>Vordali builds focused software around measurable business problems—protecting revenue, saving time, and removing operational friction.</p>
-            <div className="hero-actions">
-              <a className="button button-primary" href="/login">Launch Vordali Commit <span>→</span></a>
-              <a className="button button-secondary" href="#commit">See Commit</a>
-            </div>
-            <div className="hero-proof">
-              <div><strong>One problem at a time</strong><span>Focused products, not feature bloat</span></div>
-              <div><strong>Measurable value</strong><span>Save time, reduce mistakes, protect revenue</span></div>
-              <div><strong>Built to fit</strong><span>Works beside the systems businesses already use</span></div>
-            </div>
-          </div>
-          <a className="scroll-cue" href="#platform"><span>Discover Vordali</span><i></i></a>
-        </section>
+        <RecoveryHero />
 
         <section className="problem-strip">
           <div className="problem-strip-inner">
@@ -84,15 +64,6 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </section>
-
-        <section className="section roi-home-section">
-          <div className="section-heading centered">
-            <p className="kicker">Make the value visible</p>
-            <h2>Commit should pay for itself—and prove it.</h2>
-            <p>Estimate the revenue a business may protect by securing payment before costly preparation or work begins.</p>
-          </div>
-          <RoiCalculator compact />
         </section>
 
         <section className="section product-future-section">
