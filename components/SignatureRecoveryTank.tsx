@@ -51,24 +51,25 @@ export function SignatureRecoveryTank({
   const breakEvenPercent = protectedRevenue > 0 ? Math.min(94, Math.max(5, annualCost / protectedRevenue * recoveryRate)) : 0;
   const animatedProtected = useAnimatedNumber(protectedRevenue);
   const fill = Math.max(8, Math.min(88, recoveryRate));
+  const liquidTop = 382 - (fill / 100) * 270;
+  const breakEvenY = 382 - (breakEvenPercent / 100) * 270;
   const style = {
     "--tank-light": themeData.colors[0],
     "--tank-mid": themeData.colors[1],
     "--tank-deep": themeData.colors[2],
-    "--tank-fill": `${fill}%`,
-    "--break-even": `${breakEvenPercent}%`,
   } as CSSProperties;
 
   const particles = useMemo(() => Array.from({ length: 8 }, (_, index) => ({
     id: index,
-    left: 11 + ((index * 23) % 78),
-    delay: (index * .43) % 3.4,
-    duration: 3.4 + (index % 4) * .55,
-    size: 12 + (index % 3) * 5,
+    x: 132 + ((index * 37) % 176),
+    y: 190 + ((index * 47) % 160),
+    delay: (index * .41) % 3.2,
+    duration: 3.6 + (index % 4) * .55,
+    size: 11 + (index % 3) * 4,
   })), []);
 
   return (
-    <div className={`signature-tank-stage ${changing ? "is-changing" : ""} ${className}`.trim()} style={style}
+    <div className={`signature-tank-stage unified-tank-stage ${changing ? "is-changing" : ""} ${className}`.trim()} style={style}
       aria-label={`Recovery Tank showing ${currency.format(protectedRevenue)} estimated annual protected revenue`}>
       <div className="tank-value-crown">
         <small>Estimated Annual Revenue Protected</small>
@@ -76,39 +77,119 @@ export function SignatureRecoveryTank({
         <span>+{Math.round(valueRatio * 10)}% value</span>
       </div>
 
-      <div className="cylinder-tank">
-        <div className="tank-top-rim" aria-hidden="true"></div>
-        <div className="cylinder-glass">
-          <div className="cylinder-liquid">
-            <div className="liquid-surface surface-back"></div>
-            <div className="liquid-surface surface-front"></div>
-            <div className="liquid-foam"></div>
-            {particles.map((item) => (
-              <span key={item.id} className="business-particle" style={{ left: `${item.left}%`, animationDelay: `${item.delay}s`, animationDuration: `${item.duration}s`, fontSize: `${item.size}px` }}>{particle}</span>
-            ))}
-            {Array.from({ length: 6 }, (_, index) => <i key={index} className={`liquid-bubble liquid-bubble-${index + 1}`}></i>)}
-          </div>
-          <div className="glass-reflection reflection-one"></div>
-          <div className="glass-reflection reflection-two"></div>
-          <div className="glass-sweep"></div>
-          <div className="break-even-line"><span>Commit breaks even</span></div>
-        </div>
+      <div className="unified-tank-wrap">
+        <svg className="unified-tank-svg" viewBox="0 0 440 520" role="img" aria-hidden="true">
+          <defs>
+            <linearGradient id="glassStroke" x1="0" x2="1">
+              <stop offset="0" stopColor="var(--tank-light)" stopOpacity=".92" />
+              <stop offset=".18" stopColor="#e9fbff" stopOpacity=".9" />
+              <stop offset=".5" stopColor="var(--tank-mid)" stopOpacity=".65" />
+              <stop offset=".82" stopColor="#d7f8ff" stopOpacity=".88" />
+              <stop offset="1" stopColor="var(--tank-light)" stopOpacity=".92" />
+            </linearGradient>
+            <linearGradient id="glassFill" x1="0" x2="1">
+              <stop offset="0" stopColor="#dff8ff" stopOpacity=".11" />
+              <stop offset=".15" stopColor="#9eeeff" stopOpacity=".03" />
+              <stop offset=".5" stopColor="#ffffff" stopOpacity=".015" />
+              <stop offset=".84" stopColor="#b9f5ff" stopOpacity=".06" />
+              <stop offset="1" stopColor="#dff8ff" stopOpacity=".14" />
+            </linearGradient>
+            <linearGradient id="liquidFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="var(--tank-light)" stopOpacity=".96" />
+              <stop offset=".3" stopColor="var(--tank-mid)" stopOpacity=".95" />
+              <stop offset="1" stopColor="var(--tank-deep)" stopOpacity=".98" />
+            </linearGradient>
+            <linearGradient id="metalBody" x1="0" x2="1">
+              <stop offset="0" stopColor="#101923" />
+              <stop offset=".13" stopColor="#33465a" />
+              <stop offset=".31" stopColor="#101922" />
+              <stop offset=".5" stopColor="#62778d" />
+              <stop offset=".69" stopColor="#111a24" />
+              <stop offset=".87" stopColor="#35485b" />
+              <stop offset="1" stopColor="#0d151e" />
+            </linearGradient>
+            <linearGradient id="collarMetal" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#d3e6f3" />
+              <stop offset=".18" stopColor="#586c7f" />
+              <stop offset=".55" stopColor="#152332" />
+              <stop offset="1" stopColor="#070d14" />
+            </linearGradient>
+            <linearGradient id="plaqueMetal" x1="0" x2="1">
+              <stop offset="0" stopColor="#6f7d89" />
+              <stop offset=".18" stopColor="#e7edf1" />
+              <stop offset=".48" stopColor="#aab5be" />
+              <stop offset=".72" stopColor="#edf2f5" />
+              <stop offset="1" stopColor="#6d7b86" />
+            </linearGradient>
+            <radialGradient id="floorGlow">
+              <stop offset="0" stopColor="var(--tank-light)" stopOpacity=".42" />
+              <stop offset=".48" stopColor="var(--tank-mid)" stopOpacity=".14" />
+              <stop offset="1" stopColor="var(--tank-mid)" stopOpacity="0" />
+            </radialGradient>
+            <filter id="tankGlow" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur stdDeviation="7" result="blur" />
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="11" />
+            </filter>
+            <clipPath id="tankInterior">
+              <path d="M92 92 C92 76 348 76 348 92 L348 370 C348 389 92 389 92 370 Z" />
+            </clipPath>
+          </defs>
 
-        <div className="tank-bottom-rim" aria-hidden="true"></div>
+          <ellipse cx="220" cy="474" rx="145" ry="18" fill="url(#floorGlow)" className="tank-floor-glow-svg" />
 
-        <div className="tank-pedestal" aria-hidden="true">
-          <div className="pedestal-top-collar"></div>
-          <div className="pedestal-body">
-            <div className="pedestal-metal-sheen"></div>
-            <div className="tank-plaque-large">
-              <i className="plaque-screw screw-tl"></i><i className="plaque-screw screw-tr"></i>
-              <i className="plaque-screw screw-bl"></i><i className="plaque-screw screw-br"></i>
-              <strong>Recovery Tank™</strong><small>◉ Powered by Commit</small>
-            </div>
-          </div>
-          <div className="pedestal-light-strip"></div>
-          <div className="pedestal-floor-glow"></div>
-        </div>
+          <g className="tank-unified-assembly">
+            <g clipPath="url(#tankInterior)">
+              <rect x="88" y={liquidTop} width="264" height={390 - liquidTop} fill="url(#liquidFill)" />
+              <path className="svg-wave svg-wave-back" d={`M70 ${liquidTop + 4} Q120 ${liquidTop - 10} 170 ${liquidTop + 4} T270 ${liquidTop + 4} T370 ${liquidTop + 4} L370 ${liquidTop + 38} L70 ${liquidTop + 38} Z`} fill="var(--tank-light)" fillOpacity=".48" />
+              <path className="svg-wave svg-wave-front" d={`M70 ${liquidTop + 7} Q125 ${liquidTop + 22} 180 ${liquidTop + 7} T290 ${liquidTop + 7} T400 ${liquidTop + 7} L400 ${liquidTop + 42} L70 ${liquidTop + 42} Z`} fill="var(--tank-mid)" fillOpacity=".55" />
+              <path d={`M88 ${liquidTop + 2} Q145 ${liquidTop - 7} 220 ${liquidTop + 2} T352 ${liquidTop + 2}`} fill="none" stroke="#e6fdff" strokeOpacity=".84" strokeWidth="3" filter="url(#tankGlow)" />
+
+              {particles.map((item) => (
+                <text key={item.id} className="svg-business-particle" x={item.x} y={item.y} fontSize={item.size}
+                  style={{ animationDelay: `${item.delay}s`, animationDuration: `${item.duration}s` }}>{particle}</text>
+              ))}
+              {Array.from({ length: 7 }, (_, index) => (
+                <circle key={index} className={`svg-bubble svg-bubble-${index + 1}`} cx={118 + ((index * 43) % 206)} cy={340 - ((index * 31) % 140)} r={2.5 + (index % 3) * 1.8}
+                  fill="none" stroke="#d9fbff" strokeOpacity=".52" />
+              ))}
+            </g>
+
+            <path d="M92 92 C92 76 348 76 348 92 L348 370 C348 389 92 389 92 370 Z" fill="url(#glassFill)" stroke="url(#glassStroke)" strokeWidth="4" filter="url(#tankGlow)" />
+            <ellipse cx="220" cy="91" rx="128" ry="15" fill="#07101d" fillOpacity=".18" stroke="url(#glassStroke)" strokeWidth="4" />
+            <ellipse cx="220" cy="91" rx="117" ry="9" fill="none" stroke="#d9fbff" strokeOpacity=".52" strokeWidth="1.4" />
+            <path d="M128 104 C112 185 114 290 126 358" fill="none" stroke="#e9fbff" strokeOpacity=".24" strokeWidth="24" strokeLinecap="round" />
+            <path d="M309 105 C320 180 320 294 307 359" fill="none" stroke="#d4f8ff" strokeOpacity=".13" strokeWidth="10" strokeLinecap="round" />
+            <path className="svg-glass-sweep" d="M154 104 C135 190 142 285 160 356" fill="none" stroke="#ffffff" strokeOpacity=".42" strokeWidth="13" strokeLinecap="round" />
+
+            <line x1="96" x2="344" y1={breakEvenY} y2={breakEvenY} stroke="#ffffff" strokeOpacity=".7" strokeDasharray="4 4" />
+            <g transform={`translate(262 ${breakEvenY - 18})`}>
+              <rect width="82" height="20" rx="8" fill="#04101d" fillOpacity=".92" stroke="var(--tank-mid)" strokeOpacity=".25" />
+              <text x="41" y="13" textAnchor="middle" fill="#e7f8ff" fontSize="8">Commit breaks even</text>
+            </g>
+
+            <g className="unified-pedestal">
+              <ellipse cx="220" cy="390" rx="139" ry="18" fill="url(#collarMetal)" stroke="var(--tank-light)" strokeOpacity=".82" strokeWidth="2.4" />
+              <ellipse cx="220" cy="388" rx="122" ry="10" fill="#08111b" stroke="#d8f7ff" strokeOpacity=".55" strokeWidth="1.5" />
+              <path d="M81 390 L81 445 C81 461 359 461 359 445 L359 390 C359 405 81 405 81 390 Z" fill="url(#metalBody)" stroke="#688096" strokeOpacity=".55" strokeWidth="1.5" />
+              <ellipse cx="220" cy="445" rx="139" ry="17" fill="#0b121b" stroke="#495d70" strokeWidth="1.5" />
+              <path d="M93 444 Q220 458 347 444" fill="none" stroke="var(--tank-light)" strokeWidth="3" strokeOpacity=".92" filter="url(#tankGlow)" />
+
+              <g className="unified-plaque">
+                <rect x="121" y="404" width="198" height="38" rx="5" fill="#101820" fillOpacity=".65" />
+                <rect x="124" y="401" width="192" height="38" rx="5" fill="url(#plaqueMetal)" stroke="#273644" strokeWidth="1.4" />
+                <text x="220" y="418" textAnchor="middle" fill="#101923" fontSize="17" fontFamily="Georgia, serif" fontWeight="700">Recovery Tank™</text>
+                <text x="220" y="432" textAnchor="middle" fill="#263544" fontSize="7.5">◉ Powered by Commit</text>
+                <g fill="#26323d" stroke="#dce5eb" strokeWidth=".7">
+                  <circle cx="134" cy="410" r="3"/><circle cx="306" cy="410" r="3"/>
+                  <circle cx="134" cy="430" r="3"/><circle cx="306" cy="430" r="3"/>
+                </g>
+              </g>
+            </g>
+          </g>
+        </svg>
       </div>
       <p className="tank-proof-line">{proof} · {recoveryRate}% estimated recovery</p>
     </div>

@@ -981,3 +981,41 @@ button{font:inherit}.site-header{z-index:60}.mobile-nav-open{overflow:hidden}
 .tank-lab-controls{padding:22px;border:1px solid rgba(83,166,255,.32);border-radius:20px;background:linear-gradient(160deg,rgba(11,30,61,.9),rgba(4,13,29,.92));box-shadow:0 20px 60px rgba(0,0,0,.3)}
 .tank-lab-controls label{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;color:#b8c6d9;font-size:12px}.tank-lab-controls label b{color:#38ddff}.tank-lab-controls select{height:42px;border:1px solid rgba(96,166,255,.28);border-radius:10px;background:#07152b;color:white;padding:0 12px}.tank-lab-controls input[type=range]{width:100%;accent-color:#1da9ff}.tank-lab-controls fieldset{border:0;padding:0;margin:0 0 20px;display:grid;grid-template-columns:1fr 1fr;gap:8px}.tank-lab-controls legend{grid-column:1/-1;color:#b8c6d9;font-size:12px;margin-bottom:8px}.tank-lab-controls fieldset button{height:38px;color:#c8d6e8;background:linear-gradient(135deg,color-mix(in srgb,var(--swatch) 65%,#07152b),#07152b);border:1px solid rgba(112,174,255,.2);border-radius:9px}.tank-lab-controls fieldset button.active{border-color:#52e7ff;box-shadow:0 0 15px rgba(45,206,255,.18)}.tank-lab-checklist{display:flex;flex-direction:column;gap:7px;padding-top:16px;border-top:1px solid rgba(114,172,240,.16);font-size:11px;color:#91a7c0}.tank-lab-checklist strong{color:#ecf8ff;margin-bottom:3px}
 @media(max-width:900px){.tank-lab-page{overflow:auto;padding:20px}.tank-lab-workbench{grid-template-columns:1fr}.tank-lab-controls{max-width:520px;margin:auto;width:100%}.tank-lab-header p{display:none}}
+
+/* Phase 8.7: single-coordinate-system Recovery Tank assembly. */
+.unified-tank-stage{min-height:575px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.unified-tank-wrap{position:absolute;inset:48px 0 12px;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.unified-tank-svg{width:min(440px,96%);height:auto;overflow:visible;filter:drop-shadow(0 22px 34px rgba(0,0,0,.28))}
+.unified-tank-stage .cylinder-tank,.unified-tank-stage .tank-top-rim,.unified-tank-stage .cylinder-glass,.unified-tank-stage .tank-bottom-rim,.unified-tank-stage .tank-pedestal{display:none!important}
+.tank-unified-assembly{transform-origin:220px 285px}
+.unified-tank-stage.is-changing .tank-unified-assembly{animation:unified-tank-react .7s cubic-bezier(.2,.8,.2,1)}
+@keyframes unified-tank-react{0%{transform:scale(.992) translateY(2px)}45%{transform:scale(1.008) translateY(-2px)}100%{transform:none}}
+.svg-wave{transform-origin:center;will-change:transform}
+.svg-wave-back{animation:svg-wave-back 5.6s ease-in-out infinite alternate}
+.svg-wave-front{animation:svg-wave-front 4.3s ease-in-out infinite alternate}
+@keyframes svg-wave-back{to{transform:translateX(20px) scaleY(.82)}}
+@keyframes svg-wave-front{to{transform:translateX(-22px) scaleY(1.14)}}
+.svg-business-particle{fill:#e9fcff;fill-opacity:.58;text-anchor:middle;animation:svg-particle-rise linear infinite;will-change:transform,opacity}
+@keyframes svg-particle-rise{0%{transform:translateY(22px);opacity:0}20%{opacity:.7}80%{opacity:.5}100%{transform:translateY(-54px);opacity:0}}
+.svg-bubble{animation:svg-bubble-rise 4.8s ease-in infinite;transform-origin:center;will-change:transform,opacity}
+.svg-bubble-2{animation-delay:.7s}.svg-bubble-3{animation-delay:1.5s}.svg-bubble-4{animation-delay:2.1s}.svg-bubble-5{animation-delay:2.8s}.svg-bubble-6{animation-delay:3.3s}.svg-bubble-7{animation-delay:3.8s}
+@keyframes svg-bubble-rise{0%{transform:translateY(24px) scale(.7);opacity:0}20%{opacity:.55}100%{transform:translateY(-90px) scale(1.15);opacity:0}}
+.svg-glass-sweep{animation:svg-glass-sweep 8.5s ease-in-out infinite;transform-origin:center;will-change:transform,opacity}
+@keyframes svg-glass-sweep{0%,68%,100%{opacity:.08;transform:translateX(-18px)}78%{opacity:.55}90%{opacity:.12;transform:translateX(72px)}}
+.unified-plaque{filter:drop-shadow(0 2px 2px rgba(0,0,0,.45))}
+.tank-floor-glow-svg{animation:floor-glow-pulse 5s ease-in-out infinite}
+@keyframes floor-glow-pulse{50%{opacity:.7;transform:scaleX(.92);transform-origin:center}}
+.unified-tank-stage .tank-proof-line{bottom:0}
+@media(max-height:850px) and (min-width:851px){
+  .unified-tank-stage{min-height:535px}
+  .unified-tank-wrap{inset:36px 0 0}
+  .unified-tank-svg{width:min(405px,94%)}
+}
+@media(max-width:540px){
+  .unified-tank-stage{min-height:535px}
+  .unified-tank-wrap{inset:48px 0 0}
+  .unified-tank-svg{width:min(390px,98%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .svg-wave,.svg-business-particle,.svg-bubble,.svg-glass-sweep,.tank-floor-glow-svg,.unified-tank-stage.is-changing .tank-unified-assembly{animation:none!important}
+}
