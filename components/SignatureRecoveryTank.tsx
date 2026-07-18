@@ -141,63 +141,100 @@ export function SignatureRecoveryTank({
           <ellipse cx="220" cy="474" rx="145" ry="18" fill="url(#floorGlow)" className="tank-floor-glow-svg" />
 
           <g className="tank-unified-assembly">
-            {/* Seat the complete glass assembly into the collar as one unit. */}
-            <g className="unified-glass-assembly" transform="translate(0 12)">
-            <g clipPath="url(#tankInterior)">
-              <rect x="88" y={liquidTop} width="264" height={390 - liquidTop} fill="url(#liquidFill)" />
-              <path className="svg-wave svg-wave-back" d={`M70 ${liquidTop + 4} Q120 ${liquidTop - 10} 170 ${liquidTop + 4} T270 ${liquidTop + 4} T370 ${liquidTop + 4} L370 ${liquidTop + 38} L70 ${liquidTop + 38} Z`} fill="var(--tank-light)" fillOpacity=".48" />
-              <path className="svg-wave svg-wave-front" d={`M70 ${liquidTop + 7} Q125 ${liquidTop + 22} 180 ${liquidTop + 7} T290 ${liquidTop + 7} T400 ${liquidTop + 7} L400 ${liquidTop + 42} L70 ${liquidTop + 42} Z`} fill="var(--tank-mid)" fillOpacity=".55" />
-              <path d={`M88 ${liquidTop + 2} Q145 ${liquidTop - 7} 220 ${liquidTop + 2} T352 ${liquidTop + 2}`} fill="none" stroke="#e6fdff" strokeOpacity=".84" strokeWidth="3" filter="url(#tankGlow)" />
-
-              {particles.map((item) => (
-                <text key={item.id} className="svg-business-particle" x={item.x} y={item.y} fontSize={item.size}
-                  style={{ animationDelay: `${item.delay}s`, animationDuration: `${item.duration}s` }}>{particle}</text>
-              ))}
-              {Array.from({ length: 7 }, (_, index) => (
-                <circle key={index} className={`svg-bubble svg-bubble-${index + 1}`} cx={118 + ((index * 43) % 206)} cy={340 - ((index * 31) % 140)} r={2.5 + (index % 3) * 1.8}
-                  fill="none" stroke="#d9fbff" strokeOpacity=".52" />
-              ))}
-            </g>
-
-            <path d="M92 92 C92 76 348 76 348 92 L348 370 C348 389 92 389 92 370 Z" fill="url(#glassFill)" stroke="url(#glassStroke)" strokeWidth="4" filter="url(#tankGlow)" />
-            <ellipse cx="220" cy="91" rx="128" ry="15" fill="#07101d" fillOpacity=".18" stroke="url(#glassStroke)" strokeWidth="4" />
-            <ellipse cx="220" cy="91" rx="117" ry="9" fill="none" stroke="#d9fbff" strokeOpacity=".52" strokeWidth="1.4" />
-            <path d="M128 104 C112 185 114 290 126 358" fill="none" stroke="#e9fbff" strokeOpacity=".24" strokeWidth="24" strokeLinecap="round" />
-            <path d="M309 105 C320 180 320 294 307 359" fill="none" stroke="#d4f8ff" strokeOpacity=".13" strokeWidth="10" strokeLinecap="round" />
-            <path className="svg-glass-sweep" d="M154 104 C135 190 142 285 160 356" fill="none" stroke="#ffffff" strokeOpacity=".42" strokeWidth="13" strokeLinecap="round" />
-
-            <line x1="96" x2="344" y1={breakEvenY} y2={breakEvenY} stroke="#ffffff" strokeOpacity=".7" strokeDasharray="4 4" />
-            <g transform={`translate(262 ${breakEvenY - 18})`}>
-              <rect width="82" height="20" rx="8" fill="#04101d" fillOpacity=".92" stroke="var(--tank-mid)" strokeOpacity=".25" />
-              <text x="41" y="13" textAnchor="middle" fill="#e7f8ff" fontSize="8">Commit breaks even</text>
-            </g>
-
+            {/* Everything behind the glass is painted first. */}
+            <g className="unified-collar-rear">
+              <path
+                d="M86 404 C108 381 332 381 354 404"
+                fill="none"
+                stroke="url(#collarMetal)"
+                strokeWidth="15"
+                strokeLinecap="round"
+              />
+              <path
+                d="M92 401 C121 386 319 386 348 401"
+                fill="none"
+                stroke="var(--tank-light)"
+                strokeOpacity=".46"
+                strokeWidth="2"
+              />
             </g>
 
             <g className="unified-pedestal">
-              {/* The glass now overlaps this collar by a few pixels, so it reads as seated rather than hovering. */}
-              <ellipse cx="220" cy="402" rx="139" ry="18" fill="url(#collarMetal)" stroke="var(--tank-light)" strokeOpacity=".82" strokeWidth="2.4" />
-              <ellipse cx="220" cy="400" rx="122" ry="9" fill="#0c1a26" fillOpacity=".78" stroke="#d8f7ff" strokeOpacity=".5" strokeWidth="1.3" />
-              <path d="M81 402 L81 451 C81 467 359 467 359 451 L359 402 C359 417 81 417 81 402 Z" fill="url(#metalBody)" stroke="#688096" strokeOpacity=".55" strokeWidth="1.5" />
+              <path
+                d="M81 407 L81 451 C81 467 359 467 359 451 L359 407 C344 420 96 420 81 407 Z"
+                fill="url(#metalBody)"
+                stroke="#688096"
+                strokeOpacity=".55"
+                strokeWidth="1.5"
+              />
               <ellipse cx="220" cy="451" rx="139" ry="16" fill="url(#metalBody)" stroke="#60768a" strokeOpacity=".72" strokeWidth="1.4" />
               <path d="M94 450 Q220 462 346 450" fill="none" stroke="var(--tank-light)" strokeWidth="3" strokeOpacity=".9" filter="url(#tankGlow)" />
-
-              <g className="unified-plaque">
-                <rect x="121" y="414" width="198" height="34" rx="5" fill="#101820" fillOpacity=".62" />
-                <rect x="124" y="411" width="192" height="34" rx="5" fill="url(#plaqueMetal)" stroke="#273644" strokeWidth="1.4" />
-                <text x="220" y="427" textAnchor="middle" fill="#101923" fontSize="16" fontFamily="Georgia, serif" fontWeight="700">Recovery Tank™</text>
-                <text x="220" y="439" textAnchor="middle" fill="#263544" fontSize="7.2">◉ Powered by Commit</text>
-                <g fill="#26323d" stroke="#dce5eb" strokeWidth=".7">
-                  <circle cx="134" cy="419" r="2.7"/><circle cx="306" cy="419" r="2.7"/>
-                  <circle cx="134" cy="438" r="2.7"/><circle cx="306" cy="438" r="2.7"/>
-                </g>
-              </g>
             </g>
 
-            {/* Draw the translated glass foot last so its lower edge sits inside the collar. */}
-            <g transform="translate(0 12)">
+            {/* The complete glass vessel is now painted over the rear collar and pedestal body. */}
+            <g className="unified-glass-assembly" transform="translate(0 12)">
+              <g clipPath="url(#tankInterior)">
+                <rect x="88" y={liquidTop} width="264" height={390 - liquidTop} fill="url(#liquidFill)" />
+                <path className="svg-wave svg-wave-back" d={`M70 ${liquidTop + 4} Q120 ${liquidTop - 10} 170 ${liquidTop + 4} T270 ${liquidTop + 4} T370 ${liquidTop + 4} L370 ${liquidTop + 38} L70 ${liquidTop + 38} Z`} fill="var(--tank-light)" fillOpacity=".48" />
+                <path className="svg-wave svg-wave-front" d={`M70 ${liquidTop + 7} Q125 ${liquidTop + 22} 180 ${liquidTop + 7} T290 ${liquidTop + 7} T400 ${liquidTop + 7} L400 ${liquidTop + 42} L70 ${liquidTop + 42} Z`} fill="var(--tank-mid)" fillOpacity=".55" />
+                <path d={`M88 ${liquidTop + 2} Q145 ${liquidTop - 7} 220 ${liquidTop + 2} T352 ${liquidTop + 2}`} fill="none" stroke="#e6fdff" strokeOpacity=".84" strokeWidth="3" filter="url(#tankGlow)" />
+
+                {particles.map((item) => (
+                  <text key={item.id} className="svg-business-particle" x={item.x} y={item.y} fontSize={item.size}
+                    style={{ animationDelay: `${item.delay}s`, animationDuration: `${item.duration}s` }}>{particle}</text>
+                ))}
+                {Array.from({ length: 7 }, (_, index) => (
+                  <circle key={index} className={`svg-bubble svg-bubble-${index + 1}`} cx={118 + ((index * 43) % 206)} cy={340 - ((index * 31) % 140)} r={2.5 + (index % 3) * 1.8}
+                    fill="none" stroke="#d9fbff" strokeOpacity=".52" />
+                ))}
+              </g>
+
+              <path d="M92 92 C92 76 348 76 348 92 L348 370 C348 389 92 389 92 370 Z" fill="url(#glassFill)" stroke="url(#glassStroke)" strokeWidth="4" filter="url(#tankGlow)" />
+              <ellipse cx="220" cy="91" rx="128" ry="15" fill="#07101d" fillOpacity=".18" stroke="url(#glassStroke)" strokeWidth="4" />
+              <ellipse cx="220" cy="91" rx="117" ry="9" fill="none" stroke="#d9fbff" strokeOpacity=".52" strokeWidth="1.4" />
+              <path d="M128 104 C112 185 114 290 126 358" fill="none" stroke="#e9fbff" strokeOpacity=".24" strokeWidth="24" strokeLinecap="round" />
+              <path d="M309 105 C320 180 320 294 307 359" fill="none" stroke="#d4f8ff" strokeOpacity=".13" strokeWidth="10" strokeLinecap="round" />
+              <path className="svg-glass-sweep" d="M154 104 C135 190 142 285 160 356" fill="none" stroke="#ffffff" strokeOpacity=".42" strokeWidth="13" strokeLinecap="round" />
+
+              <line x1="96" x2="344" y1={breakEvenY} y2={breakEvenY} stroke="#ffffff" strokeOpacity=".7" strokeDasharray="4 4" />
+              <g transform={`translate(262 ${breakEvenY - 18})`}>
+                <rect width="82" height="20" rx="8" fill="#04101d" fillOpacity=".92" stroke="var(--tank-mid)" strokeOpacity=".25" />
+                <text x="41" y="13" textAnchor="middle" fill="#e7f8ff" fontSize="8">Commit breaks even</text>
+              </g>
+
+              {/* This visible glass foot continues into the collar opening. */}
               <ellipse cx="220" cy="379" rx="126" ry="13" fill="#8eeeff" fillOpacity=".035" stroke="url(#glassStroke)" strokeWidth="2.7" filter="url(#tankGlow)" />
-              <path d="M101 381 Q220 394 339 381" fill="none" stroke="#e3fbff" strokeOpacity=".38" strokeWidth="1.2" />
+              <path d="M101 381 Q220 394 339 381" fill="none" stroke="#e3fbff" strokeOpacity=".42" strokeWidth="1.2" />
+            </g>
+
+            {/* Only the narrow front retaining lip is allowed to cross the glass. */}
+            <g className="unified-collar-front">
+              <path
+                d="M88 404 C116 418 324 418 352 404"
+                fill="none"
+                stroke="url(#collarMetal)"
+                strokeWidth="8"
+                strokeLinecap="round"
+              />
+              <path
+                d="M94 405 C128 414 312 414 346 405"
+                fill="none"
+                stroke="var(--tank-light)"
+                strokeOpacity=".88"
+                strokeWidth="2"
+                filter="url(#tankGlow)"
+              />
+            </g>
+
+            <g className="unified-plaque">
+              <rect x="121" y="414" width="198" height="34" rx="5" fill="#101820" fillOpacity=".62" />
+              <rect x="124" y="411" width="192" height="34" rx="5" fill="url(#plaqueMetal)" stroke="#273644" strokeWidth="1.4" />
+              <text x="220" y="427" textAnchor="middle" fill="#101923" fontSize="16" fontFamily="Georgia, serif" fontWeight="700">Recovery Tank™</text>
+              <text x="220" y="439" textAnchor="middle" fill="#263544" fontSize="7.2">◉ Powered by Commit</text>
+              <g fill="#26323d" stroke="#dce5eb" strokeWidth=".7">
+                <circle cx="134" cy="419" r="2.7"/><circle cx="306" cy="419" r="2.7"/>
+                <circle cx="134" cy="438" r="2.7"/><circle cx="306" cy="438" r="2.7"/>
+              </g>
             </g>
           </g>
         </svg>
