@@ -670,3 +670,109 @@ button{font:inherit}.site-header{z-index:60}.mobile-nav-open{overflow:hidden}
 @media(max-width:850px){.recovery-hero{padding:92px 18px 30px}.recovery-hero-inner{grid-template-columns:1fr}.recovery-hero-copy{text-align:center;padding:25px 0 0}.hero-description{margin-left:auto;margin-right:auto}.recovery-benefits{max-width:600px;margin:25px auto}.recovery-hero-actions{justify-content:center}.signature-tank-stage{min-height:620px}.cylinder-tank{width:min(420px,96%)}.recovery-control-panel{width:100%}.recovery-trust-strip{width:calc(100% - 36px)}.recovery-atmosphere:after{background:linear-gradient(180deg,rgba(4,8,20,.2),rgba(4,8,20,.65))}}
 @media(max-width:540px){.recovery-hero-copy h1{font-size:53px}.recovery-benefits{grid-template-columns:repeat(2,1fr)}.signature-tank-stage{min-height:550px}.tank-value-crown{min-width:275px;padding-right:68px}.tank-value-crown strong{font-size:34px}.cylinder-tank{height:485px}.cylinder-glass{top:48px;height:315px}.tank-top-rim{top:33px}.tank-bottom-rim{top:338px}.tank-pedestal{top:350px;height:80px}.tank-plaque-large{padding:7px 22px}.tank-plaque-large strong{font-size:15px}.stage-ring{bottom:8px}.hero-theme-picker>div{grid-template-columns:repeat(2,1fr)}.hero-result-grid{grid-template-columns:1fr}.recovery-trust-strip{display:grid;grid-template-columns:1fr 1fr;text-align:center}.recovery-trust-strip span:last-child{grid-column:1/-1}.recovery-hero-actions .button{width:100%;justify-content:center}}
 @media(prefers-reduced-motion:reduce){.hero-grid,.aurora,.energy-ribbon,.ambient-star,.liquid-surface,.liquid-foam,.business-particle,.liquid-bubble,.glass-sweep{animation:none!important}.cylinder-tank{transform:none!important}.cylinder-liquid,.break-even-line{transition:none!important}}
+
+/* Phase 8.1 — compact, polished and performance-tuned Recovery Tank hero */
+.recovery-hero{
+  min-height:calc(100svh - 80px);
+  padding:88px 22px 24px;
+  contain:layout paint;
+}
+.recovery-hero-inner{
+  width:min(1460px,100%);
+  grid-template-columns:minmax(275px,.86fr) minmax(350px,1fr) minmax(320px,.82fr);
+  gap:26px;
+}
+.signature-tank-stage{min-height:575px}
+.cylinder-tank{
+  width:min(390px,92%);
+  height:505px;
+  margin-top:48px;
+  transform:none;
+  transition:none;
+}
+.cylinder-glass{left:9%;right:9%;top:48px;height:350px;border-radius:40% / 7%}
+/* Open glass lip: removes the heavy black ring while preserving a bright rim. */
+.tank-top-rim{
+  left:7%;right:7%;top:33px;height:39px;
+  border:3px solid color-mix(in srgb,var(--tank-light) 80%,white);
+  background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(88,185,255,.06) 48%,transparent 60%);
+  box-shadow:0 0 18px color-mix(in srgb,var(--tank-mid) 70%,transparent),inset 0 1px rgba(255,255,255,.7);
+}
+.tank-top-rim:after{
+  content:"";position:absolute;inset:5px 11px;border-radius:50%;
+  border:1px solid rgba(205,245,255,.48);background:transparent;
+}
+.tank-bottom-rim{left:8%;right:8%;top:372px;height:38px;background:linear-gradient(180deg,rgba(116,212,255,.38),rgba(5,22,52,.92))}
+/* Brushed-metal pedestal modeled after the approved concept. */
+.tank-pedestal{
+  left:7%;right:7%;top:392px;height:86px;
+  border:1px solid rgba(190,225,255,.48);
+  border-radius:6px 6px 24px 24px;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 4px),
+    linear-gradient(90deg,#071733 0%,#263d5c 10%,#93a5ba 28%,#e5ebf1 50%,#8192a8 72%,#243a58 90%,#06152f 100%);
+  box-shadow:0 15px 32px rgba(0,0,0,.48),0 0 18px color-mix(in srgb,var(--tank-mid) 28%,transparent),inset 0 2px rgba(255,255,255,.55),inset 0 -8px 16px rgba(0,0,0,.35);
+}
+.tank-pedestal:after{
+  content:"";position:absolute;left:4%;right:4%;bottom:-15px;height:24px;border-radius:50%;
+  border:2px solid color-mix(in srgb,var(--tank-mid) 70%,white);
+  background:radial-gradient(ellipse,rgba(13,84,190,.42),rgba(3,10,25,.96) 65%);
+  box-shadow:0 0 22px color-mix(in srgb,var(--tank-mid) 60%,transparent);
+  z-index:-1;
+}
+.tank-plaque-large{
+  min-width:255px;padding:8px 28px;border-radius:5px;
+  border:1px solid #67788e;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.08) 0 1px,transparent 1px 3px),linear-gradient(135deg,#eef1f4,#9ca8b7 48%,#d8dee5);
+  box-shadow:inset 0 1px #fff,inset 0 -1px rgba(0,0,0,.28),0 4px 10px rgba(0,0,0,.42);
+}
+.tank-plaque-large:before,.tank-plaque-large:after{width:6px;height:6px;background:radial-gradient(circle at 35% 30%,#e7edf3,#4b596a 55%,#1c2735)}
+.tank-plaque-large strong{font-size:19px;letter-spacing:-.02em}
+.tank-plaque-large small{font-size:9px;color:#172238}
+.stage-ring{display:none}
+.tank-proof-line{bottom:4px}
+.tank-value-crown{top:0;min-width:300px;padding:10px 72px 11px 20px}
+.tank-value-crown strong{font-size:37px}
+.recovery-hero-copy{padding:4px 0 20px}
+.recovery-kicker{margin-bottom:15px}
+.recovery-hero-copy h1{font-size:clamp(48px,5vw,76px);margin-bottom:19px}
+.recovery-hero-copy h2{font-size:clamp(21px,1.8vw,28px)}
+.hero-description{font-size:14px;line-height:1.55}
+.recovery-benefits{margin:20px 0;gap:8px}
+.recovery-benefits div{min-height:78px;border-radius:13px;padding:9px 5px}
+.recovery-control-panel{padding:19px;border-radius:20px;backdrop-filter:none}
+.control-heading{padding-bottom:11px;margin-bottom:10px}
+.control-heading h3{font-size:22px}
+.recovery-control-panel label{margin:9px 0;gap:5px}
+.recovery-control-panel select,.recovery-control-panel input[type=number]{height:38px}
+.hero-theme-picker{margin:13px 0}
+.hero-result-grid div{min-height:68px}
+.recovery-trust-strip{min-height:52px;margin-top:8px;padding:9px 25px}
+/* Keep animation but reduce compositor pressure. */
+.aurora{filter:blur(70px)}
+.energy-ribbon{animation-duration:10s}
+.hero-grid{animation-duration:22s}
+.ambient-star:nth-of-type(n+13){display:none}
+.business-particle:nth-of-type(n+9),.liquid-bubble:nth-of-type(n+7){display:none}
+.glass-sweep{animation-duration:8s;opacity:.7}
+
+@media (min-width:1100px) and (max-height:850px){
+  .recovery-hero{padding-top:72px;min-height:calc(100svh - 72px)}
+  .recovery-hero-inner{align-items:start}
+  .signature-tank-stage{min-height:535px}
+  .cylinder-tank{width:min(360px,92%);height:470px;margin-top:40px}
+  .cylinder-glass{top:43px;height:320px}
+  .tank-top-rim{top:29px}
+  .tank-bottom-rim{top:338px}
+  .tank-pedestal{top:356px;height:78px}
+  .tank-plaque-large{min-width:235px;padding:7px 24px}
+  .tank-plaque-large strong{font-size:17px}
+  .tank-value-crown strong{font-size:34px}
+  .tank-proof-line{display:none}
+  .recovery-hero-copy h1{font-size:clamp(46px,4.6vw,68px)}
+  .recovery-benefits div{min-height:70px}
+  .recovery-control-panel{padding:16px}
+  .control-heading p,.control-assurance{display:none}
+  .hero-result-grid div{min-height:58px;padding:7px 4px}
+  .recovery-trust-strip{display:none}
+}

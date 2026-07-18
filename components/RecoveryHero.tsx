@@ -46,7 +46,6 @@ export function RecoveryHero() {
   const [recoveryRate, setRecoveryRate] = useState(BUSINESS_DEFAULTS.restaurant.recoveryRate);
   const [theme, setTheme] = useState<RecoveryTheme>("vordali");
   const [previewTheme, setPreviewTheme] = useState<RecoveryTheme | null>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [changing, setChanging] = useState(false);
 
   const activeTheme = previewTheme ?? theme;
@@ -69,11 +68,9 @@ export function RecoveryHero() {
     "--tank-deep": themeData.colors[2],
     "--tank-fill": `${fill}%`,
     "--break-even": `${breakEvenPercent}%`,
-    "--tilt-x": `${tilt.x}deg`,
-    "--tilt-y": `${tilt.y}deg`,
   } as CSSProperties;
 
-  const particles = useMemo(() => Array.from({ length: 12 }, (_, index) => ({
+  const particles = useMemo(() => Array.from({ length: 8 }, (_, index) => ({
     id: index,
     left: 11 + ((index * 23) % 78),
     delay: (index * .43) % 3.4,
@@ -100,20 +97,13 @@ export function RecoveryHero() {
     window.setTimeout(() => setChanging(false), 360);
   }
 
-  function handlePointerMove(event: React.PointerEvent<HTMLDivElement>) {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const px = (event.clientX - rect.left) / rect.width - .5;
-    const py = (event.clientY - rect.top) / rect.height - .5;
-    setTilt({ x: -py * 4, y: px * 5 });
-  }
-
   return (
-    <section className="recovery-hero" style={style} onPointerMove={handlePointerMove} onPointerLeave={() => setTilt({ x: 0, y: 0 })}>
+    <section className="recovery-hero" style={style}>
       <div className="recovery-atmosphere" aria-hidden="true">
         <span className="aurora aurora-one"></span><span className="aurora aurora-two"></span>
         <span className="energy-ribbon ribbon-one"></span><span className="energy-ribbon ribbon-two"></span>
         <span className="hero-grid"></span>
-        {Array.from({ length: 22 }, (_, index) => <i key={index} className={`ambient-star star-${index + 1}`}></i>)}
+        {Array.from({ length: 12 }, (_, index) => <i key={index} className={`ambient-star star-${index + 1}`}></i>)}
       </div>
 
       <div className="recovery-hero-inner">
@@ -141,7 +131,7 @@ export function RecoveryHero() {
             <span>+{Math.round(valueRatio * 10)}% value</span>
           </div>
           <div className="cylinder-tank">
-            <div className="tank-top-rim"><i></i></div>
+            <div className="tank-top-rim"></div>
             <div className="cylinder-glass">
               <div className="cylinder-liquid">
                 <div className="liquid-surface surface-back"></div>
@@ -150,7 +140,7 @@ export function RecoveryHero() {
                 {particles.map((particle) => (
                   <span key={particle.id} className="business-particle" style={{ left: `${particle.left}%`, animationDelay: `${particle.delay}s`, animationDuration: `${particle.duration}s`, fontSize: `${particle.size}px` }}>{defaults.particle}</span>
                 ))}
-                {Array.from({ length: 9 }, (_, index) => <i key={index} className={`liquid-bubble liquid-bubble-${index + 1}`}></i>)}
+                {Array.from({ length: 6 }, (_, index) => <i key={index} className={`liquid-bubble liquid-bubble-${index + 1}`}></i>)}
               </div>
               <div className="glass-reflection reflection-one"></div>
               <div className="glass-reflection reflection-two"></div>
