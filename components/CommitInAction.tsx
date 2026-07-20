@@ -22,7 +22,7 @@ export function CommitInAction() {
         if (next === 0) setIndustryIndex((industry) => (industry + 1) % industries.length);
         return next;
       });
-    }, 1900);
+    }, 2200);
     return () => window.clearInterval(timer);
   }, []);
 
@@ -31,19 +31,48 @@ export function CommitInAction() {
   return (
     <div className="commit-action-stage">
       <div className="industry-rail" aria-label="Business examples">
-        {industries.map((item, index) => <span key={item.type} className={index === industryIndex ? "active" : ""}>{item.type}</span>)}
+        {industries.map((item, index) => (
+          <span key={item.type} className={index === industryIndex ? "active" : ""}>{item.type}</span>
+        ))}
       </div>
+
       <div className="action-demo-grid">
-        <div className={`demo-phone step-${step}`}>
-          <div className="phone-speaker"></div>
+        <div className={`demo-phone step-${step}`} aria-live="polite">
+          <div className="phone-speaker" />
           <div className="phone-status"><span>9:41</span><span>● ● ●</span></div>
-          <div className="sms-notification">
+
+          <div className="phone-step phone-request-sent">
+            <span className="phone-step-icon">↗</span>
             <small>VORDALI COMMIT</small>
-            <strong>{industry.type}</strong>
-            <p>Your secure payment request for {industry.purpose.toLowerCase()} is ready.</p>
-            <div><span>{industry.amount}</span><button type="button">Pay securely</button></div>
+            <strong>Request sent</strong>
+            <p>{industry.purpose} for {industry.amount}</p>
+            <em>Delivered securely</em>
           </div>
-          <div className="phone-success"><span>✓</span><strong>Payment complete</strong><small>Confirmation sent instantly</small></div>
+
+          <div className="phone-step phone-sms-received">
+            <span className="phone-notification-label">NEW MESSAGE</span>
+            <div className="sms-notification">
+              <small>VORDALI COMMIT</small>
+              <strong>{industry.type}</strong>
+              <p>Your secure payment request for {industry.purpose.toLowerCase()} is ready.</p>
+              <div><span>{industry.amount}</span><button type="button">Pay securely</button></div>
+            </div>
+          </div>
+
+          <div className="phone-step phone-customer-pays">
+            <small>SECURE CHECKOUT</small>
+            <strong>{industry.amount}</strong>
+            <p>{industry.purpose}</p>
+            <div className="payment-card-row"><span>•••• 4242</span><i>VISA</i></div>
+            <button type="button" className="payment-submit">Pay {industry.amount}</button>
+            <span className="tap-ripple" aria-hidden="true" />
+          </div>
+
+          <div className="phone-step phone-success">
+            <span>✓</span>
+            <strong>Payment complete</strong>
+            <small>Confirmation sent instantly</small>
+          </div>
         </div>
 
         <div className={`demo-dashboard step-${step}`}>
