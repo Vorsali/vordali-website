@@ -1104,3 +1104,16 @@ button{font:inherit}.site-header{z-index:60}.mobile-nav-open{overflow:hidden}
    The text artwork, positions, size, color, and travel path are unchanged. */
 .svg-business-particle-wrap{pointer-events:none}
 .svg-business-particle-wrap .svg-business-particle{animation:none!important;opacity:1}
+
+/* Recovery Simulator plan selector: Starter and Pro only. */
+.plan-selector{border:0;padding:0;margin:0 0 15px}
+.plan-selector legend{margin-bottom:8px;color:#b9c8dc;font-size:11px}
+.plan-selector-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.plan-selector-options button{display:grid;gap:3px;min-height:62px;padding:10px 12px;border:1px solid rgba(107,162,255,.2);border-radius:12px;background:rgba(4,14,35,.78);color:#aebed2;text-align:left;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s,background .2s}
+.plan-selector-options button:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--tank-light) 70%,transparent)}
+.plan-selector-options button.selected{color:#fff;border-color:var(--tank-light);background:linear-gradient(145deg,color-mix(in srgb,var(--tank-mid) 22%,#07152f),#07152f);box-shadow:0 0 20px color-mix(in srgb,var(--tank-mid) 22%,transparent),inset 0 1px rgba(255,255,255,.06)}
+.plan-selector-options button span{font-size:12px;font-weight:800}
+.plan-selector-options button strong{font-family:"Space Grotesk",sans-serif;font-size:13px;color:var(--tank-light)}
+.plan-selector-description{min-height:30px;margin:8px 2px 0;color:#91a5be;font-size:10px;line-height:1.45}
+.plan-selector-description strong{color:#dcecff}
+@media(max-width:380px){.plan-selector-options{grid-template-columns:1fr}.plan-selector-options button{min-height:54px}}

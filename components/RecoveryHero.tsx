@@ -8,6 +8,13 @@ import { SignatureRecoveryTank } from "@/components/SignatureRecoveryTank";
 
 const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 
+type CommitPlan = "starter" | "pro";
+
+const COMMIT_PLANS: Record<CommitPlan, { name: string; monthly: number; description: string }> = {
+  starter: { name: "Starter", monthly: 39.99, description: "Designed for most restaurants and local businesses." },
+  pro: { name: "Pro", monthly: 69.99, description: "Ideal for higher-volume businesses that want expanded capabilities." },
+};
+
 const BUSINESS_DEFAULTS: Record<string, { riskModel: string; events: number; ticket: number; recoveryRate: number; particle: string; proof: string }> = {
   restaurant: { riskModel: "prepared_order_loss", events: 5, ticket: 42, recoveryRate: 70, particle: "▤", proof: "Prepared orders protected" },
   bakery_catering: { riskModel: "deposit_required", events: 3, ticket: 125, recoveryRate: 75, particle: "◫", proof: "Deposits secured" },
@@ -28,6 +35,7 @@ export function RecoveryHero() {
   const [theme, setTheme] = useState<RecoveryTheme>("vordali");
   const [previewTheme, setPreviewTheme] = useState<RecoveryTheme | null>(null);
   const [changing, setChanging] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<CommitPlan>("starter");
 
   const activeTheme = previewTheme ?? theme;
   const themeData = RECOVERY_THEMES.find((item) => item.value === activeTheme) ?? RECOVERY_THEMES[0];
@@ -36,7 +44,8 @@ export function RecoveryHero() {
   const businessLabel = BUSINESS_TYPES.find((item) => item.value === businessType)?.label ?? "Your business";
   const annualRisk = Math.max(0, events * ticket * 52);
   const protectedRevenue = annualRisk * recoveryRate / 100;
-  const annualCost = 39.99 * 12;
+  const activePlan = COMMIT_PLANS[selectedPlan];
+  const annualCost = activePlan.monthly * 12;
   const netGain = Math.max(0, protectedRevenue - annualCost);
   const valueRatio = protectedRevenue / annualCost;
 
@@ -104,6 +113,32 @@ export function RecoveryHero() {
 
         <aside className="recovery-control-panel" id="recovery-controls">
           <div className="control-heading"><span>Interactive simulator</span><h3>See Your Recovery Potential</h3><p>Customize your business and watch the tank respond.</p></div>
+          <fieldset className="plan-selector">
+            <legend>Choose your plan</legend>
+            <div className="plan-selector-options">
+              {(Object.keys(COMMIT_PLANS) as CommitPlan[]).map((planKey) => {
+                const plan = COMMIT_PLANS[planKey];
+                const selected = selectedPlan === planKey;
+                return (
+                  <button
+                    type="button"
+                    key={planKey}
+                    className={selected ? "selected" : ""}
+                    aria-pressed={selected}
+                    onClick={() => {
+                      setChanging(true);
+                      setSelectedPlan(planKey);
+                      window.setTimeout(() => setChanging(false), 360);
+                    }}
+                  >
+                    <span>{selected ? "✓ " : ""}{plan.name}</span>
+                    <strong>${plan.monthly.toFixed(2)}/month</strong>
+                  </button>
+                );
+              })}
+            </div>
+            <p className="plan-selector-description"><strong>{activePlan.name}:</strong> {activePlan.description}</p>
+          </fieldset>
           <label>Business type
             <select value={businessType} onChange={(event) => updateBusiness(event.target.value)}>
               {BUSINESS_TYPES.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}
@@ -121,7 +156,7 @@ export function RecoveryHero() {
           <fieldset className="hero-theme-picker"><legend>Recovery Theme</legend><div>
             {RECOVERY_THEMES.filter((item) => item.tier === "starter").map((item) => <button type="button" key={item.value} className={theme === item.value ? "selected" : ""} onMouseEnter={() => setPreviewTheme(item.value)} onMouseLeave={() => setPreviewTheme(null)} onFocus={() => setPreviewTheme(item.value)} onBlur={() => setPreviewTheme(null)} onClick={() => setTheme(item.value)}><i style={{ background: `linear-gradient(135deg,${item.colors[0]},${item.colors[1]} 55%,${item.colors[2]})` }}></i><span>{item.label}</span></button>)}
           </div></fieldset>
-          <div className="hero-result-grid"><div><span>Annual revenue at risk</span><strong>{currency.format(annualRisk)}</strong></div><div><span>Commit cost</span><strong>{currency.format(annualCost)}</strong></div><div><span>Estimated net gain</span><strong>{currency.format(netGain)}</strong></div></div>
+          <div className="hero-result-grid"><div><span>Annual revenue at risk</span><strong>{currency.format(annualRisk)}</strong></div><div><span>{activePlan.name} plan cost</span><strong>{currency.format(annualCost)}</strong></div><div><span>Estimated net gain</span><strong>{currency.format(netGain)}</strong></div></div>
           <p className="control-assurance">◈ Real results. No long-term contracts.</p>
         </aside>
       </div>
