@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 import { RecoveryHero } from "@/components/RecoveryHero";
+import { HomeProductShowcase } from "@/components/HomeProductShowcase";
+import { CommitInAction } from "@/components/CommitInAction";
+import { HomeFaq } from "@/components/HomeFaq";
 
 export default function HomePage() {
   return (
@@ -29,22 +32,36 @@ export default function HomePage() {
           <div className="platform-grid">
             <article className="feature-card feature-card-large">
               <div className="card-topline"><span className="status-dot"></span> Flagship product</div>
-              <div className="dashboard-preview">
-                <div className="dashboard-sidebar"><div className="mini-logo">V</div><span className="active"></span><span></span><span></span><span></span></div>
-                <div className="dashboard-main">
-                  <div className="dashboard-head"><div><small>Vordali Commit</small><strong>Revenue commitment at a glance.</strong></div></div>
-                  <div className="metric-row">
-                    <div><small>Revenue protected</small><strong>$684</strong><span className="metric-up">Today</span></div>
-                    <div><small>Paid requests</small><strong>18</strong><span>Verified</span></div>
-                    <div><small>Collection rate</small><strong>96%</strong><span className="metric-up">Improved</span></div>
-                  </div>
-                </div>
-              </div>
+              <HomeProductShowcase />
               <div className="card-copy"><h3>Commit makes uncertainty measurable.</h3><p>Secure payment before costly preparation or work begins, then show the business what was protected.</p></div>
             </article>
             <article className="feature-card"><div className="icon-shell">◎</div><h3>Problem first</h3><p>Every product begins with a painful, repeated operational problem—not a feature wishlist.</p></article>
             <article className="feature-card"><div className="icon-shell">✦</div><h3>ROI visible</h3><p>Products should make the saved time, protected revenue, or reduced mistakes understandable.</p></article>
           </div>
+        </section>
+
+
+        <section className="section revenue-loss-section">
+          <div className="section-heading centered-heading">
+            <p className="kicker">Revenue friction adds up</p>
+            <h2>Businesses lose money when paying is not immediate.</h2>
+            <p>Commit closes the gap between customer intent and completed payment across orders, services, deposits, appointments, invoices, and remote purchases.</p>
+          </div>
+          <div className="revenue-loss-grid">
+            <article><span>01</span><h3>Payment delays</h3><p>Customers intend to pay, but distractions and extra steps cause otherwise valid transactions to be postponed or forgotten.</p></article>
+            <article><span>02</span><h3>Unpaid requests</h3><p>Deposits, estimates, invoices, appointments, and remote purchases can remain unresolved when there is no immediate way to complete payment.</p></article>
+            <article><span>03</span><h3>Manual follow-up</h3><p>Employees lose time chasing balances, repeating instructions, and checking whether a customer has completed payment.</p></article>
+          </div>
+          <div className="revenue-loss-solution"><strong>Commit reduces all three.</strong><span>Send a secure request. Let the customer pay from any phone. See verification immediately.</span></div>
+        </section>
+
+        <section className="section commit-action-section">
+          <div className="section-heading centered-heading">
+            <p className="kicker">See Commit in action</p>
+            <h2>From payment request to verified revenue.</h2>
+            <p>The same simple workflow adapts to different industries without requiring customers to download an app.</p>
+          </div>
+          <CommitInAction />
         </section>
 
         <section className="section commit-section" id="commit">
@@ -64,6 +81,16 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+        </section>
+
+
+        <section className="section faq-section" id="faq">
+          <div className="section-heading centered-heading">
+            <p className="kicker">Frequently asked questions</p>
+            <h2>Everything businesses need to know before getting started.</h2>
+            <p>Clear answers about the customer experience, security, payment requests, team workflows, and subscriptions.</p>
+          </div>
+          <HomeFaq />
         </section>
 
         <section className="section product-future-section">

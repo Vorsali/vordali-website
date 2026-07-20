@@ -5,13 +5,14 @@ import { CSSProperties, useState } from "react";
 import { BUSINESS_TYPES, dashboardLanguage } from "@/lib/merchant/adaptiveProfile";
 import { RECOVERY_THEMES, RecoveryTheme } from "@/components/RevenueRecoveryTank";
 import { SignatureRecoveryTank } from "@/components/SignatureRecoveryTank";
+import { AnimatedNumber } from "@/components/AnimatedNumber";
 
 const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 
 type CommitPlan = "starter" | "pro";
 
 const COMMIT_PLANS: Record<CommitPlan, { name: string; monthly: number; description: string }> = {
-  starter: { name: "Starter", monthly: 39.99, description: "Designed for most restaurants and local businesses." },
+  starter: { name: "Starter", monthly: 39.99, description: "Designed for local businesses with straightforward payment workflows." },
   pro: { name: "Pro", monthly: 69.99, description: "Ideal for higher-volume businesses that want expanded capabilities." },
 };
 
@@ -156,7 +157,7 @@ export function RecoveryHero() {
           <fieldset className="hero-theme-picker"><legend>Recovery Theme</legend><div>
             {RECOVERY_THEMES.filter((item) => item.tier === "starter").map((item) => <button type="button" key={item.value} className={theme === item.value ? "selected" : ""} onMouseEnter={() => setPreviewTheme(item.value)} onMouseLeave={() => setPreviewTheme(null)} onFocus={() => setPreviewTheme(item.value)} onBlur={() => setPreviewTheme(null)} onClick={() => setTheme(item.value)}><i style={{ background: `linear-gradient(135deg,${item.colors[0]},${item.colors[1]} 55%,${item.colors[2]})` }}></i><span>{item.label}</span></button>)}
           </div></fieldset>
-          <div className="hero-result-grid"><div><span>Annual revenue at risk</span><strong>{currency.format(annualRisk)}</strong></div><div><span>{activePlan.name} plan cost</span><strong>{currency.format(annualCost)}</strong></div><div><span>Estimated net gain</span><strong>{currency.format(netGain)}</strong></div></div>
+          <div className="hero-result-grid"><div><span>Annual revenue at risk</span><strong><AnimatedNumber value={annualRisk} format="currency" /></strong></div><div><span>{activePlan.name} plan cost</span><strong><AnimatedNumber value={annualCost} format="currency" /></strong></div><div key={`${selectedPlan}-${businessType}-${events}-${ticket}-${recoveryRate}`} className="success-result-card"><span>Estimated net gain</span><strong><AnimatedNumber value={netGain} format="currency" /></strong></div></div>
           <p className="control-assurance">◈ Real results. No long-term contracts.</p>
         </aside>
       </div>
