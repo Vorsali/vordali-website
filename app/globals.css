@@ -1099,3 +1099,8 @@ button{font:inherit}.site-header{z-index:60}.mobile-nav-open{overflow:hidden}
   .unified-tank-stage .tank-floor-glow-svg{animation:floor-glow-pulse 5s ease-in-out infinite!important}
   .unified-tank-stage.is-changing .tank-unified-assembly{animation:unified-tank-react .7s cubic-bezier(.2,.8,.2,1)!important}
 }
+
+/* Receipt particles use native SVG timing for reliable motion in mobile browsers.
+   The text artwork, positions, size, color, and travel path are unchanged. */
+.svg-business-particle-wrap{pointer-events:none}
+.svg-business-particle-wrap .svg-business-particle{animation:none!important;opacity:1}

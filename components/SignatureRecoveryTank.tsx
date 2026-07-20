@@ -183,8 +183,26 @@ export function SignatureRecoveryTank({
                 <path d={`M88 ${liquidTop + 2} Q145 ${liquidTop - 7} 220 ${liquidTop + 2} T352 ${liquidTop + 2}`} fill="none" stroke="#e6fdff" strokeOpacity=".84" strokeWidth="3" filter="url(#tankGlow)" />
 
                 {particles.map((item) => (
-                  <text key={item.id} className="svg-business-particle" x={item.x} y={item.y} fontSize={item.size}
-                    style={{ animationDelay: `${item.delay}s`, animationDuration: `${item.duration}s` }}>{particle}</text>
+                  <g key={item.id} className="svg-business-particle-wrap">
+                    <animateTransform
+                      attributeName="transform"
+                      type="translate"
+                      values="0 22; 0 0; 0 -54"
+                      keyTimes="0; .2; 1"
+                      dur={`${item.duration}s`}
+                      begin={`-${item.delay}s`}
+                      repeatCount="indefinite"
+                    />
+                    <animate
+                      attributeName="opacity"
+                      values="0; .7; .5; 0"
+                      keyTimes="0; .2; .8; 1"
+                      dur={`${item.duration}s`}
+                      begin={`-${item.delay}s`}
+                      repeatCount="indefinite"
+                    />
+                    <text className="svg-business-particle" x={item.x} y={item.y} fontSize={item.size}>{particle}</text>
+                  </g>
                 ))}
                 {Array.from({ length: 7 }, (_, index) => (
                   <circle key={index} className={`svg-bubble svg-bubble-${index + 1}`} cx={118 + ((index * 43) % 206)} cy={340 - ((index * 31) % 140)} r={2.5 + (index % 3) * 1.8}
