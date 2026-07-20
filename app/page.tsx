@@ -2,7 +2,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 import { RecoveryHero } from "@/components/RecoveryHero";
 import { HomeProductShowcase } from "@/components/HomeProductShowcase";
-import { CommitInAction } from "@/components/CommitInAction";
+import { CommitFlow } from "@/components/CommitFlow";
 import { HomeFaq } from "@/components/HomeFaq";
 
 export default function HomePage() {
@@ -57,11 +57,11 @@ export default function HomePage() {
 
         <section className="section commit-action-section">
           <div className="section-heading centered-heading">
-            <p className="kicker">See Commit in action</p>
+            <p className="kicker">The Commit Flow™</p>
             <h2>From payment request to verified revenue.</h2>
             <p>The same simple workflow adapts to different industries without requiring customers to download an app.</p>
           </div>
-          <CommitInAction />
+          <CommitFlow />
         </section>
 
         <section className="section commit-section" id="commit">
