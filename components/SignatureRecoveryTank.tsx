@@ -53,7 +53,8 @@ export function SignatureRecoveryTank({
     : 0;
   const animatedProtected = useAnimatedNumber(protectedRevenue);
   const fill = Math.max(8, Math.min(88, recoveryRate));
-  const liquidTop = 382 - (fill / 100) * 270;
+  const animatedFill = useAnimatedNumber(fill, 850);
+  const liquidTop = 382 - (animatedFill / 100) * 270;
   const breakEvenY = 382 - (breakEvenPercent / 100) * 270;
   const style = {
     "--tank-light": themeData.colors[0],

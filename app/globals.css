@@ -1083,3 +1083,19 @@ button{font:inherit}.site-header{z-index:60}.mobile-nav-open{overflow:hidden}
   .unified-tank-svg{width:min(338px,94vw);max-width:100%}
   .hero-result-grid{grid-template-columns:1fr}
 }
+
+
+/* Mobile Recovery Tank animation reliability.
+   The tank artwork and geometry remain unchanged; these rules only ensure its
+   existing motion continues on phone browsers, even when a browser reports
+   reduced-motion unexpectedly. */
+@media (max-width:850px){
+  .unified-tank-stage .svg-wave-back{animation:svg-wave-back 5.6s ease-in-out infinite alternate!important}
+  .unified-tank-stage .svg-wave-front{animation:svg-wave-front 4.3s ease-in-out infinite alternate!important}
+  .unified-tank-stage .svg-business-particle{animation-name:svg-particle-rise!important;animation-timing-function:linear!important;animation-iteration-count:infinite!important}
+  .unified-tank-stage .svg-bubble{animation:svg-bubble-rise 4.8s ease-in infinite!important}
+  .unified-tank-stage .svg-bubble-2{animation-delay:.7s!important}.unified-tank-stage .svg-bubble-3{animation-delay:1.5s!important}.unified-tank-stage .svg-bubble-4{animation-delay:2.1s!important}.unified-tank-stage .svg-bubble-5{animation-delay:2.8s!important}.unified-tank-stage .svg-bubble-6{animation-delay:3.3s!important}.unified-tank-stage .svg-bubble-7{animation-delay:3.8s!important}
+  .unified-tank-stage .svg-glass-sweep{animation:svg-glass-sweep 8.5s ease-in-out infinite!important}
+  .unified-tank-stage .tank-floor-glow-svg{animation:floor-glow-pulse 5s ease-in-out infinite!important}
+  .unified-tank-stage.is-changing .tank-unified-assembly{animation:unified-tank-react .7s cubic-bezier(.2,.8,.2,1)!important}
+}
