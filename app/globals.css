@@ -1180,3 +1180,35 @@ button{font:inherit}.site-header{z-index:60}.mobile-nav-open{overflow:hidden}
   .faq-list summary{padding:17px;font-size:13px}.faq-list details p{padding:0 17px 18px;font-size:13px}
 }
 @media(prefers-reduced-motion:reduce){.showcase-screen,.success-result-card,.success-result-card::after,.sms-notification{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+/* Commit Flow motion reliability: remounted phase elements + GPU-safe transforms */
+.flow-phone-wrap,.flying-sms,.flying-confirmation{will-change:transform,opacity;backface-visibility:hidden;transform-style:preserve-3d}
+.phase-sms-flight .flow-phone-wrap{animation:flowPhoneExitLeft .9s cubic-bezier(.4,0,.2,1) both}
+.phase-confirm-flight .flow-phone-wrap{animation:flowPhoneExitRight .9s cubic-bezier(.4,0,.2,1) both}
+@keyframes flowPhoneExitLeft{0%{transform:translate3d(0,0,0);opacity:1}100%{transform:translate3d(-155%,0,0);opacity:0}}
+@keyframes flowPhoneExitRight{0%{transform:translate3d(0,0,0);opacity:1}100%{transform:translate3d(155%,0,0);opacity:0}}
+
+@media(max-width:600px){
+  .commit-flow-theater{min-height:535px;isolation:isolate}
+  .flow-phone-wrap{width:100%;transform-origin:center center}
+  .phase-business-create .flow-phone-wrap{animation:mobilePhoneEnterLeft .85s cubic-bezier(.22,.8,.22,1) both}
+  .phase-customer-message .flow-phone-wrap,.phase-customer-pay .flow-phone-wrap{animation:mobilePhoneEnterRight .9s cubic-bezier(.22,.8,.22,1) both}
+  .phase-business-paid .flow-phone-wrap{animation:mobilePhoneEnterLeft .9s cubic-bezier(.22,.8,.22,1) both}
+  .phase-sms-flight .flow-phone-wrap{animation:mobilePhoneExitLeft .85s cubic-bezier(.4,0,.2,1) both}
+  .phase-confirm-flight .flow-phone-wrap{animation:mobilePhoneExitRight .85s cubic-bezier(.4,0,.2,1) both}
+  .phase-sms-flight .flying-sms{animation:mobileSmsAcross 1.7s cubic-bezier(.32,.05,.25,1) both}
+  .phase-confirm-flight .flying-confirmation{animation:mobileConfirmAcross 1.7s cubic-bezier(.32,.05,.25,1) both}
+  .phase-customer-message .flow-phone{animation:mobilePhoneBuzz .62s ease .78s both}
+  .phase-customer-pay .tap-ripple{animation:tapPay 5s ease both}
+  .phase-customer-pay .flow-payment-success{animation:paySuccessReveal 5s ease both}
+  .phase-customer-pay .customer-pay-state{animation:checkoutFade 5s ease both}
+  .flying-sms{left:7%;top:47%;width:52px;height:35px}
+  .flying-confirmation{left:93%;top:48%;width:45px;height:45px}
+}
+@keyframes mobilePhoneEnterLeft{0%{transform:translate3d(-115vw,0,0);opacity:0}100%{transform:translate3d(0,0,0);opacity:1}}
+@keyframes mobilePhoneEnterRight{0%{transform:translate3d(115vw,0,0);opacity:0}100%{transform:translate3d(0,0,0);opacity:1}}
+@keyframes mobilePhoneExitLeft{0%{transform:translate3d(0,0,0);opacity:1}100%{transform:translate3d(-115vw,0,0);opacity:0}}
+@keyframes mobilePhoneExitRight{0%{transform:translate3d(0,0,0);opacity:1}100%{transform:translate3d(115vw,0,0);opacity:0}}
+@keyframes mobileSmsAcross{0%{left:5%;top:54%;opacity:0;transform:translate3d(-50%,-50%,0) scale(.7) rotate(-6deg)}12%{opacity:1}50%{left:50%;top:38%;opacity:1;transform:translate3d(-50%,-50%,0) scale(1.04) rotate(2deg)}88%{opacity:1}100%{left:95%;top:49%;opacity:0;transform:translate3d(-50%,-50%,0) scale(.82) rotate(5deg)}}
+@keyframes mobileConfirmAcross{0%{left:95%;top:50%;opacity:0;transform:translate3d(-50%,-50%,0) scale(.65)}12%{opacity:1}50%{left:50%;top:39%;opacity:1;transform:translate3d(-50%,-50%,0) scale(1.08)}88%{opacity:1}100%{left:5%;top:50%;opacity:0;transform:translate3d(-50%,-50%,0) scale(.75)}}
+@keyframes mobilePhoneBuzz{0%,100%{transform:translate3d(0,0,0) rotate(0)}25%{transform:translate3d(-5px,0,0) rotate(-.6deg)}50%{transform:translate3d(5px,0,0) rotate(.6deg)}75%{transform:translate3d(-3px,0,0) rotate(-.3deg)}}

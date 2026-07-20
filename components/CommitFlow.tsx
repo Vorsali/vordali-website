@@ -65,11 +65,11 @@ export function CommitFlow() {
       </div>
 
       <div className={`commit-flow-theater phase-${phase.key}`} aria-live="polite">
-        <div className="flow-travel-line" aria-hidden="true" />
-        <div className="flying-sms" aria-hidden="true"><span>•••</span></div>
-        <div className="flying-confirmation" aria-hidden="true">✓</div>
+        <div key={`line-${phase.key}-${scenarioIndex}`} className="flow-travel-line" aria-hidden="true" />
+        <div key={`sms-${phase.key}-${scenarioIndex}`} className="flying-sms" aria-hidden="true"><span>•••</span></div>
+        <div key={`confirm-${phase.key}-${scenarioIndex}`} className="flying-confirmation" aria-hidden="true">✓</div>
 
-        <div className="flow-phone-wrap">
+        <div key={`phone-${phase.key}-${scenarioIndex}`} className="flow-phone-wrap">
           <span className="flow-phone-role">{role}</span>
           <div className="demo-phone flow-phone">
             <div className="phone-speaker" />
