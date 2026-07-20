@@ -1049,3 +1049,37 @@ button{font:inherit}.site-header{z-index:60}.mobile-nav-open{overflow:hidden}
   .break-even-label-svg text{font-size:9px}
   .cookie-consent-actions{grid-template-columns:1fr}
 }
+
+/* Mobile Recovery Hero layout correction: controls first, fully centered tank, no horizontal crop. */
+@media(max-width:850px){
+  .recovery-hero{overflow-x:clip;contain:none}
+  .recovery-hero-inner{display:flex;flex-direction:column;gap:20px;align-items:stretch}
+  .recovery-hero-copy{order:1}
+  .recovery-control-panel{order:2;max-width:620px;margin:0 auto}
+  .signature-tank-stage.unified-tank-stage{order:3;align-self:center;width:100%;max-width:520px;overflow:visible}
+  .unified-tank-wrap{left:0;right:0;overflow:visible}
+  .unified-tank-svg{display:block;width:min(430px,94vw);max-width:100%;margin:0 auto}
+}
+
+@media(max-width:540px){
+  .recovery-hero{padding-left:14px;padding-right:14px}
+  .recovery-hero-inner{gap:16px}
+  .recovery-control-panel{padding:15px 13px;border-radius:16px}
+  .control-heading h3{font-size:23px}
+  .control-heading p{font-size:11px}
+  .recovery-control-panel label{margin:8px 0}
+  .recovery-control-panel select,.recovery-control-panel input[type=number]{height:40px}
+  .hero-theme-picker{margin:12px 0}
+  .hero-result-grid{grid-template-columns:repeat(3,1fr);gap:6px}
+  .hero-result-grid div{min-height:70px;padding:8px 3px}
+  .hero-result-grid strong{font-size:14px}
+  .signature-tank-stage.unified-tank-stage{min-height:500px;max-width:100%;margin-top:2px}
+  .unified-tank-wrap{inset:44px 0 0}
+  .unified-tank-svg{width:min(360px,94vw);max-width:100%}
+}
+
+@media(max-width:380px){
+  .unified-tank-wrap{inset:48px 0 0}
+  .unified-tank-svg{width:min(338px,94vw);max-width:100%}
+  .hero-result-grid{grid-template-columns:1fr}
+}
