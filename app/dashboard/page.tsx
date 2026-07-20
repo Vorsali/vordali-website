@@ -23,7 +23,7 @@ export default async function Page() {
   return (
     <main className="merchant-dashboard">
       <aside>
-        <a className="dashboard-brand" href="/"><img src="/assets/vordali-logo-orb.webp" alt="" />VORDALI <small>COMMIT</small></a>
+        <a className="dashboard-brand" href="/"><img src="/assets/vordali-logo-orb.webp" alt="" />VORDALI <small>INC. · COMMIT</small></a>
         <nav><a className="active" href="/dashboard">Overview</a><span>Payment requests</span><span>Customers</span><span>Analytics</span><a href="/billing">Billing</a><a href="/settings/business">Business settings</a></nav>
         <form action="/api/auth/logout" method="post"><button>Sign out</button></form>
       </aside>

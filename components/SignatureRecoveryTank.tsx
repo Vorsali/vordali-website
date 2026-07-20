@@ -48,7 +48,9 @@ export function SignatureRecoveryTank({
 }: SignatureRecoveryTankProps) {
   const themeData = RECOVERY_THEMES.find((item) => item.value === theme) ?? RECOVERY_THEMES[0];
   const valueRatio = protectedRevenue / annualCost;
-  const breakEvenPercent = protectedRevenue > 0 ? Math.min(94, Math.max(5, annualCost / protectedRevenue * recoveryRate)) : 0;
+  const breakEvenPercent = protectedRevenue > 0
+    ? Math.min(92, Math.max(8, (annualCost / protectedRevenue) * 100))
+    : 0;
   const animatedProtected = useAnimatedNumber(protectedRevenue);
   const fill = Math.max(8, Math.min(88, recoveryRate));
   const liquidTop = 382 - (fill / 100) * 270;
@@ -196,32 +198,25 @@ export function SignatureRecoveryTank({
               <path d="M309 105 C320 180 320 294 307 359" fill="none" stroke="#d4f8ff" strokeOpacity=".13" strokeWidth="10" strokeLinecap="round" />
               <path className="svg-glass-sweep" d="M154 104 C135 190 142 285 160 356" fill="none" stroke="#ffffff" strokeOpacity=".42" strokeWidth="13" strokeLinecap="round" />
 
-              {/* Break-even marker: a stronger dotted guide with all wording outside the glass. */}
-              <line
-                x1="96"
-                x2="365"
-                y1={breakEvenY}
-                y2={breakEvenY}
-                stroke="var(--tank-light)"
-                strokeOpacity=".98"
-                strokeWidth="2.2"
-                strokeDasharray="7 5"
-                strokeLinecap="round"
-                filter="url(#tankGlow)"
-              />
-              <path
-                d={`M365 ${breakEvenY} L357 ${breakEvenY - 4.5} L357 ${breakEvenY + 4.5} Z`}
-                fill="var(--tank-light)"
-                fillOpacity=".98"
-              />
-              <g transform={`translate(372 ${breakEvenY - 9})`} className="break-even-label-svg">
-                <text fill="var(--tank-light)" fontSize="10.5" fontWeight="800">Break-even</text>
-                <text y="13" fill="#d9e9f5" fontSize="7.5">{currency.format(annualCost)}/year</text>
-              </g>
-
               {/* This visible glass foot continues into the collar opening. */}
               <ellipse cx="220" cy="379" rx="126" ry="13" fill="#8eeeff" fillOpacity=".035" stroke="url(#glassStroke)" strokeWidth="2.7" filter="url(#tankGlow)" />
               <path d="M101 381 Q220 394 339 381" fill="none" stroke="#e3fbff" strokeOpacity=".42" strokeWidth="1.2" />
+
+              {/* Break-even marker is painted last so liquid, reflections, and the glass foot cannot hide it. */}
+              <g className="break-even-marker-svg">
+                <line x1="97" x2="349" y1={breakEvenY} y2={breakEvenY}
+                  stroke="#04111f" strokeOpacity=".8" strokeWidth="5.5" strokeDasharray="8 6" strokeLinecap="round" />
+                <line x1="97" x2="349" y1={breakEvenY} y2={breakEvenY}
+                  stroke="var(--tank-light)" strokeOpacity="1" strokeWidth="2.5" strokeDasharray="8 6" strokeLinecap="round" />
+                <line x1="349" x2="368" y1={breakEvenY} y2={breakEvenY}
+                  stroke="var(--tank-light)" strokeWidth="2" strokeLinecap="round" />
+                <circle cx="349" cy={breakEvenY} r="3.5" fill="var(--tank-light)" />
+                <g transform={`translate(373 ${breakEvenY - 10})`} className="break-even-label-svg">
+                  <rect x="-4" y="-10" width="62" height="29" rx="6" fill="#061326" fillOpacity=".94" stroke="var(--tank-light)" strokeOpacity=".55" />
+                  <text fill="#ffffff" fontSize="10" fontWeight="800">Break-even</text>
+                  <text y="12" fill="#cfe7f8" fontSize="7.3">{currency.format(annualCost)}/year</text>
+                </g>
+              </g>
             </g>
 
             {/* Only the narrow front retaining lip is allowed to cross the glass. */}
