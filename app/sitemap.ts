@@ -9,7 +9,7 @@ const routes = [
   "/trust",
   "/privacy",
   "/terms",
-  "/sms-terms",
+  "/sms-terms", "/sms-consent",
   "/cookies",
   "/acceptable-use",
   "/security"
