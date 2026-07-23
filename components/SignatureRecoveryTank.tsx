@@ -1,6 +1,6 @@
 "use client";
 
-import { CSSProperties, useEffect, useId, useMemo, useRef, useState } from "react";
+import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 import { RECOVERY_THEMES, RecoveryTheme } from "@/components/RevenueRecoveryTank";
 
 const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
@@ -50,19 +50,6 @@ export function SignatureRecoveryTank({
   valueLabel = "Estimated Annual Revenue Protected",
   valueBadge,
 }: SignatureRecoveryTankProps) {
-  const instanceId = useId().replace(/:/g, "");
-  const svgIds = {
-    glassStroke: `${instanceId}-glassStroke`,
-    glassFill: `${instanceId}-glassFill`,
-    liquidFill: `${instanceId}-liquidFill`,
-    metalBody: `${instanceId}-metalBody`,
-    collarMetal: `${instanceId}-collarMetal`,
-    plaqueMetal: `${instanceId}-plaqueMetal`,
-    floorGlow: `${instanceId}-floorGlow`,
-    tankGlow: `${instanceId}-tankGlow`,
-    softGlow: `${instanceId}-softGlow`,
-    tankInterior: `${instanceId}-tankInterior`,
-  };
   const themeData = RECOVERY_THEMES.find((item) => item.value === theme) ?? RECOVERY_THEMES[0];
   const valueRatio = protectedRevenue / annualCost;
   const breakEvenPercent = protectedRevenue > 0
@@ -100,26 +87,26 @@ export function SignatureRecoveryTank({
       <div className="unified-tank-wrap">
         <svg className="unified-tank-svg" viewBox="0 0 440 520" role="img" aria-hidden="true">
           <defs>
-            <linearGradient id={svgIds.glassStroke} x1="0" x2="1">
+            <linearGradient id="glassStroke" x1="0" x2="1">
               <stop offset="0" stopColor="var(--tank-light)" stopOpacity=".92" />
               <stop offset=".18" stopColor="#e9fbff" stopOpacity=".9" />
               <stop offset=".5" stopColor="var(--tank-mid)" stopOpacity=".65" />
               <stop offset=".82" stopColor="#d7f8ff" stopOpacity=".88" />
               <stop offset="1" stopColor="var(--tank-light)" stopOpacity=".92" />
             </linearGradient>
-            <linearGradient id={svgIds.glassFill} x1="0" x2="1">
+            <linearGradient id="glassFill" x1="0" x2="1">
               <stop offset="0" stopColor="#dff8ff" stopOpacity=".11" />
               <stop offset=".15" stopColor="#9eeeff" stopOpacity=".03" />
               <stop offset=".5" stopColor="#ffffff" stopOpacity=".015" />
               <stop offset=".84" stopColor="#b9f5ff" stopOpacity=".06" />
               <stop offset="1" stopColor="#dff8ff" stopOpacity=".14" />
             </linearGradient>
-            <linearGradient id={svgIds.liquidFill} x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="liquidFill" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stopColor="var(--tank-light)" stopOpacity=".96" />
               <stop offset=".3" stopColor="var(--tank-mid)" stopOpacity=".95" />
               <stop offset="1" stopColor="var(--tank-deep)" stopOpacity=".98" />
             </linearGradient>
-            <linearGradient id={svgIds.metalBody} x1="0" x2="1">
+            <linearGradient id="metalBody" x1="0" x2="1">
               <stop offset="0" stopColor="#101923" />
               <stop offset=".13" stopColor="#33465a" />
               <stop offset=".31" stopColor="#101922" />
@@ -128,37 +115,37 @@ export function SignatureRecoveryTank({
               <stop offset=".87" stopColor="#35485b" />
               <stop offset="1" stopColor="#0d151e" />
             </linearGradient>
-            <linearGradient id={svgIds.collarMetal} x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="collarMetal" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stopColor="#d3e6f3" />
               <stop offset=".18" stopColor="#586c7f" />
               <stop offset=".55" stopColor="#152332" />
               <stop offset="1" stopColor="#070d14" />
             </linearGradient>
-            <linearGradient id={svgIds.plaqueMetal} x1="0" x2="1">
+            <linearGradient id="plaqueMetal" x1="0" x2="1">
               <stop offset="0" stopColor="#6f7d89" />
               <stop offset=".18" stopColor="#e7edf1" />
               <stop offset=".48" stopColor="#aab5be" />
               <stop offset=".72" stopColor="#edf2f5" />
               <stop offset="1" stopColor="#6d7b86" />
             </linearGradient>
-            <radialGradient id={svgIds.floorGlow}>
+            <radialGradient id="floorGlow">
               <stop offset="0" stopColor="var(--tank-light)" stopOpacity=".42" />
               <stop offset=".48" stopColor="var(--tank-mid)" stopOpacity=".14" />
               <stop offset="1" stopColor="var(--tank-mid)" stopOpacity="0" />
             </radialGradient>
-            <filter id={svgIds.tankGlow} x="-40%" y="-40%" width="180%" height="180%">
+            <filter id="tankGlow" x="-40%" y="-40%" width="180%" height="180%">
               <feGaussianBlur stdDeviation="7" result="blur" />
               <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
-            <filter id={svgIds.softGlow} x="-50%" y="-50%" width="200%" height="200%">
+            <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="11" />
             </filter>
-            <clipPath id={svgIds.tankInterior}>
+            <clipPath id="tankInterior">
               <path d="M92 92 C92 76 348 76 348 92 L348 370 C348 389 92 389 92 370 Z" />
             </clipPath>
           </defs>
 
-          <ellipse cx="220" cy="474" rx="145" ry="18" fill={`url(#${svgIds.floorGlow})`} className="tank-floor-glow-svg" />
+          <ellipse cx="220" cy="474" rx="145" ry="18" fill="url(#floorGlow)" className="tank-floor-glow-svg" />
 
           <g className="tank-unified-assembly">
             {/* Everything behind the glass is painted first. */}
@@ -166,7 +153,7 @@ export function SignatureRecoveryTank({
               <path
                 d="M86 404 C108 381 332 381 354 404"
                 fill="none"
-                stroke={`url(#${svgIds.collarMetal})`}
+                stroke="url(#collarMetal)"
                 strokeWidth="15"
                 strokeLinecap="round"
               />
@@ -182,22 +169,22 @@ export function SignatureRecoveryTank({
             <g className="unified-pedestal">
               <path
                 d="M81 407 L81 451 C81 467 359 467 359 451 L359 407 C344 420 96 420 81 407 Z"
-                fill={`url(#${svgIds.metalBody})`}
+                fill="url(#metalBody)"
                 stroke="#688096"
                 strokeOpacity=".55"
                 strokeWidth="1.5"
               />
-              <ellipse cx="220" cy="451" rx="139" ry="16" fill={`url(#${svgIds.metalBody})`} stroke="#60768a" strokeOpacity=".72" strokeWidth="1.4" />
-              <path d="M94 450 Q220 462 346 450" fill="none" stroke="var(--tank-light)" strokeWidth="3" strokeOpacity=".9" filter={`url(#${svgIds.tankGlow})`} />
+              <ellipse cx="220" cy="451" rx="139" ry="16" fill="url(#metalBody)" stroke="#60768a" strokeOpacity=".72" strokeWidth="1.4" />
+              <path d="M94 450 Q220 462 346 450" fill="none" stroke="var(--tank-light)" strokeWidth="3" strokeOpacity=".9" filter="url(#tankGlow)" />
             </g>
 
             {/* The complete glass vessel is now painted over the rear collar and pedestal body. */}
             <g className="unified-glass-assembly" transform="translate(0 12)">
-              <g clipPath={`url(#${svgIds.tankInterior})`}>
-                <rect x="88" y={liquidTop} width="264" height={390 - liquidTop} fill={`url(#${svgIds.liquidFill})`} />
+              <g clipPath="url(#tankInterior)">
+                <rect x="88" y={liquidTop} width="264" height={390 - liquidTop} fill="url(#liquidFill)" />
                 <path className="svg-wave svg-wave-back" d={`M70 ${liquidTop + 4} Q120 ${liquidTop - 10} 170 ${liquidTop + 4} T270 ${liquidTop + 4} T370 ${liquidTop + 4} L370 ${liquidTop + 38} L70 ${liquidTop + 38} Z`} fill="var(--tank-light)" fillOpacity=".48" />
                 <path className="svg-wave svg-wave-front" d={`M70 ${liquidTop + 7} Q125 ${liquidTop + 22} 180 ${liquidTop + 7} T290 ${liquidTop + 7} T400 ${liquidTop + 7} L400 ${liquidTop + 42} L70 ${liquidTop + 42} Z`} fill="var(--tank-mid)" fillOpacity=".55" />
-                <path d={`M88 ${liquidTop + 2} Q145 ${liquidTop - 7} 220 ${liquidTop + 2} T352 ${liquidTop + 2}`} fill="none" stroke="#e6fdff" strokeOpacity=".84" strokeWidth="3" filter={`url(#${svgIds.tankGlow})`} />
+                <path d={`M88 ${liquidTop + 2} Q145 ${liquidTop - 7} 220 ${liquidTop + 2} T352 ${liquidTop + 2}`} fill="none" stroke="#e6fdff" strokeOpacity=".84" strokeWidth="3" filter="url(#tankGlow)" />
 
                 {particles.map((item) => (
                   <g key={item.id} className="svg-business-particle-wrap">
@@ -227,15 +214,15 @@ export function SignatureRecoveryTank({
                 ))}
               </g>
 
-              <path d="M92 92 C92 76 348 76 348 92 L348 370 C348 389 92 389 92 370 Z" fill={`url(#${svgIds.glassFill})`} stroke={`url(#${svgIds.glassStroke})`} strokeWidth="4" filter={`url(#${svgIds.tankGlow})`} />
-              <ellipse cx="220" cy="91" rx="128" ry="15" fill="#07101d" fillOpacity=".18" stroke={`url(#${svgIds.glassStroke})`} strokeWidth="4" />
+              <path d="M92 92 C92 76 348 76 348 92 L348 370 C348 389 92 389 92 370 Z" fill="url(#glassFill)" stroke="url(#glassStroke)" strokeWidth="4" filter="url(#tankGlow)" />
+              <ellipse cx="220" cy="91" rx="128" ry="15" fill="#07101d" fillOpacity=".18" stroke="url(#glassStroke)" strokeWidth="4" />
               <ellipse cx="220" cy="91" rx="117" ry="9" fill="none" stroke="#d9fbff" strokeOpacity=".52" strokeWidth="1.4" />
               <path d="M128 104 C112 185 114 290 126 358" fill="none" stroke="#e9fbff" strokeOpacity=".24" strokeWidth="24" strokeLinecap="round" />
               <path d="M309 105 C320 180 320 294 307 359" fill="none" stroke="#d4f8ff" strokeOpacity=".13" strokeWidth="10" strokeLinecap="round" />
               <path className="svg-glass-sweep" d="M154 104 C135 190 142 285 160 356" fill="none" stroke="#ffffff" strokeOpacity=".42" strokeWidth="13" strokeLinecap="round" />
 
               {/* This visible glass foot continues into the collar opening. */}
-              <ellipse cx="220" cy="379" rx="126" ry="13" fill="#8eeeff" fillOpacity=".035" stroke={`url(#${svgIds.glassStroke})`} strokeWidth="2.7" filter={`url(#${svgIds.tankGlow})`} />
+              <ellipse cx="220" cy="379" rx="126" ry="13" fill="#8eeeff" fillOpacity=".035" stroke="url(#glassStroke)" strokeWidth="2.7" filter="url(#tankGlow)" />
               <path d="M101 381 Q220 394 339 381" fill="none" stroke="#e3fbff" strokeOpacity=".42" strokeWidth="1.2" />
 
               {/* Break-even marker is painted last so liquid, reflections, and the glass foot cannot hide it. */}
@@ -260,7 +247,7 @@ export function SignatureRecoveryTank({
               <path
                 d="M88 404 C116 418 324 418 352 404"
                 fill="none"
-                stroke={`url(#${svgIds.collarMetal})`}
+                stroke="url(#collarMetal)"
                 strokeWidth="8"
                 strokeLinecap="round"
               />
@@ -270,13 +257,13 @@ export function SignatureRecoveryTank({
                 stroke="var(--tank-light)"
                 strokeOpacity=".88"
                 strokeWidth="2"
-                filter={`url(#${svgIds.tankGlow})`}
+                filter="url(#tankGlow)"
               />
             </g>
 
             <g className="unified-plaque">
               <rect x="121" y="414" width="198" height="34" rx="5" fill="#101820" fillOpacity=".62" />
-              <rect x="124" y="411" width="192" height="34" rx="5" fill={`url(#${svgIds.plaqueMetal})`} stroke="#273644" strokeWidth="1.4" />
+              <rect x="124" y="411" width="192" height="34" rx="5" fill="url(#plaqueMetal)" stroke="#273644" strokeWidth="1.4" />
               <text x="220" y="427" textAnchor="middle" fill="#101923" fontSize="16" fontFamily="Georgia, serif" fontWeight="700">Recovery Tank™</text>
               <text x="220" y="439" textAnchor="middle" fill="#263544" fontSize="7.2">◉ Powered by Commit</text>
               <g fill="#26323d" stroke="#dce5eb" strokeWidth=".7">
