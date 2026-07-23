@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { RestaurantRecoveryVessel } from "@/components/RestaurantRecoveryVessel";
+import { HvacRecoveryVessel } from "@/components/HvacRecoveryVessel";
 
 type Collection = "restaurant" | "hvac" | "plumbing" | "retail";
 
@@ -18,7 +19,7 @@ const COLLECTIONS: Array<{
   available: boolean;
 }> = [
   { key: "restaurant", label: "Restaurants", detail: "Kitchen Series", available: true },
-  { key: "hvac", label: "HVAC", detail: "Climate Series", available: false },
+  { key: "hvac", label: "HVAC", detail: "Climate Series", available: true },
   { key: "plumbing", label: "Plumbing", detail: "Flow Series", available: false },
   { key: "retail", label: "Retail", detail: "Commerce Series", available: false },
 ];
@@ -58,16 +59,19 @@ export function RecoveryCollectionsShowcase() {
 
       <div className="collection-showcase-panel">
         <div className="collection-copy">
-          <span className="collection-badge">PRO · RESTAURANT COLLECTION</span>
-          <h3>Kitchen Series Recovery Vessel</h3>
+          <span className="collection-badge">
+            {collection === "hvac" ? "PRO · HVAC COLLECTION" : "PRO · RESTAURANT COLLECTION"}
+          </span>
+          <h3>{collection === "hvac" ? "Climate Series Recovery Cylinder" : "Kitchen Series Recovery Vessel"}</h3>
           <p>
-            Vordali&apos;s recovery engine re-engineered as a detailed commercial kitchen holding vessel with stainless
-            hardware, a temperature gauge, control panel, drain valve, and live break-even marker.
+            {collection === "hvac"
+              ? "Vordali's recovery engine housed inside a field-service recovery cylinder with dual pressure gauges, copper manifold lines, service hoses, cooling fins, and a live break-even rail."
+              : "Vordali's recovery engine re-engineered as a detailed commercial kitchen holding vessel with stainless hardware, a temperature gauge, control panel, drain valve, and live break-even marker."}
           </p>
           <ul>
             <li>Live recovered-revenue progress</li>
             <li>Visible break-even marker</li>
-            <li>Responsive liquid animations on desktop and mobile</li>
+            <li>{collection === "hvac" ? "Dual-pressure Climate Series instrumentation" : "Responsive liquid animations on desktop and mobile"}</li>
           </ul>
           <small>
             Industry-specific vessel collections are available with Pro. Additional business series will appear here as
@@ -79,6 +83,9 @@ export function RecoveryCollectionsShowcase() {
           {collection === "restaurant" ? (
             <RestaurantRecoveryVessel recovered={recovered} annualCost={800} progress={progress} />
           ) : null}
+          {collection === "hvac" ? (
+            <HvacRecoveryVessel recovered={recovered} annualCost={800} progress={progress} />
+          ) : null}
         </div>
 
         <div className="collection-stats">
@@ -87,7 +94,7 @@ export function RecoveryCollectionsShowcase() {
             <strong>{money.format(recovered)}</strong>
           </article>
           <article>
-            <span>Orders saved</span>
+            <span>{collection === "hvac" ? "Jobs recovered" : "Orders saved"}</span>
             <strong>48</strong>
           </article>
           <article>
