@@ -1,21 +1,27 @@
 "use client";
 
 import { useState } from "react";
-import { SignatureRecoveryTank } from "@/components/SignatureRecoveryTank";
 import { RestaurantRecoveryVessel } from "@/components/RestaurantRecoveryVessel";
 
-type Collection = "classic" | "restaurant" | "hvac" | "plumbing" | "retail";
+type Collection = "restaurant" | "hvac" | "plumbing" | "retail";
 
-const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+const money = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 0,
+});
 
-const COLLECTIONS: Array<{ key: Collection; label: string; detail: string; available: boolean }> = [
-  { key: "classic", label: "All Businesses", detail: "Classic", available: true },
+const COLLECTIONS: Array<{
+  key: Collection;
+  label: string;
+  detail: string;
+  available: boolean;
+}> = [
   { key: "restaurant", label: "Restaurants", detail: "Kitchen Series", available: true },
   { key: "hvac", label: "HVAC", detail: "Climate Series", available: false },
   { key: "plumbing", label: "Plumbing", detail: "Flow Series", available: false },
   { key: "retail", label: "Retail", detail: "Commerce Series", available: false },
 ];
-
 
 export function RecoveryCollectionsShowcase() {
   const [collection, setCollection] = useState<Collection>("restaurant");
@@ -28,10 +34,13 @@ export function RecoveryCollectionsShowcase() {
       <div className="section-heading centered-heading">
         <p className="kicker">Recovery Vessels™</p>
         <h2>One recovery engine. A vessel shaped for your business.</h2>
-        <p>Every design uses the same polished liquid, bubbles, reflections, and break-even system as the signature Recovery Tank. Pro changes the vessel—not the experience.</p>
+        <p>
+          Explore the industry-specific Recovery Vessels available with Pro. Each design uses the same polished liquid,
+          bubbles, reflections, and break-even system that powers Vordali&apos;s signature Recovery Tank.
+        </p>
       </div>
 
-      <div className="collection-selector" aria-label="Recovery Collection selector">
+      <div className="collection-selector" aria-label="Recovery Vessel selector">
         {COLLECTIONS.map((item) => (
           <button
             type="button"
@@ -39,7 +48,7 @@ export function RecoveryCollectionsShowcase() {
             className={collection === item.key ? "active" : ""}
             onClick={() => item.available && setCollection(item.key)}
             aria-disabled={!item.available}
-            title={item.available ? `View ${item.label}` : `${item.label} collection coming soon`}
+            title={item.available ? `View ${item.label}` : `${item.label} vessel coming soon`}
           >
             {item.label}
             <span>{item.available ? item.detail : `${item.detail} · Coming soon`}</span>
@@ -49,41 +58,42 @@ export function RecoveryCollectionsShowcase() {
 
       <div className="collection-showcase-panel">
         <div className="collection-copy">
-          <span className="collection-badge">{collection === "restaurant" ? "PRO · RESTAURANT COLLECTION" : "STARTER · CLASSIC COLLECTION"}</span>
-          <h3>{collection === "restaurant" ? "Kitchen Series Recovery Vessel" : "Classic Recovery Tank"}</h3>
-          <p>{collection === "restaurant"
-            ? "The same liquid-recovery engine, re-engineered as a detailed commercial kitchen holding vessel with stainless hardware, a temperature gauge, control panel, drain valve, and live break-even marker."
-            : "The same signature Vordali Recovery Tank shown in the homepage hero, with identical glass, lighting, motion, and break-even behavior."}</p>
+          <span className="collection-badge">PRO · RESTAURANT COLLECTION</span>
+          <h3>Kitchen Series Recovery Vessel</h3>
+          <p>
+            Vordali&apos;s recovery engine re-engineered as a detailed commercial kitchen holding vessel with stainless
+            hardware, a temperature gauge, control panel, drain valve, and live break-even marker.
+          </p>
           <ul>
             <li>Live recovered-revenue progress</li>
             <li>Visible break-even marker</li>
-            <li>Responsive animations on desktop and mobile</li>
+            <li>Responsive liquid animations on desktop and mobile</li>
           </ul>
-          <small>Starter includes the classic display in Vordali Blue, Recovery Green, and Electric Pink. Business-specific collections are available with Pro.</small>
+          <small>
+            Industry-specific vessel collections are available with Pro. Additional business series will appear here as
+            they are released.
+          </small>
         </div>
 
         <div className="collection-preview-stage">
           {collection === "restaurant" ? (
             <RestaurantRecoveryVessel recovered={recovered} annualCost={800} progress={progress} />
-          ) : (
-            <SignatureRecoveryTank
-              protectedRevenue={recovered}
-              annualCost={800}
-              recoveryRate={progress}
-              theme="vordali"
-              particle="$"
-              proof="Revenue recovered"
-              className="collection-signature-tank"
-              valueLabel="Recovered This Month"
-              valueBadge={`${progress}% to goal`}
-            />
-          )}
+          ) : null}
         </div>
 
         <div className="collection-stats">
-          <article><span>Recovered</span><strong>{money.format(recovered)}</strong></article>
-          <article><span>Orders saved</span><strong>48</strong></article>
-          <article><span>Break-even progress</span><strong>{progress}%</strong></article>
+          <article>
+            <span>Recovered</span>
+            <strong>{money.format(recovered)}</strong>
+          </article>
+          <article>
+            <span>Orders saved</span>
+            <strong>48</strong>
+          </article>
+          <article>
+            <span>Break-even progress</span>
+            <strong>{progress}%</strong>
+          </article>
         </div>
       </div>
     </section>
