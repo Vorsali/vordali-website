@@ -1,39 +1,38 @@
-import type { NextConfig } from "next";
+-- Merchant enrollment, ownership, onboarding, and subscription gating foundation
+create table if not exists public.organizations (
+  id uuid primary key default gen_random_uuid(),
+  owner_user_id uuid not null unique,
+  name text not null,
+  phone text,
+  website text,
+  timezone text not null default 'America/Chicago',
+  onboarding_complete boolean not null default false,
+  status text not null default 'pending' check (status in ('pending','active','suspended','closed')),
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
 
-const securityHeaders = [
-  { key: "X-Content-Type-Options", value: "nosniff" },
-  { key: "X-Frame-Options", value: "DENY" },
-  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
-  { key: "Cross-Origin-Opener-Policy", value: "same-origin" }
-];
+create table if not exists public.organization_members (
+  id uuid primary key default gen_random_uuid(),
+  organization_id uuid not null references public.organizations(id) on delete cascade,
+  user_id uuid not null,
+  role text not null default 'owner' check (role in ('owner','manager','employee')),
+  display_name text,
+  email text,
+  created_at timestamptz not null default now(),
+  unique (organization_id,user_id),
+  unique (user_id)
+);
 
-const nextConfig: NextConfig = {
-  reactStrictMode: true,
-  poweredByHeader: false,
-  compress: true,
-  images: {
-    formats: ["image/avif", "image/webp"],
-    minimumCacheTTL: 86400
-  },
-  async headers() {
-    return [{ source: "/(.*)", headers: securityHeaders }];
-  },
-  async redirects() {
-    return [
-      { source: "/products.html", destination: "/products", permanent: true },
-      { source: "/pricing.html", destination: "/pricing", permanent: true },
-      { source: "/labs.html", destination: "/labs", permanent: true },
-      { source: "/manifesto.html", destination: "/why-vordali", permanent: true },
-      { source: "/trust.html", destination: "/trust", permanent: true },
-      { source: "/privacy.html", destination: "/privacy", permanent: true },
-      { source: "/terms.html", destination: "/terms", permanent: true },
-      { source: "/sms-terms.html", destination: "/sms-terms", permanent: true },
-      { source: "/cookies.html", destination: "/cookies", permanent: true },
-      { source: "/acceptable-use.html", destination: "/acceptable-use", permanent: true },
-      { source: "/security.html", destination: "/security", permanent: true }
-    ];
-  }
-};
+alter table public.organization_subscriptions
+  drop constraint if exists organization_subscriptions_organization_id_fkey;
+alter table public.organization_subscriptions
+  add constraint organization_subscriptions_organization_id_fkey
+  foreign key (organization_id) references public.organizations(id) on delete cascade;
 
-export default nextConfig;
+alter table public.organizations enable row level security;
+alter table public.organization_members enable row level security;
+
+-- All writes and enrollment reads currently pass through protected server routes
+-- using the service-role key. User-facing RLS policies will be added when direct
+-- browser database access is introduced.
