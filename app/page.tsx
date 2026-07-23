@@ -4,15 +4,12 @@ import { RecoveryHero } from "@/components/RecoveryHero";
 import { HomeProductShowcase } from "@/components/HomeProductShowcase";
 import { CommitFlow } from "@/components/CommitFlow";
 import { HomeFaq } from "@/components/HomeFaq";
-import { RecoveryCollectionsShowcase } from "@/components/RecoveryCollectionsShowcase";
 
 export default function HomePage() {
   return (
     <PageShell>
       <main className="home-main">
         <RecoveryHero />
-
-        <RecoveryCollectionsShowcase />
 
         <section className="problem-strip">
           <div className="problem-strip-inner">

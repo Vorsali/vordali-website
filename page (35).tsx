@@ -1,5 +1,0 @@
-import { NextResponse } from "next/server";
-import { getMerchantContext } from "@/lib/auth/supabaseAuth";
-import { supabaseAdminRequest } from "@/lib/database/supabaseAdmin";
-import { getSiteUrl, stripeRequest } from "@/lib/stripe/config";
-export async function POST(){try{const c=await getMerchantContext();if(!c)return NextResponse.json({error:"Sign in required."},{status:401});const rows=await supabaseAdminRequest<Array<{stripe_customer_id:string|null}>>(`/rest/v1/organization_subscriptions?organization_id=eq.${c.organization.id}&select=stripe_customer_id&limit=1`);const customer=rows[0]?.stripe_customer_id;if(!customer)return NextResponse.json({error:"No Stripe billing account is available yet."},{status:400});const session=await stripeRequest<{url:string}>("/billing_portal/sessions",{customer,return_url:`${getSiteUrl()}/billing`});return NextResponse.json({url:session.url})}catch(error){return NextResponse.json({error:error instanceof Error?error.message:"Unable to open billing settings."},{status:500})}}

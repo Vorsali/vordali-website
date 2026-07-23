@@ -34,8 +34,6 @@ export type SignatureRecoveryTankProps = {
   proof: string;
   changing?: boolean;
   className?: string;
-  valueLabel?: string;
-  valueBadge?: string;
 };
 
 export function SignatureRecoveryTank({
@@ -47,8 +45,6 @@ export function SignatureRecoveryTank({
   proof,
   changing = false,
   className = "",
-  valueLabel = "Estimated Annual Revenue Protected",
-  valueBadge,
 }: SignatureRecoveryTankProps) {
   const themeData = RECOVERY_THEMES.find((item) => item.value === theme) ?? RECOVERY_THEMES[0];
   const valueRatio = protectedRevenue / annualCost;
@@ -79,9 +75,9 @@ export function SignatureRecoveryTank({
     <div className={`signature-tank-stage unified-tank-stage ${changing ? "is-changing" : ""} ${className}`.trim()} style={style}
       aria-label={`Recovery Tank showing ${currency.format(protectedRevenue)} estimated annual protected revenue`}>
       <div className="tank-value-crown">
-        <small>{valueLabel}</small>
+        <small>Estimated Annual Revenue Protected</small>
         <strong>{currency.format(animatedProtected)}</strong>
-        <span>{valueBadge ?? `+${Math.round(valueRatio * 10)}% value`}</span>
+        <span>+{Math.round(valueRatio * 10)}% value</span>
       </div>
 
       <div className="unified-tank-wrap">
