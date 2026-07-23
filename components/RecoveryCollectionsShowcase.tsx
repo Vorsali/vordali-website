@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { SignatureRecoveryTank } from "@/components/SignatureRecoveryTank";
 
 type Collection = "classic" | "restaurant" | "hvac" | "plumbing" | "retail";
 
@@ -14,12 +15,18 @@ const COLLECTIONS: Array<{ key: Collection; label: string; available: boolean }>
   { key: "retail", label: "Retail", available: false },
 ];
 
+const FOOD_ITEMS = [
+  "takeout-box", "meal-tray", "paper-bag", "pastry-box",
+  "meal-tray", "takeout-box", "cup", "paper-bag",
+  "pastry-box", "meal-tray", "takeout-box", "cup",
+];
+
 export function RecoveryCollectionsShowcase() {
   const [collection, setCollection] = useState<Collection>("restaurant");
   const recovered = 1247;
   const goal = 2000;
-  const progress = (recovered / goal) * 100;
-  const foodCount = useMemo(() => Math.ceil(progress / 7), [progress]);
+  const progress = Math.round((recovered / goal) * 100);
+  const filledItems = useMemo(() => Math.ceil((progress / 100) * FOOD_ITEMS.length), [progress]);
 
   return (
     <section className="section recovery-collections-section" id="recovery-collections">
@@ -50,8 +57,8 @@ export function RecoveryCollectionsShowcase() {
           <span className="collection-badge">{collection === "restaurant" ? "PRO · RESTAURANT COLLECTION" : "STARTER · CLASSIC COLLECTION"}</span>
           <h3>{collection === "restaurant" ? "Warming Display Case" : "Classic Recovery Tank"}</h3>
           <p>{collection === "restaurant"
-            ? "Recovered revenue stocks the case shelf by shelf, turning an abstract metric into something restaurant teams recognize instantly."
-            : "The signature Vordali display fills with recovered revenue and marks the moment Commit pays for itself."}</p>
+            ? "Recovered revenue stocks the case shelf by shelf with familiar restaurant packaging—not one specific cuisine."
+            : "The same signature Vordali Recovery Tank shown in the homepage hero, with identical glass, lighting, motion, and break-even behavior."}</p>
           <ul>
             <li>Live recovered-revenue progress</li>
             <li>Visible break-even marker</li>
@@ -62,39 +69,53 @@ export function RecoveryCollectionsShowcase() {
 
         <div className="collection-preview-stage">
           {collection === "restaurant" ? (
-            <div className="home-warming-case" role="img" aria-label="Restaurant warming display case filled to 62 percent">
-              <div className="home-warming-sign"><span>RESTAURANT COLLECTION</span><b>Warming Display Case</b></div>
-              <div className="home-warming-glass">
-                <i className="home-heat h1" /><i className="home-heat h2" /><i className="home-heat h3" />
-                {[0, 1, 2].map((shelf) => (
-                  <div className="home-warming-shelf" key={shelf}>
-                    {Array.from({ length: 5 }, (_, index) => {
-                      const item = shelf * 5 + index;
-                      return <span key={index} className={item < foodCount ? "filled" : ""}><i /></span>;
-                    })}
-                  </div>
-                ))}
-                <div className="home-case-break-even"><span>Break-even</span></div>
-                <div className="home-case-value"><strong>{money.format(recovered)}</strong><span>recovered this month</span></div>
+            <div className="restaurant-display-wrap" role="img" aria-label={`Restaurant warming display case stocked to ${progress} percent`}>
+              <div className="restaurant-case-top">
+                <span>RESTAURANT COLLECTION</span>
+                <strong>Warming Display Case</strong>
               </div>
-              <div className="home-warming-base"><i /><div><b>Recovery Display™</b><small>Powered by Commit</small></div><i /></div>
+              <div className="restaurant-case-body">
+                <div className="restaurant-led" />
+                <div className="restaurant-glass-reflection" />
+                <i className="restaurant-heat heat-one" /><i className="restaurant-heat heat-two" /><i className="restaurant-heat heat-three" />
+                <div className="restaurant-shelves">
+                  {[0, 1, 2].map((shelf) => (
+                    <div className="restaurant-shelf" key={shelf}>
+                      {FOOD_ITEMS.slice(shelf * 4, shelf * 4 + 4).map((kind, index) => {
+                        const itemIndex = shelf * 4 + index;
+                        return <span key={`${kind}-${index}`} className={`restaurant-item ${kind} ${itemIndex < filledItems ? "filled" : ""}`}><i /></span>;
+                      })}
+                    </div>
+                  ))}
+                </div>
+                <div className="restaurant-break-even"><span>Break-even</span></div>
+                <div className="restaurant-value"><small>Recovered this month</small><strong>{money.format(recovered)}</strong></div>
+              </div>
+              <div className="restaurant-case-base">
+                <span className="case-status-light" />
+                <div><b>Recovery Display™</b><small>Powered by Commit</small></div>
+                <span className="case-status-light" />
+              </div>
             </div>
           ) : (
-            <div className="home-classic-tank" role="img" aria-label="Classic Recovery Tank filled to 62 percent">
-              <div className="home-tank-glass">
-                <div className="home-tank-liquid" style={{ height: `${progress}%` }}><i /><i /><i /><i /></div>
-                <div className="home-tank-break-even"><span>Break-even</span></div>
-                <div className="home-case-value"><strong>{money.format(recovered)}</strong><span>recovered this month</span></div>
-              </div>
-              <div className="home-tank-base"><b>Recovery Tank™</b><small>Powered by Commit</small></div>
-            </div>
+            <SignatureRecoveryTank
+              protectedRevenue={recovered}
+              annualCost={800}
+              recoveryRate={progress}
+              theme="vordali"
+              particle="$"
+              proof="Revenue recovered"
+              className="collection-signature-tank"
+              valueLabel="Recovered This Month"
+              valueBadge={`${progress}% to goal`}
+            />
           )}
         </div>
 
         <div className="collection-stats">
           <article><span>Recovered</span><strong>{money.format(recovered)}</strong></article>
           <article><span>Orders saved</span><strong>48</strong></article>
-          <article><span>Break-even progress</span><strong>62%</strong></article>
+          <article><span>Break-even progress</span><strong>{progress}%</strong></article>
         </div>
       </div>
     </section>
