@@ -45,6 +45,8 @@ export function RestaurantRecoveryVessel({ recovered, annualCost, progress }: Re
     steel: `${uid}-steel`,
     steelDark: `${uid}-steel-dark`,
     gauge: `${uid}-gauge`,
+    measurement: `${uid}-measurement`,
+    warmSteel: `${uid}-warm-steel`,
     glow: `${uid}-glow`,
     soft: `${uid}-soft`,
     clip: `${uid}-clip`,
@@ -105,6 +107,19 @@ export function RestaurantRecoveryVessel({ recovered, annualCost, progress }: Re
             <stop offset=".7" stopColor="#07111c" />
             <stop offset="1" stopColor="#00050a" />
           </radialGradient>
+          <linearGradient id={ids.measurement} x1="0" x2="1">
+            <stop offset="0" stopColor="#03101b" stopOpacity=".92" />
+            <stop offset=".55" stopColor="#183247" stopOpacity=".9" />
+            <stop offset="1" stopColor="#02080e" stopOpacity=".96" />
+          </linearGradient>
+          <linearGradient id={ids.warmSteel} x1="0" x2="1">
+            <stop offset="0" stopColor="#3b2a1a" />
+            <stop offset=".16" stopColor="#d6b47a" />
+            <stop offset=".34" stopColor="#6b5234" />
+            <stop offset=".55" stopColor="#f2dfb8" />
+            <stop offset=".76" stopColor="#715333" />
+            <stop offset="1" stopColor="#26180d" />
+          </linearGradient>
           <filter id={ids.glow} x="-40%" y="-40%" width="180%" height="180%">
             <feGaussianBlur stdDeviation="6" result="blur" />
             <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
@@ -135,6 +150,20 @@ export function RestaurantRecoveryVessel({ recovered, annualCost, progress }: Re
           <path d="M238 75 V65 Q238 54 249 54 H271 Q282 54 282 65 V75" fill="none" stroke={`url(#${ids.steel})`} strokeWidth="7" strokeLinecap="round" />
           <circle cx="144" cy="108" r="5" fill="#0a1118" stroke="#d8e5eb" strokeOpacity=".65" />
           <circle cx="376" cy="108" r="5" fill="#0a1118" stroke="#d8e5eb" strokeOpacity=".65" />
+          <g className="rv-top-port" transform="translate(172 91)">
+            <ellipse cx="0" cy="0" rx="18" ry="6" fill="#0a1118" stroke="#c8d7df" strokeOpacity=".7" />
+            <rect x="-13" y="-14" width="26" height="14" rx="5" fill={`url(#${ids.steel})`} />
+            <ellipse cx="0" cy="-14" rx="13" ry="4" fill="#d7e2e8" opacity=".6" />
+          </g>
+          <g className="rv-top-port" transform="translate(348 91)">
+            <ellipse cx="0" cy="0" rx="15" ry="5" fill="#0a1118" stroke="#c8d7df" strokeOpacity=".7" />
+            <rect x="-10" y="-12" width="20" height="12" rx="4" fill={`url(#${ids.steel})`} />
+            <ellipse cx="0" cy="-12" rx="10" ry="3.5" fill="#d7e2e8" opacity=".58" />
+          </g>
+          <g className="rv-latch" transform="translate(120 116)">
+            <rect x="0" y="0" width="30" height="12" rx="4" fill={`url(#${ids.steelDark})`} stroke="#b5c4ce" strokeOpacity=".7" />
+            <path d="M7 2 V-10 H23 V2" fill="none" stroke="#b8c8d1" strokeWidth="4" strokeLinecap="round" />
+          </g>
         </g>
 
         {/* glass chamber and liquid */}
@@ -158,6 +187,19 @@ export function RestaurantRecoveryVessel({ recovered, annualCost, progress }: Re
           <path d="M175 153 C161 223 164 313 179 373" fill="none" stroke="#ffffff" strokeOpacity=".38" strokeWidth="8" strokeLinecap="round" className="rv-glass-sweep" />
           <path d="M357 153 C368 224 367 312 356 373" fill="none" stroke="#c7f4ff" strokeOpacity=".14" strokeWidth="12" strokeLinecap="round" />
           <rect x="145" y="146" width="230" height="8" rx="4" fill="#ffffff" opacity=".12" />
+
+          <g className="rv-measurement-rail" transform="translate(106 151)">
+            <rect width="18" height="242" rx="7" fill={`url(#${ids.measurement})`} stroke="#9ecce2" strokeOpacity=".42" />
+            {[0, 25, 50, 75, 100].map((mark) => {
+              const y = 228 - mark * 2.12;
+              return (
+                <g key={mark}>
+                  <line x1="5" x2={mark % 50 === 0 ? 17 : 13} y1={y} y2={y} stroke="#dff8ff" strokeOpacity={mark % 50 === 0 ? ".8" : ".48"} strokeWidth={mark % 50 === 0 ? "1.6" : "1"} />
+                  {mark % 50 === 0 ? <text x="-5" y={y + 3} textAnchor="end" fill="#9db6c8" fontSize="7">{mark}%</text> : null}
+                </g>
+              );
+            })}
+          </g>
 
           <g className="rv-break-even">
             <line x1="132" x2="389" y1={breakEvenY} y2={breakEvenY} stroke="#04111f" strokeWidth="6" strokeDasharray="8 6" strokeLinecap="round" />
@@ -214,6 +256,13 @@ export function RestaurantRecoveryVessel({ recovered, annualCost, progress }: Re
           <rect width="58" height="22" rx="4" fill="#161b20" stroke="#ffb54f" strokeOpacity=".75" />
           <path d="M9 16 L14 6 L19 16 Z" fill="none" stroke="#ffb54f" strokeWidth="1.5" />
           <text x="26" y="15" fill="#ffc46b" fontSize="7" fontWeight="800">HOT</text>
+        </g>
+
+        <g className="rv-kitchen-lighting">
+          <rect x="151" y="137" width="218" height="5" rx="2.5" fill="#ffe0a1" opacity=".68" filter={`url(#${ids.glow})`} />
+          <circle cx="176" cy="140" r="3" fill="#fff6d9" opacity=".92" />
+          <circle cx="260" cy="140" r="3" fill="#fff6d9" opacity=".92" />
+          <circle cx="344" cy="140" r="3" fill="#fff6d9" opacity=".92" />
         </g>
 
         <g className="rv-value-plaque" transform="translate(176 255)">

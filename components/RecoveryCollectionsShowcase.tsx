@@ -8,12 +8,12 @@ type Collection = "classic" | "restaurant" | "hvac" | "plumbing" | "retail";
 
 const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 
-const COLLECTIONS: Array<{ key: Collection; label: string; available: boolean }> = [
-  { key: "classic", label: "Classic", available: true },
-  { key: "restaurant", label: "Restaurants", available: true },
-  { key: "hvac", label: "HVAC", available: false },
-  { key: "plumbing", label: "Plumbing", available: false },
-  { key: "retail", label: "Retail", available: false },
+const COLLECTIONS: Array<{ key: Collection; label: string; detail: string; available: boolean }> = [
+  { key: "classic", label: "All Businesses", detail: "Classic", available: true },
+  { key: "restaurant", label: "Restaurants", detail: "Kitchen Series", available: true },
+  { key: "hvac", label: "HVAC", detail: "Climate Series", available: false },
+  { key: "plumbing", label: "Plumbing", detail: "Flow Series", available: false },
+  { key: "retail", label: "Retail", detail: "Commerce Series", available: false },
 ];
 
 
@@ -26,9 +26,9 @@ export function RecoveryCollectionsShowcase() {
   return (
     <section className="section recovery-collections-section" id="recovery-collections">
       <div className="section-heading centered-heading">
-        <p className="kicker">Recovery Collections™</p>
-        <h2>Your recovery display can look like your business.</h2>
-        <p>Start with the classic Recovery Tank, or choose an industry-specific Pro display designed around the way your team works.</p>
+        <p className="kicker">Recovery Vessels™</p>
+        <h2>One recovery engine. A vessel shaped for your business.</h2>
+        <p>Every design uses the same polished liquid, bubbles, reflections, and break-even system as the signature Recovery Tank. Pro changes the vessel—not the experience.</p>
       </div>
 
       <div className="collection-selector" aria-label="Recovery Collection selector">
@@ -42,7 +42,7 @@ export function RecoveryCollectionsShowcase() {
             title={item.available ? `View ${item.label}` : `${item.label} collection coming soon`}
           >
             {item.label}
-            {!item.available ? <span>Coming soon</span> : null}
+            <span>{item.available ? item.detail : `${item.detail} · Coming soon`}</span>
           </button>
         ))}
       </div>
