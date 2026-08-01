@@ -48,8 +48,8 @@ export const policies: Record<string, Policy> = {
   },
   cookies: { title: "Cookie Policy", eyebrow: "Cookies", summary: "How Vordali uses cookies and similar technologies.", effective: "July 22, 2026", sections: [
     { title: "What cookies are", body: "Cookies are small files stored by a browser. Similar technologies may include local storage, pixels, and device identifiers." },
-    { title: "How we use them", body: "Vordali may use strictly necessary cookies to keep users signed in, maintain security, prevent fraud, preserve preferences, and support core site functions." },
-    { title: "Your choices", body: "Most browsers allow you to block or delete cookies. Some Vordali features may not work correctly if necessary cookies are disabled." },
+    { title: "How we use them", body: "Vordali uses strictly necessary browser storage to preserve preferences and support core site functions. Optional Vercel Analytics and Speed Insights tools load only after you choose Accept." },
+    { title: "Your choices", body: "You may accept or reject optional analytics from the cookie banner. Rejecting optional analytics does not prevent use of the public website. You can also clear the vordali-cookie-consent local-storage entry in your browser to choose again." },
     { title: "Contact", body: "Questions may be sent to support@vordali.com." }
   ]},
   "acceptable-use": { title: "Acceptable Use Policy", eyebrow: "Acceptable use", summary: "Activities that are prohibited when using Vordali.", effective: "July 22, 2026", sections: [

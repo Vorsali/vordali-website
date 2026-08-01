@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { CookieConsent } from "@/components/CookieConsent";
+import { ConsentAwareAnalytics } from "@/components/ConsentAwareAnalytics";
 
 const siteUrl = "https://www.vordali.com";
 
@@ -15,7 +14,6 @@ export const metadata: Metadata = {
   authors: [{ name: "Vordali Inc." }],
   creator: "Vordali Inc.",
   publisher: "Vordali Inc.",
-  alternates: { canonical: "/" },
   icons: {
     icon: [{ url: "/assets/favicon.png", type: "image/png" }],
     apple: [{ url: "/assets/favicon.png", type: "image/png" }]
@@ -51,8 +49,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         {children}
         <CookieConsent />
-        <Analytics />
-        <SpeedInsights />
+        <ConsentAwareAnalytics />
       </body>
     </html>
   );

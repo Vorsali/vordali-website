@@ -32,13 +32,18 @@ const nextConfig: NextConfig = {
       { source: "/cookies.html", destination: "/cookies", permanent: true },
       { source: "/acceptable-use.html", destination: "/acceptable-use", permanent: true },
       { source: "/security.html", destination: "/security", permanent: true },
-      // The authenticated merchant application now lives in one canonical workspace.
       { source: "/login", destination: "https://commit.vordali.com/login", permanent: false },
-      { source: "/register", destination: "https://commit.vordali.com/login", permanent: false },
+      { source: "/register", destination: "https://commit.vordali.com/login?mode=signup", permanent: false },
+      { source: "/forgot-password", destination: "https://commit.vordali.com/login", permanent: false },
+      { source: "/verify-email", destination: "https://commit.vordali.com/login", permanent: false },
+      { source: "/choose-plan", destination: "https://commit.vordali.com/login?mode=signup", permanent: false },
+      { source: "/checkout", destination: "https://commit.vordali.com/billing", permanent: false },
       { source: "/dashboard", destination: "https://commit.vordali.com/dashboard", permanent: false },
       { source: "/billing", destination: "https://commit.vordali.com/billing", permanent: false },
       { source: "/settings/business", destination: "https://commit.vordali.com/settings", permanent: false },
-      { source: "/onboarding/business", destination: "https://commit.vordali.com/onboarding", permanent: false }
+      { source: "/onboarding/business", destination: "https://commit.vordali.com/onboarding", permanent: false },
+      { source: "/subscription/:path*", destination: "https://commit.vordali.com/billing", permanent: false },
+      { source: "/auth/:path*", destination: "https://commit.vordali.com/login", permanent: false }
     ];
   }
 };

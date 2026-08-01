@@ -3,34 +3,15 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-type SessionState = "loading" | "authenticated" | "anonymous";
+const commitLogin = "https://commit.vordali.com/login";
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const [session, setSession] = useState<SessionState>("loading");
 
   useEffect(() => {
     document.body.classList.toggle("mobile-nav-open", open);
     return () => document.body.classList.remove("mobile-nav-open");
   }, [open]);
-
-  useEffect(() => {
-    let active = true;
-    fetch("/api/auth/session", { cache: "no-store", credentials: "same-origin" })
-      .then(async (response) => {
-        if (!response.ok) throw new Error("Session lookup failed");
-        return response.json() as Promise<{ authenticated?: boolean }>;
-      })
-      .then((data) => {
-        if (active) setSession(data.authenticated ? "authenticated" : "anonymous");
-      })
-      .catch(() => {
-        if (active) setSession("anonymous");
-      });
-    return () => {
-      active = false;
-    };
-  }, []);
 
   function closeMenu() {
     setOpen(false);
@@ -57,19 +38,8 @@ export function Header() {
         <Link href="/labs" onClick={closeMenu}>Labs</Link>
         <Link href="/why-vordali" onClick={closeMenu}>Why Vordali</Link>
         <Link href="/trust" onClick={closeMenu}>Trust</Link>
-        {session === "authenticated" ? (
-          <>
-            <Link className="nav-signin" href="/dashboard" onClick={closeMenu}>Dashboard</Link>
-            <form className="nav-signout-form" action="/api/auth/logout" method="post">
-              <button className="nav-cta" type="submit" onClick={closeMenu}>Sign Out</button>
-            </form>
-          </>
-        ) : (
-          <>
-            <Link className="nav-signin" href="/login" onClick={closeMenu}>Sign In</Link>
-            <Link className="nav-cta" href="/choose-plan" onClick={closeMenu}>Launch Commit</Link>
-          </>
-        )}
+        <a className="nav-signin" href={commitLogin} onClick={closeMenu}>Sign In</a>
+        <a className="nav-cta" href={`${commitLogin}?mode=signup`} onClick={closeMenu}>Launch Commit</a>
       </nav>
     </header>
   );

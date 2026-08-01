@@ -1291,3 +1291,7 @@ button{font:inherit}.site-header{z-index:60}.mobile-nav-open{overflow:hidden}
 @keyframes retail-laser{0%,100%{opacity:.72}50%{opacity:1;filter:drop-shadow(0 0 7px rgba(80,223,245,.8))}}
 @media(max-width:720px){.retail-vessel-stage{width:min(100%,480px);margin-top:8px}.retail-vessel-crown{width:80%;padding:10px 14px 12px}.retail-vessel-crown strong{font-size:15px}.retail-vessel-caption{width:84%;margin-top:-24px;flex-direction:column;gap:4px;text-align:center}.collection-preview-stage:has(.retail-vessel-stage){min-height:445px}}
 @media(prefers-reduced-motion:reduce){.retail-vessel-body,.retail-wave,.retail-glass-sweep,.retail-data-bubble,.retail-transaction-packet,.retail-top-display circle,.retail-terminal-base circle,.retail-side-display,.retail-break-even line:first-child{animation:none!important}}
+
+/* Marketing-only launch cleanup */
+.pricing-page-grid-two{grid-template-columns:repeat(2,minmax(0,1fr));max-width:920px;margin-left:auto;margin-right:auto}
+@media(max-width:760px){.pricing-page-grid-two{grid-template-columns:1fr}}

@@ -1,6 +1,6 @@
 {
   "name": "vordali-website",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -22,6 +22,6 @@
     "typescript": "^5.7.2"
   },
   "engines": {
-    "node": "24.x"
+    "node": "22.x"
   }
 }
