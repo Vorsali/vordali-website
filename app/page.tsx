@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 import IndustrialRecoveryVessel from "@/components/IndustrialRecoveryVessel";
-import { CommitFlow } from "@/components/CommitFlow";
 
 export default function HomePage() {
   return (
@@ -59,29 +58,6 @@ export default function HomePage() {
               paidCount={218}
               pending={4}
             />
-          </div>
-        </section>
-
-        <section className="company-commit-spotlight" aria-labelledby="commit-spotlight-title">
-          <div className="company-section-heading centered">
-            <p className="company-kicker">Product spotlight · Commit™</p>
-            <h2 id="commit-spotlight-title">See the first Vordali product recover value in real time.</h2>
-            <p>
-              Commit turns a verbal order into a secure payment request, follows the transaction
-              from text message to verified payment, and sends the result into the Vordali Recovery Tank™.
-            </p>
-          </div>
-          <div className="company-phone-animation-shell">
-            <div className="company-phone-animation-label">
-              <span>LIVE PRODUCT SEQUENCE</span>
-              <strong>Business → Customer → Verified Payment</strong>
-            </div>
-            <CommitFlow />
-          </div>
-          <div className="company-spotlight-action">
-            <a className="button button-primary" href="https://commit.vordali.com">
-              Explore Commit <span>→</span>
-            </a>
           </div>
         </section>
 

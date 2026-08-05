@@ -1697,3 +1697,12 @@ button{font:inherit}.site-header{z-index:60}.mobile-nav-open{overflow:hidden}
     animation: none !important;
   }
 }
+
+
+/* Final company separation: Commit's animated phone belongs on the product site. */
+.company-tank-section {
+  padding-bottom: 125px;
+}
+.company-products-section {
+  border-top: 1px solid rgba(89, 152, 255, .12);
+}
