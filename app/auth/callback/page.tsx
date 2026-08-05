@@ -37,7 +37,7 @@ export default function AuthCallbackPage() {
       <p className="kicker">Secure verification</p>
       <h1>One moment.</h1>
       <p>{message}</p>
-      <a className="button button-secondary" href="https://commit.vordali.com/entry">Return to sign in</a>
+      <a className="button button-secondary" href="/login">Return to sign in</a>
     </main>
   );
 }

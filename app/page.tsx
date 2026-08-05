@@ -1,112 +1,136 @@
 import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
-import { RecoveryHero } from "@/components/RecoveryHero";
-import { HomeProductShowcase } from "@/components/HomeProductShowcase";
-import { CommitFlow } from "@/components/CommitFlow";
-import { HomeFaq } from "@/components/HomeFaq";
-import { RecoveryCollectionsShowcase } from "@/components/RecoveryCollectionsShowcase";
+import { SignatureRecoveryTank } from "@/components/SignatureRecoveryTank";
 
 export default function HomePage() {
   return (
     <PageShell>
-      <main className="home-main">
-        <RecoveryHero />
-
-        <RecoveryCollectionsShowcase />
-
-        <section className="problem-strip">
-          <div className="problem-strip-inner">
-            <p className="kicker">The Vordali question</p>
-            <h2>What problem is costing your business money today?</h2>
-            <p>We do not start with features. We start with measurable pain—and build the simplest system that removes it.</p>
-            <div>
-              <Link className="button button-primary" href="/labs#submit-problem">Submit a Problem <span>→</span></Link>
-              <Link className="button button-secondary" href="/products">Explore Products</Link>
+      <main className="company-home">
+        <section className="company-hero">
+          <div className="company-hero-grid" aria-hidden="true"></div>
+          <div className="company-hero-orb company-orb-one" aria-hidden="true"></div>
+          <div className="company-hero-orb company-orb-two" aria-hidden="true"></div>
+          <div className="company-hero-content">
+            <p className="company-kicker">Focused systems · Measurable recovery</p>
+            <h1>We build systems that recover <em>what businesses lose.</em></h1>
+            <p>
+              Vordali creates focused software products that eliminate operational friction,
+              recover measurable value, and simplify the moments where businesses lose time,
+              revenue, and opportunity.
+            </p>
+            <div className="company-hero-actions">
+              <a className="button button-primary" href="#products">Explore Products <span>→</span></a>
+              <Link className="button button-secondary" href="/why-vordali">Our Story</Link>
+            </div>
+            <div className="company-principles">
+              <span><b>Problem first</b><small>Built around real operational pain</small></span>
+              <span><b>Focused by design</b><small>One product, one measurable purpose</small></span>
+              <span><b>Value made visible</b><small>Recovery you can understand</small></span>
             </div>
           </div>
         </section>
 
-        <section className="section intro" id="platform">
-          <div className="section-heading">
-            <p className="kicker">The parent company</p>
-            <h2>Focused products.<br />Shared philosophy.</h2>
-            <p>Vordali creates separate, focused systems under one trusted company. Each product must solve one measurable operational problem exceptionally well.</p>
-          </div>
-          <div className="platform-grid">
-            <article className="feature-card feature-card-large">
-              <div className="card-topline"><span className="status-dot"></span> Flagship product</div>
-              <HomeProductShowcase />
-              <div className="card-copy"><h3>Commit makes uncertainty measurable.</h3><p>Secure payment before costly preparation or work begins, then show the business what was protected.</p></div>
-            </article>
-            <article className="feature-card"><div className="icon-shell">◎</div><h3>Problem first</h3><p>Every product begins with a painful, repeated operational problem—not a feature wishlist.</p></article>
-            <article className="feature-card"><div className="icon-shell">✦</div><h3>ROI visible</h3><p>Products should make the saved time, protected revenue, or reduced mistakes understandable.</p></article>
-          </div>
-        </section>
-
-
-        <section className="section revenue-loss-section">
-          <div className="section-heading centered-heading">
-            <p className="kicker">Revenue friction adds up</p>
-            <h2>Businesses lose money when paying is not immediate.</h2>
-            <p>Commit closes the gap between customer intent and completed payment across orders, services, deposits, appointments, invoices, and remote purchases.</p>
-          </div>
-          <div className="revenue-loss-grid">
-            <article><span>01</span><h3>Payment delays</h3><p>Customers intend to pay, but distractions and extra steps cause otherwise valid transactions to be postponed or forgotten.</p></article>
-            <article><span>02</span><h3>Unpaid requests</h3><p>Deposits, estimates, invoices, appointments, and remote purchases can remain unresolved when there is no immediate way to complete payment.</p></article>
-            <article><span>03</span><h3>Manual follow-up</h3><p>Employees lose time chasing balances, repeating instructions, and checking whether a customer has completed payment.</p></article>
-          </div>
-          <div className="revenue-loss-solution"><strong>Commit reduces all three.</strong><span>Send a secure request. Let the customer pay from any phone. See verification immediately.</span></div>
-        </section>
-
-        <section className="section commit-action-section">
-          <div className="section-heading centered-heading">
-            <p className="kicker">The Commit Flow™</p>
-            <h2>From payment request to verified revenue.</h2>
-            <p>The same simple workflow adapts to different industries without requiring customers to download an app.</p>
-          </div>
-          <CommitFlow />
-        </section>
-
-        <section className="section commit-section" id="commit">
-          <div className="commit-panel">
-            <div className="commit-copy">
-              <p className="kicker">Now live</p>
-              <h2>Meet Vordali Commit.</h2>
-              <p>Secure customer commitment before work begins. Create a Secure Order, send a customer payment link, and wait for verified payment before preparing the order or doing the work.</p>
-              <div className="commit-points">
-                <div><span>01</span><p><strong>Create a Secure Order</strong> with the customer, mobile number, and amount.</p></div>
-                <div><span>02</span><p><strong>Send a secure payment link</strong> by transactional SMS.</p></div>
-                <div><span>03</span><p><strong>Begin after confirmation</strong> when Stripe verifies payment.</p></div>
-              </div>
-              <div className="commit-actions">
-                <a className="button button-primary" href="https://commit.vordali.com/entry">Launch Commit <span>→</span></a>
-                <Link className="button button-secondary" href="/pricing">View pricing</Link>
-              </div>
+        <section className="company-tank-section">
+          <div className="company-tank-copy">
+            <p className="company-kicker">Signature Vordali technology</p>
+            <h2>The Vordali Recovery Tank™</h2>
+            <p>
+              Every Vordali product exists to recover measurable value. The Recovery Tank turns
+              that value into one recognizable visual language—revenue protected, time restored,
+              opportunities recovered, and waste removed.
+            </p>
+            <div className="company-tank-metrics">
+              <span><b>Revenue</b><small>Protected before it disappears</small></span>
+              <span><b>Time</b><small>Returned to the operation</small></span>
+              <span><b>Opportunity</b><small>Recovered before it is forgotten</small></span>
             </div>
+            <p className="company-tank-note">One signature system. Different recovery metrics. Every Vordali product contributes.</p>
+          </div>
+          <div className="company-tank-machine">
+            <div className="company-machine-plate">
+              <span>VORDALI</span>
+              <strong>RECOVERY TANK™</strong>
+              <small>RT-100 · RECOVERY ENGINE CONNECTED</small>
+            </div>
+            <SignatureRecoveryTank
+              protectedRevenue={18420}
+              annualCost={840}
+              recoveryRate={72}
+              theme="vordali"
+              particle="+"
+              proof="Recovered value visualized"
+            />
           </div>
         </section>
 
-
-        <section className="section faq-section" id="faq">
-          <div className="section-heading centered-heading">
-            <p className="kicker">Frequently asked questions</p>
-            <h2>Everything businesses need to know before getting started.</h2>
-            <p>Clear answers about the customer experience, security, payment requests, team workflows, and subscriptions.</p>
+        <section className="company-products-section" id="products">
+          <div className="company-section-heading">
+            <p className="company-kicker">The Vordali portfolio</p>
+            <h2>Focused products. Shared purpose.</h2>
+            <p>Each product earns its place by solving one painful, measurable business problem exceptionally well.</p>
           </div>
-          <HomeFaq />
+          <div className="company-product-grid">
+            <a className="company-product-card company-product-live" href="https://commit.vordali.com">
+              <div><span>LIVE</span><i>01</i></div>
+              <h3>Commit™</h3>
+              <strong>Secure text-to-pay</strong>
+              <p>Recover revenue before work begins by turning verbal intent into verified payment.</p>
+              <b>Explore Commit <em>→</em></b>
+            </a>
+            <Link className="company-product-card" href="/labs?product=approve">
+              <div><span>RESEARCH</span><i>02</i></div>
+              <h3>Approve™</h3>
+              <strong>Track important customer decisions</strong>
+              <p>Turn verbal approval into a clear, accountable decision before custom work begins.</p>
+              <b>Join research <em>→</em></b>
+            </Link>
+            <Link className="company-product-card" href="/labs?product=follow">
+              <div><span>RESEARCH</span><i>03</i></div>
+              <h3>Follow™</h3>
+              <strong>Make the next action happen</strong>
+              <p>Recover opportunities that disappear when follow-up depends on memory.</p>
+              <b>Join research <em>→</em></b>
+            </Link>
+            <Link className="company-product-card" href="/labs?product=verify">
+              <div><span>RESEARCH</span><i>04</i></div>
+              <h3>Verify™</h3>
+              <strong>Reduce risk before commitment</strong>
+              <p>Help businesses recognize costly uncertainty before expensive work begins.</p>
+              <b>Join research <em>→</em></b>
+            </Link>
+          </div>
         </section>
 
-        <section className="section product-future-section">
-          <div className="section-heading">
-            <p className="kicker">A focused product company</p>
-            <h2>Commit is live. The market helps decide what comes next.</h2>
-            <p>Future products remain in research until enough businesses confirm the problem is painful, measurable, and worth solving.</p>
+        <section className="company-belief-section">
+          <div>
+            <p className="company-kicker">Why Vordali exists</p>
+            <h2>Businesses do not need more software. They need fewer problems.</h2>
           </div>
-          <div className="future-product-grid">
-            <article className="future-product-card live"><span>Live</span><h3>Commit™</h3><p>Secure payment commitment before work begins.</p><a href="https://commit.vordali.com/entry">Launch Commit →</a></article>
-            <article className="future-product-card"><span>Research</span><h3>Approve™</h3><p>Track customer approval for estimates and scope changes.</p><Link href="/labs?product=approve">Join waitlist →</Link></article>
-            <article className="future-product-card"><span>Research</span><h3>Follow™</h3><p>Make sure valuable follow-ups do not get lost.</p><Link href="/labs?product=follow">Join waitlist →</Link></article>
-            <article className="future-product-card"><span>Research</span><h3>Verify™</h3><p>Reduce identity and transaction risk before work begins.</p><Link href="/labs?product=verify">Join waitlist →</Link></article>
+          <div className="company-belief-copy">
+            <p>
+              Vordali does not begin with a feature list. We begin with the repeated moments that
+              cost businesses money, time, customers, or confidence.
+            </p>
+            <blockquote>We do not build software because we can. We build it because the problem has earned a solution.</blockquote>
+            <Link href="/why-vordali">Read the Vordali philosophy →</Link>
+          </div>
+        </section>
+
+        <section className="company-labs-section">
+          <div>
+            <p className="company-kicker">Vordali Labs</p>
+            <h2>The market helps decide what we solve next.</h2>
+            <p>
+              Labs collects business pain—not feature requests. Repeated, measurable problems become product research.
+            </p>
+            <Link className="button button-primary" href="/labs">Enter Vordali Labs <span>→</span></Link>
+          </div>
+          <div className="company-labs-console">
+            <span>RESEARCH INTAKE</span>
+            <div><b>Approve™</b><small>Customer decision friction</small><i>ACTIVE</i></div>
+            <div><b>Follow™</b><small>Lost follow-up opportunities</small><i>ACTIVE</i></div>
+            <div><b>Verify™</b><small>Costly identity uncertainty</small><i>ACTIVE</i></div>
+            <footer>What is costing your business time or money?</footer>
           </div>
         </section>
       </main>

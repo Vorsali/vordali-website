@@ -1295,3 +1295,120 @@ button{font:inherit}.site-header{z-index:60}.mobile-nav-open{overflow:hidden}
 /* Marketing-only launch cleanup */
 .pricing-page-grid-two{grid-template-columns:repeat(2,minmax(0,1fr));max-width:920px;margin-left:auto;margin-right:auto}
 @media(max-width:760px){.pricing-page-grid-two{grid-template-columns:1fr}}
+
+
+/* ==========================================================================
+   VORDALI COMPANY WEBSITE 2.0
+   Company identity is deliberately separated from Commit product marketing.
+   ========================================================================== */
+.company-site-header .site-nav.company-nav{gap:28px}
+.company-site-header .site-nav.company-nav>a{color:#b9c6d8}
+.products-dropdown{position:relative}
+.products-dropdown-trigger{border:0;background:transparent;color:#b9c6d8;font:inherit;cursor:pointer;display:flex;align-items:center;gap:7px;padding:12px 0}
+.products-dropdown-trigger span{font-size:13px;transition:transform .2s ease}
+.products-dropdown.open .products-dropdown-trigger span{transform:rotate(180deg)}
+.products-dropdown-menu{position:absolute;top:calc(100% + 18px);left:-22px;width:350px;padding:10px;border:1px solid rgba(103,170,255,.2);border-radius:18px;background:rgba(5,12,25,.97);box-shadow:0 30px 80px rgba(0,0,0,.5);backdrop-filter:blur(22px);opacity:0;visibility:hidden;transform:translateY(-7px);transition:.2s;z-index:80}
+.products-dropdown.open .products-dropdown-menu{opacity:1;visibility:visible;transform:none}
+.products-dropdown-menu a{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:14px;border-radius:12px;color:#d7e4f4;transition:.2s}
+.products-dropdown-menu a:hover{background:rgba(35,116,222,.13)}
+.products-dropdown-menu a span{display:flex;flex-direction:column;gap:3px}
+.products-dropdown-menu a b{font-family:"Space Grotesk";font-size:15px}
+.products-dropdown-menu a small{color:#7187a2;font-size:11px}
+.products-dropdown-menu a i{font-style:normal;color:#64809c;font-size:8px;letter-spacing:.14em}
+.products-dropdown-menu .product-menu-live i{color:#40dfad}
+.products-dropdown-menu .product-menu-labs{border-top:1px solid rgba(103,170,255,.12);margin-top:6px;padding-top:17px}
+.products-dropdown-menu .product-menu-labs strong{color:#55aeff}
+
+.company-home{overflow:hidden;background:#030711}
+.company-hero{min-height:760px;position:relative;display:grid;place-items:center;padding:150px 24px 100px;border-bottom:1px solid rgba(90,155,255,.12);isolation:isolate}
+.company-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(69,137,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(69,137,255,.045) 1px,transparent 1px);background-size:62px 62px;mask-image:radial-gradient(circle at center,black,transparent 72%);z-index:-2}
+.company-hero-orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.17;z-index:-1}
+.company-orb-one{width:700px;height:500px;left:14%;top:5%;background:#106eff}
+.company-orb-two{width:540px;height:400px;right:4%;bottom:0;background:#5d28d8}
+.company-hero-content{width:min(1120px,100%);text-align:center}
+.company-kicker{margin:0 0 16px;color:#54a9ff;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.22em}
+.company-hero h1{max-width:1050px;margin:0 auto 26px;font-family:"Space Grotesk";font-size:clamp(58px,8vw,106px);line-height:.92;letter-spacing:-.065em}
+.company-hero h1 em{font-style:normal;background:linear-gradient(100deg,#fff 5%,#5bdcff 48%,#2473ff 88%);-webkit-background-clip:text;color:transparent}
+.company-hero-content>p:not(.company-kicker){max-width:790px;margin:0 auto;color:#a8b7cb;font-size:19px;line-height:1.75}
+.company-hero-actions{display:flex;justify-content:center;gap:12px;margin-top:32px}
+.company-principles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:900px;margin:70px auto 0}
+.company-principles span{padding:20px;border-top:1px solid rgba(91,159,255,.17);text-align:left}
+.company-principles b{display:block;color:#dcecff;font-family:"Space Grotesk";font-size:15px}
+.company-principles small{display:block;margin-top:6px;color:#7186a1;font-size:11px;line-height:1.5}
+
+.company-tank-section{width:min(1280px,calc(100% - 40px));margin:0 auto;display:grid;grid-template-columns:.82fr 1.18fr;gap:65px;align-items:center;padding:130px 0}
+.company-tank-copy h2,.company-section-heading h2,.company-belief-section h2,.company-labs-section h2{font-family:"Space Grotesk";font-size:clamp(43px,5.5vw,72px);line-height:1;letter-spacing:-.055em;margin:10px 0 22px}
+.company-tank-copy>p:not(.company-kicker),.company-section-heading>p:not(.company-kicker),.company-labs-section>div>p:not(.company-kicker){color:#91a2b8;line-height:1.8;font-size:16px}
+.company-tank-metrics{display:grid;gap:0;margin:28px 0;border-top:1px solid rgba(95,161,255,.13)}
+.company-tank-metrics span{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:17px 0;border-bottom:1px solid rgba(95,161,255,.1)}
+.company-tank-metrics b{font-family:"Space Grotesk";color:#c9eaff}
+.company-tank-metrics small{color:#71859d}
+.company-tank-note{font-size:12px!important;color:#60778f!important}
+.company-tank-machine{position:relative;min-height:660px;border:1px solid rgba(73,154,255,.15);border-radius:32px;background:radial-gradient(circle at 50% 45%,rgba(15,119,255,.14),transparent 48%),linear-gradient(160deg,rgba(8,19,40,.87),rgba(3,8,20,.8));overflow:hidden}
+.company-tank-machine .signature-tank-stage{min-height:650px}
+.company-machine-plate{position:absolute;z-index:30;left:24px;bottom:22px;padding:12px 17px;border:1px solid rgba(121,196,255,.3);border-radius:10px;background:rgba(4,14,30,.91);box-shadow:0 0 25px rgba(17,120,255,.14)}
+.company-machine-plate span,.company-machine-plate strong,.company-machine-plate small{display:block}
+.company-machine-plate span{font-size:8px;letter-spacing:.25em;color:#6298bd}
+.company-machine-plate strong{margin:4px 0;font-family:"Space Grotesk";font-size:13px;color:#dff7ff}
+.company-machine-plate small{font-size:7px;letter-spacing:.1em;color:#49dcb1}
+
+.company-products-section{width:min(1280px,calc(100% - 40px));margin:auto;padding:100px 0 140px}
+.company-section-heading{max-width:850px;margin-bottom:45px}
+.company-product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.company-product-card{min-height:360px;padding:32px;border:1px solid rgba(90,154,255,.15);border-radius:24px;background:linear-gradient(150deg,rgba(10,24,47,.86),rgba(4,10,22,.82));display:flex;flex-direction:column;transition:.25s}
+.company-product-card:hover{transform:translateY(-5px);border-color:rgba(80,157,255,.38)}
+.company-product-card>div{display:flex;justify-content:space-between}
+.company-product-card>div span{color:#6e829d;font-size:9px;letter-spacing:.15em}
+.company-product-live>div span{color:#42dca9}
+.company-product-card>div i{font-style:normal;color:#344d6a;font-size:11px}
+.company-product-card h3{font-family:"Space Grotesk";font-size:48px;margin:66px 0 8px}
+.company-product-card>strong{font-family:"Space Grotesk";font-size:20px;color:#cbe4f8}
+.company-product-card p{max-width:520px;color:#8192aa;line-height:1.75}
+.company-product-card>b{margin-top:auto;color:#58adff;font-size:12px}
+.company-product-card>b em{font-style:normal;margin-left:5px}
+
+.company-belief-section{width:min(1280px,calc(100% - 40px));margin:auto;padding:110px 0;border-top:1px solid rgba(89,152,255,.12);display:grid;grid-template-columns:1fr 1fr;gap:80px}
+.company-belief-copy>p{color:#91a2b8;line-height:1.8;font-size:17px}
+.company-belief-copy blockquote{margin:30px 0;padding:24px 0 24px 26px;border-left:2px solid #1887ff;color:#d6e8f7;font-family:"Space Grotesk";font-size:24px;line-height:1.5}
+.company-belief-copy a{color:#5cb0ff;font-size:12px}
+.company-labs-section{width:min(1280px,calc(100% - 40px));margin:0 auto 120px;display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center;padding:70px;border:1px solid rgba(92,157,255,.15);border-radius:30px;background:radial-gradient(circle at 85% 12%,rgba(28,112,255,.15),transparent 38%),#07101e}
+.company-labs-console{padding:22px;border:1px solid rgba(86,163,220,.16);border-radius:18px;background:#040c18}
+.company-labs-console>span{display:block;padding-bottom:16px;color:#6186a3;font-size:9px;letter-spacing:.16em}
+.company-labs-console>div{display:grid;grid-template-columns:120px 1fr auto;gap:15px;padding:17px 0;border-top:1px solid rgba(86,163,220,.11)}
+.company-labs-console b{font-family:"Space Grotesk";color:#d5edff}
+.company-labs-console small{color:#6f849b}
+.company-labs-console i{font-style:normal;color:#3ad8a6;font-size:8px;letter-spacing:.12em}
+.company-labs-console footer{padding-top:19px;border-top:1px solid rgba(86,163,220,.11);color:#75b7e4;font-size:12px}
+.company-footer .footer-link-groups{grid-template-columns:repeat(3,1fr)}
+
+@media(max-width:900px){
+  .company-site-header .company-nav{gap:0}
+  .products-dropdown{width:100%}
+  .products-dropdown-trigger{width:100%;justify-content:space-between;padding:14px 0}
+  .products-dropdown-menu{position:static;width:100%;margin:0 0 8px;display:none;opacity:1;visibility:visible;transform:none;box-shadow:none;background:rgba(8,20,38,.65)}
+  .products-dropdown.open .products-dropdown-menu{display:block}
+  .company-hero{min-height:700px;padding-top:130px}
+  .company-principles{grid-template-columns:1fr}
+  .company-tank-section,.company-belief-section,.company-labs-section{grid-template-columns:1fr}
+  .company-tank-copy{text-align:center}
+  .company-tank-metrics span{text-align:left}
+  .company-tank-machine{min-height:610px}
+}
+@media(max-width:620px){
+  .company-hero{padding-left:18px;padding-right:18px}
+  .company-hero h1{font-size:52px}
+  .company-hero-actions{flex-direction:column}
+  .company-hero-actions .button{width:100%;justify-content:center}
+  .company-tank-section,.company-products-section,.company-belief-section{width:calc(100% - 28px)}
+  .company-tank-section{padding:90px 0;gap:20px}
+  .company-tank-machine{min-height:570px;border-radius:22px;overflow:hidden}
+  .company-tank-machine .unified-tank-svg{width:min(470px,112vw)}
+  .company-machine-plate{left:14px;bottom:14px}
+  .company-product-grid{grid-template-columns:1fr}
+  .company-product-card{min-height:330px}
+  .company-product-card h3{margin-top:50px}
+  .company-belief-section{gap:25px}
+  .company-labs-section{width:calc(100% - 28px);padding:28px;gap:30px}
+  .company-labs-console>div{grid-template-columns:90px 1fr}
+  .company-labs-console i{grid-column:2}
+}
