@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const commitLogin = "https://commit.vordali.com/login";
+const commitLogin = "https://commit.vordali.com/entry";
 
 export function Header() {
   const [open, setOpen] = useState(false);

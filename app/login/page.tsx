@@ -1,1 +1,5 @@
-import { PageShell } from "@/components/PageShell";import { LoginForm } from "@/components/merchant/AuthForm";export const metadata={title:"Merchant sign in"};export default function Page(){return <PageShell><main className="merchant-auth-page"><section className="merchant-auth-copy"><p className="kicker">Vordali Commit</p><h1>Welcome back.</h1><p>Sign in to continue your subscription setup or enter your merchant dashboard.</p></section><LoginForm/></main></PageShell>}
+import { redirect } from "next/navigation";
+
+export default function Page() {
+  redirect("https://commit.vordali.com/entry");
+}

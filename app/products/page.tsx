@@ -24,7 +24,7 @@ export default function ProductsPage() {
               <small><strong>Best fit:</strong> {product.ideal}</small>
               <div className="product-actions">
                 {product.slug === "commit"
-                  ? <a className="button button-primary" href="https://commit.vordali.com/login">Launch Commit <span>→</span></a>
+                  ? <a className="button button-primary" href="https://commit.vordali.com/entry">Launch Commit <span>→</span></a>
                   : <WaitlistButton product={product.slug}>Join {product.name} Waitlist</WaitlistButton>}
               </div>
             </article>
