@@ -7,8 +7,6 @@ import { RECOVERY_THEMES, RecoveryTheme } from "@/components/RevenueRecoveryTank
 import { SignatureRecoveryTank } from "@/components/SignatureRecoveryTank";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 
-const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
-
 type CommitPlan = "starter" | "pro";
 
 const COMMIT_PLANS: Record<CommitPlan, { name: string; monthly: number; description: string }> = {
@@ -42,13 +40,11 @@ export function RecoveryHero() {
   const themeData = RECOVERY_THEMES.find((item) => item.value === activeTheme) ?? RECOVERY_THEMES[0];
   const defaults = BUSINESS_DEFAULTS[businessType] ?? BUSINESS_DEFAULTS.other;
   const language = dashboardLanguage(riskModel);
-  const businessLabel = BUSINESS_TYPES.find((item) => item.value === businessType)?.label ?? "Your business";
   const annualRisk = Math.max(0, events * ticket * 52);
   const protectedRevenue = annualRisk * recoveryRate / 100;
   const activePlan = COMMIT_PLANS[selectedPlan];
   const annualCost = activePlan.monthly * 12;
   const netGain = Math.max(0, protectedRevenue - annualCost);
-  const valueRatio = protectedRevenue / annualCost;
 
   const style = {
     "--tank-light": themeData.colors[0],

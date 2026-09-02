@@ -8,6 +8,7 @@ const routes = [
   "/why-vordali",
   "/trust",
   "/privacy",
+  "/support",
   "/terms",
   "/sms-terms", "/sms-consent",
   "/cookies",

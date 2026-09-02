@@ -10,11 +10,12 @@ export function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    let shouldShow = true;
     try {
-      setVisible(!window.localStorage.getItem(STORAGE_KEY));
-    } catch {
-      setVisible(true);
-    }
+      shouldShow = !window.localStorage.getItem(STORAGE_KEY);
+    } catch {}
+    const frame = window.requestAnimationFrame(() => setVisible(shouldShow));
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   function choose(choice: ConsentChoice) {

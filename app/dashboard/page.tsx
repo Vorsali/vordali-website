@@ -1,4 +1,6 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 import { getMerchantContext } from "@/lib/auth/supabaseAuth";
 import { getOrganizationProfile } from "@/lib/merchant/profile";
 import { dashboardLanguage } from "@/lib/merchant/adaptiveProfile";
@@ -23,7 +25,7 @@ export default async function Page() {
   return (
     <main className="merchant-dashboard">
       <aside>
-        <a className="dashboard-brand" href="/"><img src="/assets/vordali-logo-orb.webp" alt="" />VORDALI <small>INC. · COMMIT</small></a>
+        <Link className="dashboard-brand" href="/"><Image src="/assets/vordali-logo-orb.webp" alt="" width={36} height={36} />VORDALI <small>INC. · COMMIT</small></Link>
         <nav><a className="active" href="/dashboard">Overview</a><span>Payment requests</span><span>Customers</span><span>Analytics</span><a href="/billing">Billing</a><a href="/settings/business">Business settings</a></nav>
         <form action="/api/auth/logout" method="post"><button>Sign out</button></form>
       </aside>
