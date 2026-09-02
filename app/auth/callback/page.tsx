@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function AuthCallbackPage() {
   const [message, setMessage] = useState("Confirming your email and preparing your account…");
@@ -11,12 +12,12 @@ export default function AuthCallbackPage() {
     const expiresIn = hash.get("expires_in");
     const error = hash.get("error_description") || hash.get("error");
     if (error) {
-      setMessage(error);
-      return;
+      const frame = window.requestAnimationFrame(() => setMessage(error));
+      return () => window.cancelAnimationFrame(frame);
     }
     if (!accessToken) {
-      setMessage("Your email is confirmed. Return to Vordali and sign in to continue checkout.");
-      return;
+      const frame = window.requestAnimationFrame(() => setMessage("Your email is confirmed. Return to Vordali and sign in to continue checkout."));
+      return () => window.cancelAnimationFrame(frame);
     }
     fetch("/api/auth/callback", {
       method: "POST",
@@ -33,7 +34,7 @@ export default function AuthCallbackPage() {
 
   return (
     <main className="auth-callback-page">
-      <div className="brand-orb brand-orb-small"><img src="/assets/vordali-logo-orb.webp" alt="Vordali" /></div>
+      <div className="brand-orb brand-orb-small"><Image src="/assets/vordali-logo-orb.webp" alt="Vordali" width={36} height={36} /></div>
       <p className="kicker">Secure verification</p>
       <h1>One moment.</h1>
       <p>{message}</p>

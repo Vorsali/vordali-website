@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 export function Header() {
@@ -31,7 +32,7 @@ export function Header() {
   return (
     <header className="site-header scrolled company-site-header">
       <Link className="brand" href="/" aria-label="Vordali Inc. home" onClick={closeMenu}>
-        <img src="/assets/vordali-logo-orb.webp" alt="" />
+        <Image src="/assets/vordali-logo-orb.webp" alt="" width={36} height={36} />
         <span>VORDALI <small>INC.</small></span>
       </Link>
 

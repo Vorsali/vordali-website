@@ -16,7 +16,12 @@ export const runtime = "nodejs";
 type StripeEvent = {
   id: string;
   type: string;
-  data: { object: Record<string, any> };
+  data: { object: unknown };
+};
+
+type StripeInvoice = {
+  parent?: { subscription_details?: { subscription?: string | null } };
+  subscription?: string | null;
 };
 
 export async function POST(request: Request) {
@@ -56,7 +61,7 @@ export async function POST(request: Request) {
 
       case "invoice.paid":
       case "invoice.payment_failed": {
-        const invoice = event.data.object;
+        const invoice = event.data.object as StripeInvoice;
         const subscription = await retrieveStripeSubscription(
           invoice.parent?.subscription_details?.subscription ||
             invoice.subscription

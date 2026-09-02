@@ -22,8 +22,6 @@ const phases = [
 
 const steps = ["Create Request", "SMS Delivered", "Customer Pays", "Payment Confirmed"];
 
-type PhaseKey = (typeof phases)[number]["key"];
-
 export function CommitFlow() {
   const [scenarioIndex, setScenarioIndex] = useState(0);
   const [phaseIndex, setPhaseIndex] = useState(0);

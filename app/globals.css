@@ -1706,3 +1706,4 @@ button{font:inherit}.site-header{z-index:60}.mobile-nav-open{overflow:hidden}
 .company-products-section {
   border-top: 1px solid rgba(89, 152, 255, .12);
 }
+.support-content p+p{margin-top:16px}.support-content a{color:#5ca9ff;text-decoration:underline;text-underline-offset:3px}.support-warning{padding:14px 16px;border:1px solid rgba(255,184,76,.25);border-radius:12px;background:rgba(255,184,76,.06);color:#e5c491!important}.policy-hero>.button{display:inline-flex;margin-top:28px}

@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { useRouter } from "next/navigation";
 import { BUSINESS_TYPES, RISK_MODELS } from "@/lib/merchant/adaptiveProfile";
 
 type Props = {
@@ -30,7 +29,6 @@ type Props = {
 };
 
 export function BusinessOnboardingForm({ profile, location, submitLabel = "Complete business setup" }: Props) {
-  const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 

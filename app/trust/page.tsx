@@ -9,7 +9,8 @@ const cards = [
   ["SMS Terms","Transactional messaging consent, frequency, STOP, and HELP terms.","/sms-terms","03"],
   ["Cookie Policy","How cookies and similar technologies support the website.","/cookies","04"],
   ["Acceptable Use","Activities prohibited across Vordali services.","/acceptable-use","05"],
-  ["Security","Vordali’s approach to payment, account, and data security.","/security","06"]
+  ["Security","Vordali’s approach to payment, account, and data security.","/security","06"],
+  ["Support & deletion","Technical help, privacy requests, and verified account deletion.","/support","07"]
 ];
 
 export default function TrustPage() {
