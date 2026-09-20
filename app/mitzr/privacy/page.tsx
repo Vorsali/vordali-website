@@ -27,9 +27,10 @@ export default function MitzrPrivacyPage() {
             <p>On this page</p>
             <a href="#scope">Scope</a>
             <a href="#account">Account information</a>
-            <a href="#location">Precise location</a>
+            <a href="#location">Location and mapping</a>
             <a href="#community">Community activity</a>
-            <a href="#gameplay">Gameplay and virtual items</a>
+            <a href="#gameplay">Gameplay and local data</a>
+            <a href="#purchases">Purchases and SDK data</a>
             <a href="#technical">Technical information</a>
             <a href="#use">How we use information</a>
             <a href="#providers">Service providers</a>
@@ -37,6 +38,7 @@ export default function MitzrPrivacyPage() {
             <a href="#security">Security</a>
             <a href="#choices">Your choices</a>
             <a href="#deletion">Account deletion</a>
+            <a href="#not-collected">Data not used by the current release</a>
             <a href="#children">Children&apos;s privacy</a>
             <a href="#changes">Changes</a>
             <a href="#contact">Contact</a>
@@ -49,9 +51,9 @@ export default function MitzrPrivacyPage() {
               <p>
                 VORDALI Inc. (&quot;VORDALI,&quot; &quot;we,&quot; &quot;us,&quot; or
                 &quot;our&quot;) operates MITZR. This policy applies to the MITZR
-                mobile application and the account, mapping, community, and cloud
-                services used by that application. It does not replace the separate
-                privacy terms for other VORDALI products.
+                mobile application and the account, mapping, community, gameplay,
+                and cloud services used by that application. It does not replace the
+                separate privacy terms for other VORDALI products.
               </p>
             </section>
 
@@ -59,58 +61,108 @@ export default function MitzrPrivacyPage() {
               <h2>Account information</h2>
               <p>
                 MITZR can be used in guest mode or with an account. If you create or
-                sign in to an account, we process your email address, an internal
-                account identifier, authentication credentials, and authentication
-                session information. Authentication is provided through Supabase.
-                MITZR does not save your password in the app&apos;s local preference
-                storage, and the current app keeps authentication tokens in memory
-                for the active session.
+                sign in to an account, we process your email address, a Supabase user
+                identifier, authentication credentials, and authentication session
+                information. Authentication is provided through Supabase.
+              </p>
+              <p>
+                MITZR does not save your password in PlayerPrefs or in MITZR&apos;s
+                first-party application tables. Access and refresh tokens are kept in
+                memory for the active session and are not intentionally written to
+                PlayerPrefs.
               </p>
             </section>
 
             <section id="location">
-              <h2>Precise location and direction</h2>
+              <h2>Location and mapping</h2>
               <p>
-                MITZR uses precise device location and location accuracy to place
-                you on the map, show nearby community resources, calculate distance,
-                and verify that certain real-world interactions occur near the
-                selected location. The app also reads compass or movement heading
-                information to orient the map experience.
+                MITZR requests precise device location and uses latitude, longitude,
+                accuracy, timestamp, speed, and heading information in memory to
+                place you on the map, show nearby community resources, orient the
+                map, calculate distance, and verify that certain real-world
+                interactions occur near a selected location.
               </p>
               <p>
-                When a signed-in user performs a proximity-gated action such as
-                discovering an item, leaving or collecting a shared gift, or
-                submitting a community condition report, MITZR sends the current
-                latitude, longitude, and reported accuracy to the backend so the
-                server can verify proximity. The current MITZR backend uses those
-                submitted coordinates for validation and does not write them into
-                the app&apos;s user activity tables as a continuous location history.
+                When a signed-in user performs a proximity-gated action such as a
+                discovery, gift deposit or claim, or community condition report,
+                MITZR sends the current coordinates and accuracy to the backend for
+                validation. The currently deployed core box-action backend validates
+                those coordinates without storing them as a continuous GPS history.
+              </p>
+              <p>
+                If you voluntarily submit a new community location, the submission
+                may include the location name, address or landmark, city, region,
+                postal code, country, notes, exact coordinates, GPS accuracy and
+                source, request identifier, and timestamp. That submission data is
+                designed to be stored privately for moderation before any approved
+                location is added to the public community directory.
+              </p>
+              <p>
+                MITZR uses Mapbox for mapping. Mapbox telemetry is enabled by default
+                in the current integration and may transmit de-identified location,
+                map usage, and SDK usage information to Mapbox. MITZR includes the
+                Mapbox telemetry control so users can opt out of future Mapbox
+                telemetry collection.
               </p>
             </section>
 
             <section id="community">
               <h2>Community activity and user-provided content</h2>
               <p>
-                Signed-in users may submit activity associated with a community
-                location, including condition selections, short notes, gift
-                deposits or claims, and related interaction identifiers. A submitted
-                condition and note may update the community location&apos;s current
-                status or notes shown to other MITZR users. Private backend records
-                may also associate the submission with the account for security,
-                rate limiting, integrity, and abuse prevention.
+                Signed-in users may submit condition selections such as stocked,
+                low, empty, or damaged, along with an optional short note. These
+                reports are associated with the account in the private backend for
+                integrity, rate limiting, and abuse prevention, and the resulting
+                condition or note may update the public community location record.
+              </p>
+              <p>
+                MITZR also records signed-in visits, discoveries, request
+                identifiers, gift deposits and claims, collectible ownership,
+                journey events, and timestamps needed for cooldowns, retry
+                protection, inventory, rewards, and shared collectible gameplay.
               </p>
             </section>
 
             <section id="gameplay">
-              <h2>Gameplay progress and virtual items</h2>
+              <h2>Gameplay progress and local data</h2>
               <p>
-                For signed-in users, MITZR may store cloud-saved collection and
-                gameplay information such as discovered virtual items, item
-                ownership and transfers, journey events, visits, request identifiers,
-                virtual coin balances, backpack capacity, owned cosmetics or
-                vehicles, equipped items, and related account progress. Guest-mode
-                progress is designed to remain local to the current app session and
-                is not merged into a cloud account.
+                For signed-in users, MITZR may store account-linked cloud data such
+                as collection and inventory records, collectible ownership and
+                transfers, journey events, visits, request identifiers, virtual coin
+                balances, backpack capacity, reward ledger entries, owned cosmetics,
+                vehicles and avatar items, and server-side entitlement state.
+              </p>
+              <p>
+                Some appearance and loadout choices are stored only on the device in
+                Unity PlayerPrefs, including avatar presentation and customization
+                choices and selected vehicle or modification choices. These local
+                preferences can be keyed by the signed-in account identifier.
+              </p>
+              <p>
+                Guest-mode progress is not merged into a cloud account. Guest economy
+                state can be stored locally on the device in PlayerPrefs, while some
+                guest collectible inventory exists only for the current session.
+              </p>
+            </section>
+
+            <section id="purchases">
+              <h2>Purchases and SDK data</h2>
+              <p>
+                MITZR uses Google Play Billing through Unity IAP for in-app
+                purchases. MITZR may process product identifiers, purchase or
+                transaction tokens, Unity receipts, store environment information,
+                and purchase-verification results. Purchase verification may involve
+                Supabase backend services and Google Play. MITZR does not receive
+                your payment-card or bank-account numbers.
+              </p>
+              <p>
+                The Unity IAP SDK also declares collection of technical and
+                transaction-related data needed to operate the store and its SDK,
+                including player or installation identifiers, device information,
+                session identifiers, country or approximate location, purchase
+                history, crash logs, diagnostics, performance data, and other device
+                identifiers. Unity&apos;s own processing and retention practices are
+                governed by Unity&apos;s applicable privacy terms.
               </p>
             </section>
 
@@ -120,10 +172,16 @@ export default function MitzrPrivacyPage() {
                 MITZR and the services it relies on may process ordinary technical
                 information needed to operate a connected mobile application, such
                 as IP address, request timing, app or device platform information,
-                network errors, and service logs. Map requests also include the map
-                information needed to provide the requested map area. The current
-                MITZR release does not use personal information for behavioral
-                advertising.
+                network errors, diagnostics, and service logs. Map requests may also
+                include map coordinates or tile identifiers and related Mapbox usage
+                tokens needed to render and account for map service usage.
+              </p>
+              <p>
+                First-party Unity runtime logs may contain operational details such
+                as SDK failures, box identifiers, collectible names or rarity,
+                counts, GPS accuracy, and error messages. The current code review did
+                not identify first-party logging of raw coordinates, email
+                addresses, passwords, bearer tokens, or raw purchase receipts.
               </p>
             </section>
 
@@ -131,11 +189,12 @@ export default function MitzrPrivacyPage() {
               <h2>How we use information</h2>
               <p>
                 We use information to authenticate accounts; provide maps and nearby
-                resources; validate real-world proximity; save collections and
-                account progress; operate community reports and shared-gift
-                features; maintain the virtual economy; prevent duplicate or
-                fraudulent actions; troubleshoot and secure the service; respond to
-                support and privacy requests; and comply with applicable law.
+                resources; validate real-world proximity; review submitted community
+                locations; save collections and account progress; operate community
+                reports and shared-gift features; maintain the virtual economy;
+                verify purchases; prevent duplicate, replayed, or fraudulent
+                actions; troubleshoot and secure the service; respond to support and
+                privacy requests; and comply with applicable law.
               </p>
             </section>
 
@@ -143,37 +202,49 @@ export default function MitzrPrivacyPage() {
               <h2>Service providers and disclosures</h2>
               <p>
                 MITZR relies on service providers that process information for us,
-                including Supabase for authentication and cloud data services and
-                Mapbox for mapping. Android and Google platform services may also
-                support device location and networking. We may disclose information
-                when required by law, to protect users or the service, or in
-                connection with a business transaction. We do not sell MITZR users&apos;
-                personal information.
+                including Supabase for authentication and cloud application data,
+                Mapbox for mapping and map telemetry, Unity IAP for in-app purchase
+                functionality and SDK telemetry, and Google Play for billing and
+                related Android platform services.
+              </p>
+              <p>
+                We may disclose information when required by law, to protect users
+                or the service, or in connection with a business transaction. We do
+                not sell MITZR users&apos; personal information, and the current MITZR
+                release does not include an advertising or rewarded-ad SDK.
               </p>
             </section>
 
             <section id="retention">
               <h2>Data retention</h2>
               <p>
-                Account-linked gameplay and community-integrity records are retained
-                while reasonably needed to provide MITZR, protect the service, and
-                maintain accurate account state. If you submit a verified deletion
-                request, we will delete or de-identify account-linked information
-                that is not reasonably required for security, legal compliance,
-                dispute resolution, or another permitted purpose. Limited data may
-                remain temporarily in protected backups or service logs before
-                normal expiration.
+                Account-linked gameplay, community, integrity, and purchase records
+                may be retained while reasonably needed to provide MITZR, maintain
+                accurate account and transaction state, prevent fraud or replay,
+                protect the service, and meet legal obligations. MITZR does not
+                currently publish a single fixed retention period for every backend
+                record or for data retained independently by Supabase, Mapbox, Unity,
+                or Google.
+              </p>
+              <p>
+                If you submit a verified deletion request, we will delete or
+                de-identify account-linked information that is not reasonably
+                required for security, legal compliance, dispute resolution,
+                financial recordkeeping, fraud prevention, or another permitted
+                purpose. Limited data may remain temporarily in protected backups or
+                provider logs before normal expiration.
               </p>
             </section>
 
             <section id="security">
               <h2>Security</h2>
               <p>
-                MITZR uses authenticated access for account features and encrypted
-                network connections when communicating with configured cloud
-                services. Access to application data is restricted through backend
-                authorization controls. No online service can guarantee absolute
-                security.
+                MITZR uses authenticated access for account features and HTTPS/TLS
+                when communicating with configured cloud and platform services.
+                Access to application data is restricted through backend
+                authorization controls. Some local preferences are stored in
+                PlayerPrefs and should not be treated as encrypted secure storage.
+                No online service can guarantee absolute security.
               </p>
             </section>
 
@@ -184,8 +255,15 @@ export default function MitzrPrivacyPage() {
                 location is unavailable, features that depend on your current
                 position or verified proximity may not work. You may choose guest
                 mode instead of creating an account, although guest progress is not
-                cloud-saved. You may contact us to ask about access, correction, or
-                deletion of account-linked personal information.
+                cloud-saved.
+              </p>
+              <p>
+                The current Mapbox integration includes a telemetry control that can
+                stop future Mapbox telemetry collection. Clearing app data or
+                uninstalling MITZR removes local PlayerPrefs and locally managed app
+                cache, subject to normal Android behavior. These local actions do not
+                by themselves delete cloud account records or data held by external
+                providers.
               </p>
             </section>
 
@@ -197,9 +275,23 @@ export default function MitzrPrivacyPage() {
                 account ownership before processing a request. Public community
                 status information that no longer identifies the reporting account
                 may be retained where needed to preserve the integrity of the
-                community directory.
+                community directory, and some transaction, security, or legal
+                records may be retained where permitted or required.
               </p>
               <p><Link href="/mitzr/delete-account">Request MITZR account deletion →</Link></p>
+            </section>
+
+            <section id="not-collected">
+              <h2>Data not used by the current release</h2>
+              <p>
+                The current MITZR code review found no runtime collection of photos,
+                videos, microphone audio, user files or documents, and no
+                notification-token implementation. It also found no advertising SDK,
+                rewarded-ad implementation, or Android advertising-ID permission.
+                Planned features such as teams or circles, SOS or emergency data,
+                and cash donations or withdrawals are not implemented in the current
+                release.
+              </p>
             </section>
 
             <section id="children">
