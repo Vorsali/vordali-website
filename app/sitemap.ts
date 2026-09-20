@@ -13,7 +13,11 @@ const routes = [
   "/sms-terms", "/sms-consent",
   "/cookies",
   "/acceptable-use",
-  "/security"
+  "/security",
+  "/mitzr",
+  "/mitzr/privacy",
+  "/mitzr/support",
+  "/mitzr/delete-account"
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
