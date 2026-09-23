@@ -14,8 +14,9 @@ export default function MitzrDeleteAccountPage() {
           <p className="kicker">MITZR by VORDALI</p>
           <h1>Delete your MITZR account</h1>
           <p>
-            Use this page to request deletion of your MITZR account and the
-            account-linked personal data associated with it.
+            MITZR includes account deletion inside the app. If you no longer have
+            access to the app, use this page to request deletion of your MITZR
+            account and the account-linked personal data associated with it.
           </p>
           <a
             className="button primary"
@@ -58,13 +59,14 @@ export default function MitzrDeleteAccountPage() {
               <h2>What we delete</h2>
               <p>
                 After verification, VORDALI will process deletion of the MITZR
-                authentication account and account-linked application records that
-                are no longer needed. Depending on the features you used, those
+                authentication account and account-linked application records covered
+                by the deletion workflow. Depending on the features you used, those
                 records may include cloud-saved collection or inventory data,
                 virtual-item ownership and transfers, journey and visit records,
                 account-linked community report records, virtual coin and upgrade
                 state, owned or equipped cosmetics or vehicles, and request records
-                used to prevent duplicate actions.
+                used to prevent duplicate actions. MITZR also provides an in-app
+                deletion path for signed-in users.
               </p>
             </section>
 
@@ -73,10 +75,12 @@ export default function MitzrDeleteAccountPage() {
               <p>
                 We may retain limited information when reasonably necessary for
                 security, fraud or abuse prevention, legal compliance, dispute
-                resolution, or protected backup operation. A community location&apos;s
-                current status or note may also remain after the account-linking
-                portion of a report is deleted or de-identified when retaining that
-                non-identifying community information is appropriate.
+                resolution, financial recordkeeping, or protected backup operation.
+                Limited purchase transaction evidence may be de-identified and retained
+                to prevent purchase replay or fraud. A community location&apos;s current
+                status or note may also remain after the account-linking portion of a
+                report is deleted or de-identified when retaining that non-identifying
+                community information is appropriate.
               </p>
             </section>
 
