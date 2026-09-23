@@ -6,7 +6,7 @@ export const metadata = {
   description: "How VORDALI Inc. handles information in the MITZR mobile application."
 };
 
-const effective = "September 20, 2026";
+const effective = "September 23, 2026";
 
 export default function MitzrPrivacyPage() {
   return (
@@ -227,12 +227,14 @@ export default function MitzrPrivacyPage() {
                 or Google.
               </p>
               <p>
-                If you submit a verified deletion request, we will delete or
-                de-identify account-linked information that is not reasonably
-                required for security, legal compliance, dispute resolution,
-                financial recordkeeping, fraud prevention, or another permitted
-                purpose. Limited data may remain temporarily in protected backups or
-                provider logs before normal expiration.
+                When a verified account deletion is completed, MITZR deletes the
+                authentication account and account-linked application records covered
+                by the deletion workflow. Limited transaction evidence may be
+                de-identified rather than deleted when needed to prevent purchase
+                replay, fraud, or abuse, and limited information may be retained where
+                reasonably required for legal compliance, dispute resolution, security,
+                or financial recordkeeping. Data may also remain temporarily in
+                protected backups or provider logs until normal expiration.
               </p>
             </section>
 
@@ -270,13 +272,15 @@ export default function MitzrPrivacyPage() {
             <section id="deletion">
               <h2>Account and data deletion</h2>
               <p>
-                You can request deletion of a MITZR account and associated
-                account-linked data at our dedicated deletion page. We will verify
-                account ownership before processing a request. Public community
-                status information that no longer identifies the reporting account
-                may be retained where needed to preserve the integrity of the
-                community directory, and some transaction, security, or legal
-                records may be retained where permitted or required.
+                MITZR provides an in-app path to delete a signed-in account and its
+                associated account-linked data. You can also request deletion outside
+                the app at our dedicated deletion page if you no longer have access to
+                the app. For an external request, we may verify account ownership
+                before processing it. Public community status information that no
+                longer identifies the reporting account may be retained where needed
+                to preserve the integrity of the community directory, and limited
+                de-identified transaction, security, or legal records may be retained
+                where permitted or required.
               </p>
               <p><Link href="/mitzr/delete-account">Request MITZR account deletion →</Link></p>
             </section>
