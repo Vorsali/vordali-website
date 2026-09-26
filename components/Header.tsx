@@ -74,6 +74,7 @@ export function Header() {
             </Link>
           </div>
         </div>
+        <Link className="nav-mitzr" href="/mitzr" onClick={closeMenu}>MITZR</Link>
         <Link href="/labs" onClick={closeMenu}>Labs</Link>
         <Link href="/why-vordali" onClick={closeMenu}>Why Vordali</Link>
         <Link href="/trust" onClick={closeMenu}>Trust</Link>
