@@ -16,6 +16,7 @@ const routes = [
   "/security",
   "/mitzr",
   "/mitzr/privacy",
+  "/mitzr/terms",
   "/mitzr/support",
   "/mitzr/delete-account"
 ];

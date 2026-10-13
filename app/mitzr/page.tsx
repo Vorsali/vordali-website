@@ -58,10 +58,11 @@ export default function MitzrPage() {
         <section className="mitzr-resources">
           <div className="mitzr-resources-head">
             <p className="mitzr-kicker"><span></span> PLAYER RESOURCES</p>
-            <h2>Support, privacy &amp; account controls.</h2>
+            <h2>Support, terms &amp; account controls.</h2>
           </div>
-          <div className="mitzr-resource-grid">
+          <div className="mitzr-resource-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 400px), 1fr))" }}>
             <Link href="/mitzr/support"><span>SUPPORT</span><h3>Need a hand?</h3><p>Get help with MITZR, your account, gameplay, or community data.</p><b>Open support →</b></Link>
+            <Link href="/mitzr/terms"><span>TERMS OF USE</span><h3>Explore with clear ground rules.</h3><p>Read the rules for safe play, community contributions, purchases, coins, and your rights.</p><b>Read MITZR terms →</b></Link>
             <Link href="/mitzr/privacy"><span>PRIVACY</span><h3>Your data, clearly explained.</h3><p>See how MITZR handles account information, location, activity, and cloud progress.</p><b>Read privacy policy →</b></Link>
             <Link href="/mitzr/delete-account"><span>ACCOUNT</span><h3>You stay in control.</h3><p>Request deletion of your MITZR account and associated account-linked data.</p><b>Account deletion →</b></Link>
           </div>
